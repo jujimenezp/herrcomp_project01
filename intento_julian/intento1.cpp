@@ -32,17 +32,16 @@ void pvectori(std::vector<int> x); //Imprime vectores tipo int
 int main()
 {
     //Obtencion de constantes de init_data.txt
-    int data[5] = {400,200,1000000,1,8};
-    //std::vector<int> data;
-    //data = getdatos();
     
     
     //Declaracion de constantes
-    const int SEED=data[3];           //semilla del generador aleatorio
-    const int latsize=data[1];      //tamanio del lattice
-    const int N=data[0];     //numero de particulas (Debe ser cuadrado perfecto para inicializacion)
-    const int iterations=data[2]; //numero de iteraciones
-    const int gridsize=data[4];  //tamanio del grid
+    int SEED=0;           //semilla del generador aleatorio
+    int latsize=0;      //tamanio del lattice
+    int N=0;     //numero de particulas (Debe ser cuadrado perfecto para inicializacion)
+    int iterations=0; //numero de iteraciones
+    int gridsize=0;  //tamanio del grid
+
+    getdatos(N, latsize, iterations, SEED, gridsize);
     
     srand(SEED); //semilla de generacion
 
@@ -62,13 +61,13 @@ int main()
     for(int ii=0; ii<iterations; ++ii){
         S=entropy(grid, N);
         iteration(gridsize, latsize, particle, N, grid);
-        /*std::cout << ii << "\t"
+        std::cout << ii << "\t"
                   << S
-                  << "\n";*/
+                  << "\n";
     }
 
     //pvectori(grid);
-    pvectorp(particle);
+    //pvectorp(particle);
     
     return 0;
 }

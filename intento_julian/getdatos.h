@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <vector>
 
 //obtener datos
-std::vector<int> getdatos();
+void getdatos (int &a, int &b, int &c, int &d, int &e);
