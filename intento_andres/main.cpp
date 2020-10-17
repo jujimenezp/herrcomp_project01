@@ -17,6 +17,8 @@ int main()
   std::vector<double> PI((config.xrange/config.latticesize)*(config.xrange/config.latticesize)); //probabilidades por celda del Lattice
   entropia = initial_conditions(config, configuracion, Distribucion, PI);
   distribute(config, entropia, configuracion, Distribucion, PI);
+
+  return 0;
 }
 
 double initial_conditions(const CONFIG &object, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI)
