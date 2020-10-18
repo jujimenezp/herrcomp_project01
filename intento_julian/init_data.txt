@@ -1,5 +1,5 @@
 400     #nmolecules
 200      #latticesize
-500000   #niterations
+4000000   #niterations
 1       #randomgeneratorseed
 8       #gridsize

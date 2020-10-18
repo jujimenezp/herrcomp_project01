@@ -17,7 +17,7 @@ void iteration(int a, int b, std::vector<particles> &d, int N, std::vector<int> 
 int getg(int a, int b, int cx, int cy);
 
  //Calcula la entropia
-void entropy(std::vector<int> x, int N, double &s);
+void entropy(std::vector<int> x, int N, std::vector<double> &ent, int i);
 
 //Ejecuta iteration y entropy durante el # de iteracones especificado
-void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, double &s);
+void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, std::vector<double> &ent);

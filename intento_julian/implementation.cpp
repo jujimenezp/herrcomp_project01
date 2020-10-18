@@ -48,18 +48,19 @@ int getg(int a, int b, int cx, int cy){
 }
 
 
-void entropy(std::vector<int> x, int N, double &s){
-    s = 0.0;
+void entropy(std::vector<int> x, int N, std::vector<double> &ent, int i){
+    double s=0.0;
     double p=std::log(1.0*N);
     for(int ii=0; ii<x.size(); ++ii){
         if(x[ii] != 0) s += x[ii]*std::log(1.0*x[ii]);
     }
     s=p-s/(1.0*N);
+    ent[i]=s;
 }
 
-void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, double &s){
+void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, std::vector<double> &ent){
     for(int ii=0; ii<e; ++ii){
-        entropy(c, N, s);
+        entropy(c, N, ent, ii);
         iteration(a, b, d, N, c);
     }
 }
