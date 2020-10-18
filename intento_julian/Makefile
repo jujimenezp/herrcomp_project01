@@ -7,7 +7,7 @@ all: intento1.x
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
-intento1.x: intento1.o getdatos.o
+intento1.x: intento1.o getdatos.o particles.o implementation.o printdata.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean:

@@ -1,6 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include <string>
 #include "getdatos.h"
 
 void getdatos (int &a, int &b, int &c, int &d, int &e){
