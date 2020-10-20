@@ -20,8 +20,9 @@ valgrind: $(DEPENDENCIES)
 	$(CXX) $(CXXFLAGS) -g $^ -o main.x
 	valgrind $(VALGRINDFLAGS) ./main.x
 
-plot: data_entropy.txt data_particles_end.txt data_particles_start.txt
+%.pdf: data_entropy.txt data_particles_end.txt data_particles_start.txt
 	gnuplot plot.gp
+plot: %.pdf
 
 clean:
 	rm -f *.x *.o a.out

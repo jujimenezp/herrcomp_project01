@@ -10,12 +10,12 @@ int main(void)
  getdatos(N, Latsize, tmax, SEED, Gridsize);
  
  srand(SEED);
- double L=Latsize; m=(Latsize/Gridsize);  M=m*m; //t=tmax/resol;
+ double L=Latsize; m=(Latsize/Gridsize);  M=m*m; t=tmax/resol;
  //-----------------------declaracion de vectores--------------
  
  std::vector <Particle> Particles (N);
  std::vector <int> Cel (M,0);
- std::vector <double> S (tmax, 0);
+ std::vector <double> S (t, 0);
  
  //-----------------------inicializa los vectors--------------
  
@@ -23,7 +23,7 @@ int main(void)
  
  //---------------------Imprimir las posiciones iniciales de las particulas---
  
- print_pos(Particles, "data_particles_start.txt");
+ print_pos(Particles, "data_particles_start.txt", L);
  
  
  //---------------------calcula la entropia--------------
@@ -32,11 +32,11 @@ int main(void)
  
  //--------------------Imprimir las posiciones finales de las particulas---
  
- print_pos(Particles, "data_particles_end.txt");
+ print_pos(Particles, "data_particles_end.txt", L);
  
  //-------------------Imprimir la entropia--------------  
  
- print_entro(S, "data_entropy.txt");
+ print_entro(S, "data_entropy.txt", resol);
  
  //-----------------------liberar la memoria--------------
  

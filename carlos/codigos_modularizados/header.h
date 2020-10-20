@@ -23,10 +23,10 @@ public:
 void getdatos (int &a, int &b, int &c, int &d, int &e);
 
 void start(int N, int m,int M,double L, std::vector<Particle> &Particles, std::vector<int> &Cel);
-std::vector<double> entropy(int tmax, int resol, int N, int m, std::vector<Particle> &Particles, std::vector<int> &Cel, std::vector<double> &S);
+void entropy(int tmax, int resol, int N, int m, std::vector<Particle> &Particles, std::vector<int> &Cel, std::vector<double> &S);
 
-void print_pos(std::vector<Particle> &x, std::string name);
+void print_pos(std::vector<Particle> &x, std::string name, double L);
 
-void print_entro(std::vector<double> &x, std::string name);
+void print_entro(std::vector<double> &x, std::string name, double t);
 
 
