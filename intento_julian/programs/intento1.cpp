@@ -36,7 +36,7 @@ int main()
     
 
     //Imprimir las posiciones iniciales de las particulas
-    print_pos(particle, "data_particles_start.txt");
+    print_pos(particle, "data/data_particles_start.txt");
 
     
     //iteraciones
@@ -44,10 +44,10 @@ int main()
     manyite(gridsize, latsize, particle, N, grid, iterations, S);
 
     //Imprimir las posiciones finales de las particulas
-    print_pos(particle, "data_particles_end.txt");
+    print_pos(particle, "data/data_particles_end.txt");
 
     //Imprimir la entropia
-    print_entro(S, "data_entropy.txt");
+    print_entro(S, "data/data_entropy.txt");
     
     return 0;
 }

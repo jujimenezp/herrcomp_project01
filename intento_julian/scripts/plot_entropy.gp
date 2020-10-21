@@ -8,6 +8,6 @@ set xlabel 'Iteraciones'
 set ylabel 'Entropia'
 
 set term pdf
-set out "entropy.pdf"
+set out "data/entropy.pdf"
 
-plot 'data_entropy.txt' u 1:2 w l ls 2 t 'Entropia'
+plot 'data/data_entropy.txt' u 1:2 w l ls 2 t 'Entropia'
