@@ -20,5 +20,11 @@ valgrind: $(DEPENDENCIES)
 	$(CXX) $(CXXFLAGS) -g $^ -o intento1.x
 	valgrind $(VALGRINDFLAGS) ./intento1.x
 
+graphs: intento1.x init_data.txt
+	./intento1.x
+	gnuplot plot_particles.gp
+	gnuplot plot_entropy.gp
+	make clean
+
 clean:
 	rm -f *.x *.o a.out
