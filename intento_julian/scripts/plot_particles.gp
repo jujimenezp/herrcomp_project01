@@ -4,9 +4,10 @@ set style line 1 lc rgb '#0060ad' pt 7 ps 0.5
 bord = int(system("sed -n 2p data/init_data.txt | tr -d -c 0-9"))*0.5
 ti = int(system("sed -n 5p data/init_data.txt | tr -d -c 0-9"))
 
-set xtics ti
-set ytics ti
+set xtics 2*bord/ti
+set ytics 2*bord/ti
 
+set size square
 set object 1 rect from -bord,-bord to bord,bord lw 3 fs empty border lc rgb 'red'
 
 ran=bord*(1.1)
