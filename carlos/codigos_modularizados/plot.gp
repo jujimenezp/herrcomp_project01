@@ -24,3 +24,14 @@ set xlabel 'Iteraciones'
 set ylabel 'Entropia'
 set out "entropy.pdf"
 plot 'data_entropy.txt' u 1:2 w l ls 2 t 'Entropia'
+
+set xrange [0:*]
+set yrange [0:*]
+set title 'Tamaño de la gota'
+set xlabel 'Tiempo'
+set ylabel 'Tamaño'
+set out "drop_size.pdf"
+plot 'data_drop_size.txt' u 1:2 w l ls 2 t 'Entropia'
+
+
+

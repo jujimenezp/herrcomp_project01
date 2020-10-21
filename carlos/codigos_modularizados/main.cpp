@@ -16,27 +16,32 @@ int main(void)
  std::vector <Particle> Particles (N);
  std::vector <int> Cel (M,0);
  std::vector <double> S (t, 0);
+ std::vector <double> Size (t, 0);
  
  //-----------------------inicializa los vectors--------------
  
  start(N,M,m,L, Particles, Cel);
  
- //---------------------Imprimir las posiciones iniciales de las particulas---
+ //-------Imprimir las posiciones iniciales de las particulas---
  
  print_pos(Particles, "data_particles_start.txt", L);
  
  
  //---------------------calcula la entropia--------------
  
- entropy(tmax, resol, N, M, Particles, Cel, S);
+ entropy(tmax, resol, N, M, Particles, Cel, S, Size);
  
- //--------------------Imprimir las posiciones finales de las particulas---
+ //-------Imprimir las posiciones finales de las particulas---
  
  print_pos(Particles, "data_particles_end.txt", L);
  
  //-------------------Imprimir la entropia--------------  
  
  print_entro(S, "data_entropy.txt", resol);
+
+ //-------------------Imprimir el tamaño de la gota-------  
+ 
+ print_size(Size, "data_drop_size.txt", resol);
  
  //-----------------------liberar la memoria--------------
  

@@ -21,3 +21,14 @@ void print_entro(std::vector<double> &x, std::string name, double t){
     }
     file.close();
 }
+void print_size(std::vector<double> &x, std::string name, double t){
+    std::ofstream file;
+    file.open(name);
+    for(int ii=0; ii<(x.size()-t); ++ii){
+        file << ii*t << "\t"
+             << x[ii]
+             << "\n";
+    }
+    file.close();
+}
+

@@ -1,7 +1,7 @@
 #include "header.h"
 
 
-void entropy(int tmax, int resol, int N, int m, std::vector<Particle> &Particles, std::vector<int> &Cel, std::vector<double> &S)
+void entropy(int tmax, int resol, int N, int m, std::vector<Particle> &Particles, std::vector<int> &Cel, std::vector<double> &S, std::vector<double> &Size)
 {
   int q,p,i,k,j=0, tt=0;
   double s=0, P=0;
@@ -24,8 +24,10 @@ void entropy(int tmax, int resol, int N, int m, std::vector<Particle> &Particles
       for(int ii=0; ii<m; ++ii){
         if(Cel[ii] != 0) s += Cel[ii]*std::log(1.0*Cel[ii]);
       }
+      double size=drop_size(N,Particles);
       s=P-s/(1.0*N);
       S[j]=s;
+      Size[j]=size;
       tt=0;
       j+=1;
       }

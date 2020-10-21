@@ -2,7 +2,7 @@ CXX=g++
 CXXFLAGS=-std=c++17 -O2
 SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
 VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
-DEPENDENCIES = main.o getdatos.o class_particle.o entropy.o start.o printdata.o
+DEPENDENCIES = main.o getdatos.o class_particle.o entropy.o start.o printdata.o drop_size.o
 
 
 all: main.x
