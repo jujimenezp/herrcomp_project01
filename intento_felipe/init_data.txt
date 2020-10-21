@@ -1,5 +1,0 @@
-400        #Número_de_moléculas
-100        #Intervalo_L_del_grid_[-L,L]
-25          #Tamaño_de_un_lado_de_celda
-10000000   #Número_de_iteraciones
-2          #Semilla_de_generación aleatoria

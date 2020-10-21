@@ -1,6 +1,4 @@
 #include "coffee_random.h"
-#include <string>
-#include <fstream>
 
 void get_data (int &mol_number, int &grid_size, int &cell_size, int &iterations, int &seed){
     
@@ -8,12 +6,14 @@ void get_data (int &mol_number, int &grid_size, int &cell_size, int &iterations,
     
     std::ifstream init_data;
     
-    init_data.open("init_data.txt");
+    init_data.open("../Data/init_data.txt");
     
     std::getline(init_data, line);
     
     mol_number = std::stoi(line.erase(line.find('#'), line.size()) );
 
+    //Convierte a mo_number en cuadrado perfecto de un numero par
+    
     mol_number = std::ceil(std::sqrt(mol_number/4));
     
     std::getline(init_data, line);
@@ -26,8 +26,12 @@ void get_data (int &mol_number, int &grid_size, int &cell_size, int &iterations,
     
     std::getline(init_data, line);
 
+    //Convierte a grid_size en multiplo de cell_size
+    
     if(grid_size % cell_size != 0){
+        
         grid_size -= grid_size%cell_size;
+        
     }
     
     iterations = std::stoi(line.erase(line.find('#'), line.size()) );
