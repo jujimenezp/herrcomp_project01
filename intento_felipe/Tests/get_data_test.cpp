@@ -2,13 +2,13 @@
 
 int main(){
 
-    int mol_number, grid_size, cell_size, iterations, seed;
+    int mols_number, grid_size, cells_number, iterations, seed;
 
-    get_data (mol_number, grid_size, cell_size, iterations, seed);
+    get_data (mols_number, grid_size, cells_number, iterations, seed);
 
-    std::cout << "\nmol_number\t" << mol_number << "\n";
+    std::cout << "\nmols_number\t" << mols_number << "\n";
     std::cout << "grid_size\t" << grid_size << "\n";
-    std::cout << "cell_size\t" << cell_size << "\n";
+    std::cout << "cells_number\t" << cells_number << "\n";
     std::cout << "iterations\t" << iterations << "\n";
     std::cout << "seed\t" << seed << "\n\n";
       

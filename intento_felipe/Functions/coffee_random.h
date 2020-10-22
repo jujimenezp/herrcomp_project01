@@ -36,7 +36,7 @@ class particle{
         
 };
 
-void get_data (int &mol_number, int &grid_size, int &cell_size, int &iterations, int &seed);
+void get_data (int &mols_number, int &grid_size, int &cells_number, int &iterations, int &seed);
 
 //Lee los datos iniciales de init_data.txt
 

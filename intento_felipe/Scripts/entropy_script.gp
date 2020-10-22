@@ -5,4 +5,4 @@ set xlabel 'Time'
 set ylabel 'Entropy'
 set term pdf 
 set out '../Data/entropy_figure.pdf'
-plot '../Data/entropy_data.txt' w l ls -1 lc rgb 'black' t 'Entropy'
+plot '../Data/entropy_data.txt' w l ls -1 lc rgb 'blue' t 'Entropy'

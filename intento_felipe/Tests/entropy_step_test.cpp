@@ -2,10 +2,10 @@
 
 int main(void)
 {
-    int mol_number = 10;
+    int mol_number = 15;
     int grid_size = 100;
     int cell_size = 25;
-    int seed = 0;
+    int seed = 1;
     int cell_quantity = 2*grid_size/cell_size;
     int N = 4*mol_number*mol_number;
 
@@ -55,7 +55,7 @@ int main(void)
     std::cout << "New cell pre-entropy \t" << Entropy[new_cell] << "\n";
     std::cout << "Total entropy \t" << total_entropy << "\n";
     
-    std::cout << "La función se ejecuta... \n\n";
+    std::cout << "\nLa función se ejecuta... \n\n";
 
     total_entropy = entropy_step (old_cell, new_cell, N, cell_quantity, Cells, Entropy);
     

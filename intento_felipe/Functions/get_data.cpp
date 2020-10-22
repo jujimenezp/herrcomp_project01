@@ -1,6 +1,6 @@
 #include "coffee_random.h"
 
-void get_data (int &mol_number, int &grid_size, int &cell_size, int &iterations, int &seed){
+void get_data (int &mols_number, int &grid_size, int &cells_number, int &iterations, int &seed){
     
     std::string line;
     
@@ -10,11 +10,11 @@ void get_data (int &mol_number, int &grid_size, int &cell_size, int &iterations,
     
     std::getline(init_data, line);
     
-    mol_number = std::stoi(line.erase(line.find('#'), line.size()) );
+    mols_number = std::stoi(line.erase(line.find('#'), line.size()) );
 
-    //Convierte a mo_number en cuadrado perfecto de un numero par
+    //Convierte a mo_number en cuadrado perfecto
     
-    mol_number = std::ceil(std::sqrt(mol_number/4));
+    mols_number =(int)std::sqrt(mols_number)*(int)std::sqrt(mols_number);
     
     std::getline(init_data, line);
     
@@ -22,15 +22,15 @@ void get_data (int &mol_number, int &grid_size, int &cell_size, int &iterations,
     
     std::getline(init_data, line);
     
-    cell_size = std::stoi(line.erase(line.find('#'), line.size()) );
+    cells_number = std::stoi(line.erase(line.find('#'), line.size()) );
     
     std::getline(init_data, line);
 
-    //Convierte a grid_size en multiplo de cell_size
+    //Convierte a grid_size en multiplo de cells_number
     
-    if(grid_size % cell_size != 0){
+    if(grid_size % cells_number != 0){
         
-        grid_size -= grid_size%cell_size;
+        grid_size -= grid_size%cells_number;
         
     }
     

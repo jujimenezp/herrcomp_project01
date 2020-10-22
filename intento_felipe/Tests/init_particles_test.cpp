@@ -3,7 +3,7 @@
 int main(void)
 {
 
-    int mol_number = 10;
+    int mol_number = 15;
     int grid_size = 100;
     int cell_size = 25;
     int N = 4*mol_number*mol_number;
