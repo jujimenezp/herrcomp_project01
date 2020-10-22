@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "getdatos.h"
 
 void getdatos (int &a, int &b, int &c, int &d, int &e){
@@ -16,4 +17,6 @@ void getdatos (int &a, int &b, int &c, int &d, int &e){
     std::getline(init_data, line);
     e=std::stoi(line.erase(line.find('#'), line.size()) );
     init_data.close();
+
+    a=int(std::sqrt(a))*int(std::sqrt(a));
 }
