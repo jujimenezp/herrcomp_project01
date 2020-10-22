@@ -1,12 +1,13 @@
 #include "coffee_random.h"
 
-void init_cells(int N, int grid_size, int cell_size, std::vector<particle> &Particles, std::vector<int> &Cells){
+void init_cells(int mols_number, int grid_size, int cells_number,
+                std::vector<particle> Particles, std::vector<int> &Cells){
 
     int m;
     
-    for(int i = 0; i < N; i++){
+    for(int i = 0; i < mols_number; i++){
 
-        m = Particles[i].get_cell(grid_size, cell_size);
+        m = Particles[i].get_cell(grid_size, cells_number);
         
         Cells[m] += 1;
 

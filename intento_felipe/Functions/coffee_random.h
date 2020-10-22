@@ -29,19 +29,19 @@ void get_data (int &mols_number, int &grid_size, int &cells_number,
 
 void distribution (int mols_number, std::vector<particle> Particles, std::string name);
 
-//Escribe la distribución de las particulas dentro de un archivo de texto
+//Escribe la distribución de las particulas en un archivo de texto
 
-void init_particles (int n, std::vector<particle> &Particles);
+void init_particles (int mols_number, std::vector<particle> &Particles);
 
 //Organiza las particulas en su cuadrado inicial
 
-void init_cells (int N, int grid_size, int cell_size,
-                 std::vector<particle> &Particles, std::vector<int> &Cells);
+void init_cells (int mols_number, int grid_size, int cells_number,
+                 std::vector<particle> Particles, std::vector<int> &Cells);
 
 //Calcula la cantidad de particulas por celda para la distribucion inicial
 
-double init_entropy (int N, int grid_size, int cell_size,
-                     std::vector<int> &Cells, std::vector<double> &Entropy);
+double init_entropy (int grid_size, int cells_number,
+                     std::vector<int> Cells, std::vector<double> &Entropy);
 
 //Calcula el factor m*Ln(m) para cada celda con m particulas en ella, y retorna la entroia inicial
 

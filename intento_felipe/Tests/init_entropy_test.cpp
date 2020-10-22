@@ -1,34 +1,32 @@
 #include "../Functions/coffee_random.h"
 
-int main()
+int main(void)
 {
 
-    int mol_number = 15;
-    int grid_size = 100;
-    int cell_size = 25;
-    int N = 4*mol_number*mol_number;
-    int cell_quantity = 2*grid_size/cell_size;
+    int mols_number = 400;
+    int grid_size = 200;
+    int cells_number = 8;
  
-    std::vector <particle> Particles (N);
-    std::vector <int> Cells (cell_quantity*cell_quantity);
-    std::vector <double> Entropy (cell_quantity*cell_quantity);
+    std::vector <particle> Particles (mols_number);
+    std::vector <int> Cells (cells_number*cells_number);
+    std::vector <double> Entropy (cells_number*cells_number);
 
-    init_particles(mol_number, Particles);
-    init_cells(N, grid_size, cell_size, Particles, Cells);
-    double total_entropy = init_entropy(N, grid_size, cell_size, Cells, Entropy);
+    init_particles(mols_number, Particles);
+    init_cells(mols_number, grid_size, cells_number, Particles, Cells);
+    double pre_entropy = init_entropy(grid_size, cells_number, Cells, Entropy);
 
-    for(int i = 0; i < cell_quantity; i++){
+    for(int i = 0; i < cells_number; i++){
         
-        for (int j = 0; j < cell_quantity; j++){
+        for (int j = 0; j < cells_number; j++){
 
-            std::cout << Entropy[i + j*cell_quantity] << "\t";
+            std::cout << Entropy[i + j*cells_number] << "\t";
 
         }
 
         std::cout << "\n";
     }
 
-    std::cout << "\nEntropy = " << total_entropy;
+    std::cout << "\nEntropy = " << std::log(mols_number) - pre_entropy/mols_number;
     
     return 0;
 }

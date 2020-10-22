@@ -1,6 +1,7 @@
 #include "coffee_random.h"
 
-void get_data (int &mols_number, int &grid_size, int &cells_number, int &iterations, int &seed){
+void get_data (int &mols_number, int &grid_size, int &cells_number,
+               int &iterations, int &seed){
     
     std::string line;
     
