@@ -1,12 +1,15 @@
 #include "coffee_random.h"
 
-void init_particles(int mol_number, std::vector<particle> &Particles){
+void init_particles(int mols_number, std::vector<particle> &Particles){
 
-    for(int i = 0; i < 2*mol_number; i++){
+    int n = std::sqrt(mols_number);
+
+    for(int i = 0; i < n; i++){
         
-        for(int j = 0; j < 2*mol_number; j++){
+        for(int j = 0; j < n; j++){
 
-            Particles[i + j*2*mol_number].locate(i - mol_number, j - mol_number);
+            Particles[i + j*n].position[0] = i - n/2;
+            Particles[i + j*n].position[1] = j - n/2;
             
         }
         

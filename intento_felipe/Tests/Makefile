@@ -26,7 +26,7 @@ init_particles.x: init_particles_test.cpp ../Functions/init_particles.cpp ../Fun
 	$(CXX) $^ -o init_particles.x
 	./init_particles.x
 	gnuplot ../Scripts/distribution_script.gp
-	xpdf ../Data/distribution_figure.pdf
+	xpdf ../Data/distribution_start.pdf
 	rm init_particles.x 
 
 init_cells.txt: init_cells_test.cpp ../Functions/init_cells.cpp ../Functions/init_particles.cpp ../Functions/particle.cpp

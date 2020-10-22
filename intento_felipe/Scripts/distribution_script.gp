@@ -1,10 +1,26 @@
-set xrange [-125:125]
-set yrange [-125:125]
-set xtics 25
-set ytics 25
 set grid
-set size square
-set object 1 rect from -100,-100 to 100,100 lw 3 fs empty border lc rgb 'red'
+set style line 1 lc rgb '#0060ad' pt 7 ps 0.5
+
+bord = int(system("sed -n 2p ../Data/init_data.txt | tr -d -c 0-9"))*0.5
+ti = int(system("sed -n 3p ../Data/init_data.txt | tr -d -c 0-9"))
+
+ran = bord*(1.25)
+set xrange [-ran:ran]
+set yrange [-ran:ran]
+set xtics 2*bord/ti
+set ytics 2*bord/ti
+set xlabel 'Eje x'
+set ylabel 'Eje y'
 set term pdf
-set out '../Data/distribution_figure.pdf'
-plot '../Data/distribution_data.txt' w p pt 7 ps 0.5 lc rgb 'black' t 'Particles'
+
+set size square
+set object 1 rect from -bord,-bord to bord,bord lw 3 fs empty border lc rgb 'red'
+
+set title 'Inicio'
+set out "../Data/distribution_start.pdf"
+plot '../Data/distribution_start.txt' u 1:2 w p ls 1 t 'Particulas'
+
+
+set title 'Final'
+set out "../Data/distribution_end.pdf"
+plot '../Data/distribution_end.txt' u 1:2 w p ls 1 t 'Particulas'

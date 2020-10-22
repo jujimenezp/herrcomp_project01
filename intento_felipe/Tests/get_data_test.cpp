@@ -1,6 +1,6 @@
 #include "../Functions/coffee_random.h"
 
-int main(){
+int main(void){
 
     int mols_number, grid_size, cells_number, iterations, seed;
 

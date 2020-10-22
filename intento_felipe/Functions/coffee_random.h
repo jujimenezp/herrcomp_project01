@@ -7,52 +7,41 @@
 #include <fstream>
 
 class particle{
-
-    private:
-
-        int position[2] = {0,0};
   
-    public:
-  
-        int get_x (void);
+        public:
 
-        //Retorna coordenada x de la particula
+                int position[2] = {0,0};
         
-        int get_y (void);
+                int get_cell (int grid_size, int cells_number);
 
-        //Retorna coordenada y de la particula
+                //Retorna celda de la particula
         
-        int get_cell (int grid_size, int cell_size);
+                void move (int q, int p, int grid_size);
 
-        //Retorna celda de la particula
-        
-        void locate (int x, int y);
-
-        //Ubica la particula en x,y
-        
-        void move (int q, int p, int grid_size);
-
-        //Mueve la particula aleatoriamente en cuanto a q = 0,1; p = -1, 1. Incluye tambien condiciones de frontera
+                //Mueve la particula aleatoriamente en cuanto a q = 0,1; p = -1, 1. Incluye tambien condiciones de frontera
         
 };
 
-void get_data (int &mols_number, int &grid_size, int &cells_number, int &iterations, int &seed);
+void get_data (int &mols_number, int &grid_size, int &cells_number,
+               int &iterations, int &seed);
 
 //Lee los datos iniciales de init_data.txt
 
-void distribution (int N, int grid_size, int cell_size, std::vector<particle> &Particles);
+void distribution (int mols_number, std::vector<particle> Particles, std::string name);
 
-//Escribe la distribución de las particulas en un momento dado dentro de un archivo de texto, junto con las reglas para graficarlo
+//Escribe la distribución de las particulas dentro de un archivo de texto
 
 void init_particles (int n, std::vector<particle> &Particles);
 
 //Organiza las particulas en su cuadrado inicial
 
-void init_cells (int N, int grid_size, int cell_size, std::vector<particle> &Particles, std::vector<int> &Cells);
+void init_cells (int N, int grid_size, int cell_size,
+                 std::vector<particle> &Particles, std::vector<int> &Cells);
 
 //Calcula la cantidad de particulas por celda para la distribucion inicial
 
-double init_entropy (int N, int grid_size, int cell_size, std::vector<int> &Cells, std::vector<double> &Entropy);
+double init_entropy (int N, int grid_size, int cell_size,
+                     std::vector<int> &Cells, std::vector<double> &Entropy);
 
 //Calcula el factor m*Ln(m) para cada celda con m particulas en ella, y retorna la entroia inicial
 

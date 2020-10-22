@@ -12,7 +12,7 @@ void get_data (int &mols_number, int &grid_size, int &cells_number, int &iterati
     
     mols_number = std::stoi(line.erase(line.find('#'), line.size()) );
 
-    //Convierte a mo_number en cuadrado perfecto
+    //Convierte a mol_number en cuadrado perfecto
     
     mols_number =(int)std::sqrt(mols_number)*(int)std::sqrt(mols_number);
     
@@ -26,13 +26,13 @@ void get_data (int &mols_number, int &grid_size, int &cells_number, int &iterati
     
     std::getline(init_data, line);
 
-    //Convierte a grid_size en multiplo de cells_number
-    
-    if(grid_size % cells_number != 0){
-        
-        grid_size -= grid_size%cells_number;
-        
-    }
+    //Convierte a grid_size en número par
+
+    grid_size = 2*(grid_size/2);
+
+    //Convierte a grid_size en número par y multiplo de cells_number
+
+    grid_size = 2*(grid_size/2 - (grid_size/2)%cells_number);
     
     iterations = std::stoi(line.erase(line.find('#'), line.size()) );
     

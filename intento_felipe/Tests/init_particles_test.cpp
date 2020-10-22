@@ -3,16 +3,13 @@
 int main(void)
 {
 
-    int mol_number = 15;
-    int grid_size = 100;
-    int cell_size = 25;
-    int N = 4*mol_number*mol_number;
- 
-    std::vector <particle> Particles (N);
+    int mols_number = 400;
+    
+    std::vector <particle> Particles (mols_number);
 
-    init_particles(mol_number, Particles);
+    init_particles(mols_number, Particles);
 
-    distribution (N, grid_size, cell_size, Particles);
+    distribution (mols_number, Particles, "distribution_start");
     
     return 0;
 }
