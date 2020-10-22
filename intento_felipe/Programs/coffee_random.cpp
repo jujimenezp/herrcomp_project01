@@ -3,26 +3,29 @@
 int main ()
 {
     
-    int mol_number, grid_size, cell_size, iterations, seed;
+    int mols_number, grid_size, cells_number, iterations, seed;
 
-    get_data (mol_number, grid_size, cell_size, iterations, seed);
+    get_data (mols_number, grid_size, cells_number, iterations, seed);
 
-    int N = 4*mol_number*mol_number;
-    int cell_quantity = 2*grid_size/cell_size;
+    std::vector <particle> Particles (mols_number);
+    std::vector <int> Cells (cells_number*cells_number);
+    std::vector <double> Entropy (cells_number*cells_number);
 
-    std::vector <particle> Particles (N);
-    std::vector <int> Cells (cell_quantity*cell_quantity);
-    std::vector <double> Entropy (cell_quantity*cell_quantity);
+    init_particles (mols_number, Particles);
 
-    init_particles (mol_number, Particles);
+    distribution (mols_number, Particles, "distribution_start");
 
-    init_cells (N, grid_size, cell_size, Particles, Cells);
+    init_cells (mols_number, grid_size, cells_number,
+                Particles, Cells);
 
-    double total_entropy = init_entropy (N, grid_size, cell_size, Cells, Entropy);
+    double pre_entropy = init_entropy (grid_size, cells_number,
+                                       Cells, Entropy);
     
-    total_entropy = time_steps (N, grid_size, cell_size, iterations, seed, total_entropy, Particles, Cells, Entropy);
+    time_steps (mols_number, grid_size, cells_number,
+                iterations, seed, pre_entropy,
+                Particles, Cells, Entropy);
 
-    distribution (N, grid_size, cell_size, Particles);
+    distribution (mols_number, Particles, "distribution_end");
     
     return 0;
 }

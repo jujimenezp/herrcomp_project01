@@ -1,5 +1,5 @@
 400        #Molecules number
 200        #Grid size
 8          #Cells number
-100        #Iterations
+10000000        #Iterations
 0          #Seed

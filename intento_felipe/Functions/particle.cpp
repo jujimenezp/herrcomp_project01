@@ -10,7 +10,7 @@ int particle::get_cell (int grid_size,int cells_number){
 
 void particle::move(int q, int p,int grid_size){
 
-    if (labs(position[q]) + 1 != grid_size/2 + (1 - p)/2){
+    if (labs(position[q] + p) != grid_size/2 + (1 - p)/2){
 
         position[q] += p;
 

@@ -11,5 +11,7 @@ int main(void)
 
     distribution (mols_number, Particles, "distribution_start");
     
+    distribution (mols_number, Particles, "distribution_end");
+    
     return 0;
 }

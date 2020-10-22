@@ -1,23 +1,17 @@
 #include "coffee_random.h"
 
-double time_steps (int N, int grid_size, int cell_size, int iterations, int seed, double total_entropy, std::vector<particle> &Particles, std::vector<int> &Cells, std::vector<double> &Entropy){
-
-    int cell_quantity = 2*grid_size/cell_size;
-
-    
-    std::ofstream file;
-
-    file.open("../Data/entropy_data.txt");
-    
+void time_steps (int mols_number, int grid_size, int cells_number,
+                   int iterations, int seed, double pre_entropy,
+                   std::vector<particle> &Particles, std::vector<int> &Cells, std::vector<double> &Entropy){
 
     std::mt19937 gen(seed);
     
     std::uniform_int_distribution<int> dis_move(0, 1);
     
-    std::uniform_int_distribution<int> dis_particle(0, N-1);
+    std::uniform_int_distribution<int> dis_particle(0, mols_number-1);
     
 
-    file << "0" << "\t" << total_entropy << "\n";
+    std::cout << "0" << "\t" << std::log(mols_number) - pre_entropy/mols_number << "\n";
 
 
     int j, q, p, old_cell, new_cell;
@@ -26,25 +20,23 @@ double time_steps (int N, int grid_size, int cell_size, int iterations, int seed
 
         j = dis_particle(gen);
 
-        old_cell = Particles[j].get_cell(grid_size, cell_size);
+        old_cell = Particles[j].get_cell(grid_size, cells_number);
         
         q = dis_move(gen);
         p = dis_move(gen)*2 - 1;
 
         Particles[j].move(q ,p ,grid_size);
 
-        new_cell = Particles[j].get_cell(grid_size, cell_size);
+        new_cell = Particles[j].get_cell(grid_size, cells_number);
 
         if (old_cell != new_cell){
 
-            total_entropy = entropy_step (old_cell, new_cell, N, cell_quantity, Cells, Entropy);
+            pre_entropy = entropy_step (old_cell, new_cell, pre_entropy, Cells, Entropy);
             
         }
         
-        file << i+1 << "\t" << total_entropy << "\n";
+        std::cout << i+1 << "\t" << std::log(mols_number) - pre_entropy/mols_number << "\n";
 
     }
-
-    return total_entropy;
 
 }

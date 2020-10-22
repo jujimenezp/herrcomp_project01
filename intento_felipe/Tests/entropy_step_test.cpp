@@ -2,68 +2,67 @@
 
 int main(void)
 {
-    int mol_number = 15;
-    int grid_size = 100;
-    int cell_size = 25;
-    int seed = 1;
-    int cell_quantity = 2*grid_size/cell_size;
-    int N = 4*mol_number*mol_number;
+    int mols_number = 400;
+    int grid_size = 200;
+    int cells_number = 8;
+    int seed = 0;
 
-    std::vector <particle> Particles (N);
-    std::vector <int> Cells (cell_quantity*cell_quantity);
-    std::vector <double> Entropy (cell_quantity*cell_quantity);
+    std::vector <particle> Particles (mols_number);
+    std::vector <int> Cells (cells_number*cells_number);
+    std::vector <double> Entropy (cells_number*cells_number);
 
     std::mt19937 gen(seed);
     
     std::uniform_int_distribution<int> dis_move(0, 1);
     
-    std::uniform_int_distribution<int> dis_particle(0, N - 1);
+    std::uniform_int_distribution<int> dis_particle(0, mols_number - 1);
     
-    std::uniform_int_distribution<int> dis_location(-grid_size, grid_size - 1);
+    std::uniform_int_distribution<int> dis_location(-grid_size/2, grid_size/2 - 1);
 
     int x, y;
 
-    for (int i = 0; i < N; i++){
+    for (int i = 0; i < mols_number; i++){
 
         x = dis_location(gen);
         y = dis_location(gen);
 
-        Particles[i].locate (x, y);
+        Particles[i].position[0] = x;
+        Particles[i].position[1] = y;
 
     }
 
     
-    init_cells (N, grid_size, cell_size, Particles, Cells);
+    init_cells (mols_number, grid_size, cells_number, Particles, Cells);
     
-    double total_entropy = init_entropy (N, grid_size, cell_size, Cells, Entropy);
+    double pre_entropy = init_entropy (grid_size, cells_number, Cells, Entropy);
 
     int j = dis_particle(gen);
 
-    int old_cell = Particles[j].get_cell (grid_size, cell_size);
+    Particles[j].position[0] = -grid_size/cells_number;
 
-    for (int i = 0; i < cell_size; i++){
+    int old_cell = Particles[j].get_cell (grid_size, cells_number);
 
-        Particles[j].move(1, -(int)std::copysign (1.0, Particles[j].get_y()), grid_size);
+    Particles[j].position[0] = grid_size/cells_number;
 
-    }
+    int new_cell = Particles[j].get_cell (grid_size, cells_number);
 
-    int new_cell = Particles[j].get_cell (grid_size, cell_size);
-
-    std::cout << "\nOld cell particles \t" << Cells[old_cell] << "\n";
-    std::cout << "Old cell pre-entropy \t" << Entropy[old_cell] << "\n";
-    std::cout << "New cell particles \t" << Cells[new_cell] << "\n";
-    std::cout << "New cell pre-entropy \t" << Entropy[new_cell] << "\n";
-    std::cout << "Total entropy \t" << total_entropy << "\n";
+    std::cout << "\nOld cell particles \t" << Cells[old_cell] << "\n"
+              << "Old cell pre-entropy \t" << Entropy[old_cell] << "\n"
+              << "New cell particles \t" << Cells[new_cell] << "\n"
+              << "New cell pre-entropy \t" << Entropy[new_cell] << "\n"
+              << "Total pre-entropy \t" << pre_entropy << "\n"
+              << "Total entropy \t" << std::log(mols_number) - pre_entropy/mols_number << "\n\n";
     
-    std::cout << "\nLa función se ejecuta... \n\n";
+    std::cout << "La función se ejecuta... \n";
 
-    total_entropy = entropy_step (old_cell, new_cell, N, cell_quantity, Cells, Entropy);
+    pre_entropy = entropy_step (old_cell, new_cell, pre_entropy, Cells, Entropy);
     
-    std::cout << "\nOld cell particles \t" << Cells[old_cell] << "\n";
-    std::cout << "Old cell pre-entropy \t" << Entropy[old_cell] << "\n";
-    std::cout << "New cell particles \t" << Cells[new_cell] << "\n";
-    std::cout << "New cell pre-entropy \t" << Entropy[new_cell] << "\n";
-    std::cout << "Total entropy \t" << total_entropy << "\n";
+    std::cout << "\nOld cell particles \t" << Cells[old_cell] << "\n"
+              << "Old cell pre-entropy \t" << Entropy[old_cell] << "\n"
+              << "New cell particles \t" << Cells[new_cell] << "\n"
+              << "New cell pre-entropy \t" << Entropy[new_cell] << "\n"
+              << "Total pre-entropy \t" << pre_entropy << "\n"
+              << "Total entropy \t" << std::log(mols_number) - pre_entropy/mols_number << "\n\n";
 
     return 0;
     

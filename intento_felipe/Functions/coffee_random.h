@@ -45,10 +45,13 @@ double init_entropy (int grid_size, int cells_number,
 
 //Calcula el factor m*Ln(m) para cada celda con m particulas en ella, y retorna la entroia inicial
 
-double entropy_step (int old_cell, int new_cell, int N, int cell_quantity, std::vector<int> &Cells, std::vector<double> &Entropy);
+double entropy_step (int old_cell, int new_cell, double pre_entropy,
+                     std::vector<int> &Cells, std::vector<double> &Entropy);
 
 //Calcula la entropia cuando una particula cambia de posición
 
-double time_steps (int N, int grid_size, int cell_size, int iterations, int seed, double total_entropy, std::vector<particle> &Particles, std::vector<int> &Cells, std::vector<double> &Entropy);
+void time_steps (int mols_number, int grid_size, int cells_number,
+                   int iterations, int seed, double pre_entropy,
+                   std::vector<particle> &Particles, std::vector<int> &Cells, std::vector<double> &Entropy);
 
 //Genera el proceso de disperción para un numero fijo de iteraciones y condiciones iniciales

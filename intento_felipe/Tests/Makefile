@@ -27,7 +27,7 @@ init_particles.x: init_particles_test.cpp ../Functions/init_particles.cpp ../Fun
 	./init_particles.x
 	gnuplot ../Scripts/distribution_script.gp
 	xpdf ../Data/distribution_start.pdf
-	rm init_particles.x 
+	rm init_particles.x ../Data/distribution_start.txt ../Data/distribution_end.txt
 
 init_cells.txt: init_cells_test.cpp ../Functions/init_cells.cpp ../Functions/init_particles.cpp ../Functions/particle.cpp
 	$(CXX) $^ -o test_init_cells.x
