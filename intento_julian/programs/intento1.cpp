@@ -13,8 +13,7 @@ int main()
     int latsize=0;      //tamanio del lattice
     int N=0;     //numero de particulas (Debe ser cuadrado perfecto para inicializacion)
     int iterations=0; //numero de iteraciones
-    int gridsize=0;  //tamanio del grid
-
+    int gridsize=0;  //numero de celdas
 
     //Obtencion de constantes iniciales de init_data.txt
     
@@ -24,7 +23,7 @@ int main()
 
     //Declaracion de variables
 
-    std::vector<double> S(iterations, 0.0); //Entropia
+    std::vector <double> S (iterations, 0.0); //Entropia
     std::vector <particles> particle (N); //vector de particulas
     std::vector <int> grid (gridsize*gridsize); //numero de particulas por cuadricula
 

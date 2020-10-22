@@ -40,7 +40,7 @@ void  iteration(int a, int b, std::vector<particles> &d, int N, std::vector<int>
 
 
 int getg(int a, int b, int cx, int cy){
-    int m, n, p, g;
+    int m, n,  g;
     m = (cy+b/2)*a/b;
     n = (cx+b/2)*a/b;
     g = a*m+n;
@@ -50,7 +50,7 @@ int getg(int a, int b, int cx, int cy){
 
 void entropy(std::vector<int> x, int N, std::vector<double> &ent, int i){
     double s=0.0;
-    double p=std::log(1.0*N);
+    double p=std::log(N);
     for(int ii=0; ii<x.size(); ++ii){
         if(x[ii] != 0) s += x[ii]*std::log(1.0*x[ii]);
     }
