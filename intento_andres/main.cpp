@@ -1,114 +1,93 @@
-#include <iostream>
-#include "particle.h"
-#include "config.h"
+#include "header.h"
 
-double initial_conditions(const CONFIG &object, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI);
-int Locate(const CONFIG object, PARTICLE j);
-void distribute(const CONFIG object, double entropia, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI);
-double entropy(const CONFIG &object, double entropia,const int origin,const int destiny, std::vector<double> &PI, std::vector<int> distribucion);
+typedef std::vector<PARTICLE> particlevector;
+typedef std::vector<int> gridvector;
+typedef std::vector<double> probvector;
+
+void distribute(const CONFIG object, particlevector &configuracion, gridvector &distribucion, probvector &probabilities);
+double entropy(const CONFIG &object, double &entropia, const int origin,const int destiny, const gridvector &distribucion, const probvector &probabilities);
 
 int main()
 {
   CONFIG config;
-  config.read("config.txt");
+  config.read("config.txt"); //read configuration parameters
+  
   double entropia = 0;
-  std::vector<PARTICLE> configuracion(config.nmolecules); //configuracion de las particulas en el espacio
-  std::vector<int> Distribucion((config.xrange/config.latticesize)*(config.xrange/config.latticesize)); //distribucion de las particulas en el Lattice
-  std::vector<double> PI((config.xrange/config.latticesize)*(config.xrange/config.latticesize)); //probabilidades por celda del Lattice
-  entropia = initial_conditions(config, configuracion, Distribucion, PI);
-  distribute(config, entropia, configuracion, Distribucion, PI);
+  
+  particlevector configuracion(config.nparticles); //configuracion de las particulas en el espacio
+  gridvector distribucion(config.xgridsize*config.ygridsize); //distribucion de las particulas en el grid
+  probvector PI(config.xgridsize*config.ygridsize); //probabilidades por celda del grid
+  
+  initial_conditions(config, configuracion, distribucion, PI);
+  
+  distribute(config, configuracion, distribucion, PI);
 
   return 0;
 }
 
-double initial_conditions(const CONFIG &object, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI)
+void distribute(const CONFIG object, particlevector &configuracion, gridvector &distribucion, probvector &probabilities)
 {
-  double S = 0.0;
-  double nmolecules = object.nmolecules;
+  std::cout.precision(15);std::cout.setf(std::ios::scientific);
   
-  for(int j = 0; j < std::sqrt(object.nmolecules); j++){ //ubicacion inicial de las particulas en el espacio
-    for(int i = 0; i < std::sqrt(object.nmolecules); i++){
-      configuracion[i+j*std::sqrt(nmolecules)].initialize(object.xrange, nmolecules, i, j);
-    }
-  }
-  for(int i = 0; i < nmolecules; i++){ //calcula la distribucion inicial en el lattice
-    distribucion[Locate(object, configuracion[i])] += 1;
-  }
-  for(int i = 0; i < PI.size(); i++){ //calcula la entropia inicial
-    PI[i] = distribucion[i]/nmolecules;
-    if(PI[i] < object.eps){
-      S += PI[i];
-      //std::cout << S << "\n";
-    }
-    else{
-      S += PI[i]*std::log(PI[i]);
-      //std::cout << S << "\n";
-    }
-  }
-  
-  return -S;
-}
-
-int Locate(const CONFIG object, PARTICLE j)
-{
-  //int Cellsize = xrange/Xrange;
-  int X = j.posicion[0]/object.latticesize;
-  int Y = j.posicion[1]/object.latticesize;
-  return X + Y*(object.xrange/object.latticesize);
-}
-
-void distribute(const CONFIG object, double entropia, std::vector<PARTICLE> &configuracion, std::vector<int> &distribucion, std::vector<double> &PI)
-{
-  std::cout.precision(15); // precision de impresion
-  std::cout.setf(std::ios::scientific); // notacion
-  
-  std::mt19937 eng(object.randomgeneratorseed); //generador de numeros aleatorios con semilla 1
-  std::uniform_int_distribution<int> gen(0, object.nmolecules-1); //distribución
+  std::mt19937 eng(object.seed);
+  std::uniform_int_distribution<int> gen(0, object.nparticles-1);
   
   int particulaj = 0;
   int origin = 0;
   int destiny = 0;
-  double S = entropia;
   
-  for(int t = 0; t < object.niterations; t++){
-    particulaj = gen(eng);//Genera un numero aleatorio entero entre 0 y N-1;
-    origin = Locate(object, configuracion[particulaj]);
-    configuracion[particulaj].move(object.randomgeneratorseed, object.xrange);
-    destiny = Locate(object, configuracion[particulaj]);
-    
-    if(origin == destiny){std::cout<< S << "\n";}
+  for(int t = 0; t < object.tmax; t++){
+    particulaj = gen(eng);
+    origin = configuracion[particulaj].locate(object);
+    configuracion[particulaj].move(object);
+    if (t % 10 == 0) {
+      std::string fname = "post/datos-" + std::to_string(t) + ".csv";
+      std::ofstream fout(fname);
+      for(auto particula : configuracion){
+	fout << particula.posicion[0] << ", "
+	     << particula.posicion[1] << ", "
+	     << "\n";
+      }
+      fout.close();
+    }
+    /*
+    configuracion[particulaj].print(object);
+    destiny = configuracion[particulaj].locate(object);
+
+    if(origin == destiny){std::cout<< entropia << "\n";}
     else{
-      S = entropy(object, S, origin, destiny, PI, distribucion);
-      std::cout << S << "\n";
+      if(distribucion[origin] != 0){
+	entropia += probabilities[origin]*(std::log(distribucion[origin])-std::log(object.nparticles));
+      }
+      if(distribucion[destiny] != 0){
+	entropia += probabilities[destiny]*(std::log(distribucion[destiny])-std::log(object.nparticles));
+      }
+  
+      probabilities[origin] = (distribucion[origin] - 1)/(1.0*object.nparticles);
+      probabilities[destiny] = (distribucion[destiny] + 1)/(1.0*object.nparticles);
+  
+      entropia -= probabilities[origin] + probabilities[destiny];
+      //std::cout << entropia << "\n";
       distribucion[origin] -= 1;
       distribucion[destiny] += 1;
     }
+    */
   }
 }
 
-double entropy(const CONFIG &object, double entropia,const int origin,const int destiny, std::vector<double> &PI, std::vector<int> distribucion)
+/*double entropy(const CONFIG &object, double &entropia, const int origin,const int destiny, const gridvector &distribucion, probvector &probabilities)
 {
-  if(PI[origin] < object.eps){
-    entropia -= PI[origin];
+  if(probabilities[origin] != 0){
+    entropia += probabilities[origin]*(std::log(distribucion[origin])-std::log(object.nparticles));
   }
-  else{entropia -= PI[origin]*std::log(PI[origin]);}
-  if(PI[destiny] < object.eps){
-    entropia -= PI[destiny];
+  if(probabilities[destiny] != 0){
+    entropia += probabilities[destiny]*(std::log(distribucion[destiny])-std::log(object.nparticles));
   }
-  else{entropia -= PI[destiny]*std::log(PI[destiny]);}
   
-  /*PI[origin] = (distribucion[origin] - 1.0)*PI[origin] / distribucion[origin];
-    PI[destiny] = (distribucion[destiny] + 1.0)*PI[destiny] / distribucion[destiny];*/
-  PI[origin] = (distribucion[origin] - 1.0)/object.nmolecules;
-  PI[destiny] = (distribucion[destiny] + 1.0)/object.nmolecules;
+  probabilities[origin] = (distribucion[origin] - 1)/(1.0*object.nparticles);
+  probabilities[destiny] = (distribucion[destiny] + 1)/(1.0*object.nparticles);
   
-  if(PI[origin] < object.eps){
-    entropia += PI[origin];
-  }
-  else{entropia += PI[origin]*std::log(PI[origin]);}
-  if(PI[destiny] < object.eps){
-    entropia += PI[destiny];
-  }
-  else{entropia += PI[destiny]*std::log(PI[destiny]);}
-  return -entropia;
-}
+  entropia -= probabilities[origin] + probabilities[destiny];
+  
+  return entropia;
+  }*/

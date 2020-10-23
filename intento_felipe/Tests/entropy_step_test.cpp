@@ -5,7 +5,7 @@ int main(void)
     int mols_number = 400;
     int grid_size = 200;
     int cells_number = 8;
-    int seed = 0;
+    int seed = 5;
 
     std::vector <particle> Particles (mols_number);
     std::vector <int> Cells (cells_number*cells_number);
