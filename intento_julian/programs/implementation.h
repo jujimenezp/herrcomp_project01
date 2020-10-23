@@ -5,7 +5,7 @@
 #include "particles.h"
 
  //inicializa las particulas en un cuadrado
-std::vector<particles> start(std::vector<particles> x, int N);
+void start(std::vector<particles> &x, int N);
 
  //cuenta cuantas particulas hay en cada cuadricula
 std::vector<int> getgrid(int a, int b, std::vector<particles> d);

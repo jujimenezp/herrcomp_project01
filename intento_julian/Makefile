@@ -1,11 +1,11 @@
 CXX=g++
 CXXFLAGS=-std=c++17 -O3 -g
 SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
-VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
+MEMCHECKFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 DEPENDENCIES = programs/intento1.o programs/getdatos.o programs/particles.o programs/implementation.o programs/printdata.o
 
 
-all: programs/intento1.x times
+all: programs/intento1.x
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) -c $< -o $@
@@ -13,9 +13,16 @@ all: programs/intento1.x times
 programs/intento1.x: $(DEPENDENCIES)
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
-valgrind: $(DEPENDENCIES)
+memcheck: $(DEPENDENCIES)
 	$(CXX) $(CXXFLAGS) $^ -o programs/intento1.x
-	valgrind $(VALGRINDFLAGS) programs/intento1.x
+	valgrind $(MEMCHECKFLAGS) programs/intento1.x
+	make clean
+
+gprof: $(DEPENDENCIES)
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) -pg $^ -o programs/intento1.x
+	./programs/intento1.x
+	gprof programs/intento1.x gmon.out > data/gprof-report.txt
+	make clean
 
 graphs: programs/intento1.x data/init_data.txt
 	./programs/intento1.x
@@ -29,4 +36,4 @@ times: programs/intento1.x data/init_data.txt
 	gnuplot scripts/plot_times.gp
 
 clean:
-	rm -f programs/*.o
+	rm -f gmon.out programs/*.o

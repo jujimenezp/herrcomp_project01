@@ -3,7 +3,7 @@
 #include "printdata.h"
 
 
-std::vector<particles> start(std::vector<particles> x, int N){
+void start(std::vector<particles> &x, int N){
     int l=std::sqrt(N);
     
     for(int ii=0; ii<l; ++ii){
@@ -13,7 +13,6 @@ std::vector<particles> start(std::vector<particles> x, int N){
             x[p].pos[1]=ii-l/2;
         }
     }
-    return x;
 }
 
 

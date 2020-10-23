@@ -30,7 +30,7 @@ int main()
     
     //inicializacion
 
-    particle = start(particle, N);
+    start(particle, N);
     grid=getgrid(gridsize, latsize, particle);
     
 
@@ -50,3 +50,5 @@ int main()
     
     return 0;
 }
+
+
