@@ -27,14 +27,11 @@ std::vector<int> getgrid(int a, int b, std::vector<particles> d){
 }
 
 
-void  iteration(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c){
-
+void  iteration(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int &oldg, int &newg){
     int g, r=rand()%N;
-    g=getg(a, b, d[r].pos[0], d[r].pos[1]);
-    c[g] -= 1;
+    oldg=getg(a, b, d[r].pos[0], d[r].pos[1]);
     d[r].step(b);
-    g=getg(a, b, d[r].pos[0], d[r].pos[1]);
-    c[g] += 1;
+    newg=getg(a, b, d[r].pos[0], d[r].pos[1]);
 }
 
 
@@ -47,19 +44,43 @@ int getg(int a, int b, int cx, int cy){
 }
 
 
-void entropy(std::vector<int> x, int N, std::vector<double> &ent, int i){
-    double s=0.0;
+double init_entropy(std::vector<int> x, int N, std::vector<double> &entropy){
+    double S=0.0;
     double p=std::log(N);
     for(int ii=0; ii<x.size(); ++ii){
-        if(x[ii] != 0) s += x[ii]*std::log(1.0*x[ii]);
+        if(x[ii] != 0) {
+            entropy[ii] = x[ii]*std::log(1.0*x[ii]);
+            S += entropy[ii];
+        }
     }
-    s=p-s/(1.0*N);
-    ent[i]=s;
+    S=p-S/(1.0*N);
+    return S;
 }
 
-void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, std::vector<double> &ent){
+void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, double S, std::vector<double> &entropy){
+    int oldg=0, newg=0;
+    std::ofstream file;
+    file.open("data/data_entropy.txt");
     for(int ii=0; ii<e; ++ii){
-        entropy(c, N, ent, ii);
-        iteration(a, b, d, N, c);
+        iteration(a, b, d, N, c, oldg, newg);
+        if(oldg != newg) S = entropy_step(N, oldg, newg, S, c, entropy);
+        file << ii << "\t" << S << "\n";
     }
+    file.close();
+}
+
+
+double entropy_step(int N, int oldg, int newg, double S, std::vector<int> &c, std::vector<double> &entropy){
+
+    S += (1.0/N)*(entropy[oldg]+entropy[newg]);
+        
+    c[oldg] -= 1;
+    c[newg] += 1;
+    
+    entropy[oldg] = c[oldg]*std::log(c[oldg]);
+    if(c[oldg] == 0) entropy[oldg] = 0;
+    entropy[newg] = c[newg]*std::log(c[newg]);
+    S -= (1.0/N)*(entropy[oldg]+entropy[newg]);
+        
+    return S;
 }

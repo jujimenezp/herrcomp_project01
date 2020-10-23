@@ -12,7 +12,7 @@ void print_pos(std::vector<particles> x, std::string name){
     file.close();
 }
     
-void print_entro(std::vector<double> x, std::string name){
+/*void print_entro(std::vector<double> x, std::string name){
     std::ofstream file;
     file.open(name);
     for(int ii=0; ii<x.size(); ++ii){
@@ -22,3 +22,4 @@ void print_entro(std::vector<double> x, std::string name){
     }
     file.close();
 }
+*/

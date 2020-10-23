@@ -23,7 +23,8 @@ int main()
 
     //Declaracion de variables
 
-    std::vector <double> S (iterations, 0.0); //Entropia
+    double S=0.0; //Entropia
+    std::vector<double> entropy(gridsize*gridsize, 0.0);
     std::vector <particles> particle (N); //vector de particulas
     std::vector <int> grid (gridsize*gridsize); //numero de particulas por cuadricula
 
@@ -32,6 +33,7 @@ int main()
 
     start(particle, N);
     grid=getgrid(gridsize, latsize, particle);
+    S = init_entropy(grid, N, entropy);
     
 
     //Imprimir las posiciones iniciales de las particulas
@@ -40,13 +42,13 @@ int main()
     
     //iteraciones
     
-    manyite(gridsize, latsize, particle, N, grid, iterations, S);
+    manyite(gridsize, latsize, particle, N, grid, iterations, S, entropy);
 
     //Imprimir las posiciones finales de las particulas
     print_pos(particle, "data/data_particles_end.txt");
 
     //Imprimir la entropia
-    print_entro(S, "data/data_entropy.txt");
+    //print_entro(S, "data/data_entropy.txt");
     
     return 0;
 }

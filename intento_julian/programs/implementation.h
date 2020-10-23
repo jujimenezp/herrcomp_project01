@@ -10,14 +10,17 @@ void start(std::vector<particles> &x, int N);
  //cuenta cuantas particulas hay en cada cuadricula
 std::vector<int> getgrid(int a, int b, std::vector<particles> d);
 
- //Ejecuta el paso y actualiza el grid
-void iteration(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c);
+ //Ejecuta el paso
+void iteration(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int &oldg, int &newg);
 
   //encuentra la casilla en la que esta una particula
 int getg(int a, int b, int cx, int cy);
 
- //Calcula la entropia
-void entropy(std::vector<int> x, int N, std::vector<double> &ent, int i);
+  //Da el valor inicial de la entropia
+double init_entropy(std::vector<int> x, int N, std::vector<double> &entropy);
 
-//Ejecuta iteration y entropy durante el # de iteracones especificado
-void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, std::vector<double> &ent);
+  //Actualiza el grid y la entropia
+double entropy_step(int N, int oldg, int newg, double S, std::vector<int> &c, std::vector<double> &entropy);
+
+  //Ejecuta iteration y entropy_step durante el # de iteracones especificado
+void manyite(int a, int b, std::vector<particles> &d, int N, std::vector<int> &c, int e, double S, std::vector<double> &entropy);
