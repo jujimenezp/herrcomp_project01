@@ -2,4 +2,4 @@
 200        #Grid size
 8          #Cells number
 10000000        #Iterations
-0          #Seed
+5          #Seed

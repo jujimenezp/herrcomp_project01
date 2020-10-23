@@ -27,10 +27,6 @@ void get_data (int &mols_number, int &grid_size, int &cells_number,
     
     std::getline(init_data, line);
 
-    //Convierte a grid_size en número par
-
-    grid_size = 2*(grid_size/2);
-
     //Convierte a grid_size en número par y multiplo de cells_number
 
     grid_size = 2*(grid_size/2 - (grid_size/2)%cells_number);

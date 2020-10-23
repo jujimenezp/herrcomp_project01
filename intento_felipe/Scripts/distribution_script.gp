@@ -18,9 +18,9 @@ set object 1 rect from -bord,-bord to bord,bord lw 3 fs empty border lc rgb 'red
 
 set title 'Inicio'
 set out "../Data/distribution_start.pdf"
-plot '../Data/distribution_start.txt' u 1:2 w p ls 1 t 'Particulas'
+plot '../Data/distribution_start.txt' w p ls 1 t 'Particulas'
 
 
 set title 'Final'
 set out "../Data/distribution_end.pdf"
-plot '../Data/distribution_end.txt' u 1:2 w p ls 1 t 'Particulas'
+plot '../Data/distribution_end.txt' w p ls 1 t 'Particulas'
