@@ -1,0 +1,21 @@
+#pragma once
+#include <cmath>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <chrono>
+
+struct CONFIG{
+  int nmolecules = 0;
+  int latticesize = 0;
+  int tmax = 0;
+  int seed = 0;
+  int gridsize = 0;
+  int resolution=0;
+  // read initial conditions                
+  void read(const std::string & fname);                                    
+};
+
+
+
