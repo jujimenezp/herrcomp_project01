@@ -16,7 +16,7 @@ t_entropy_step: entropy_step.x
 
 
 Objects/%.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $( -c $^ -o $@
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) -c $^ -o $@
 
 ../Functions/Objects/%.o: ../Functions/%.cpp
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) -c $^ -o $@

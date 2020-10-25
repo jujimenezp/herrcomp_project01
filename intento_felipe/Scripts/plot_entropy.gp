@@ -8,5 +8,5 @@ set ylabel 'Entropy'
 set term pdf
 
 set title 'Entropy'
-set out '../Data/entropy_data.pdf'
-plot '../Data/entropy_data.txt' w l ls -1 lc rgb 'blue' t 'Entropy'
+set out 'Data/entropy.pdf'
+plot 'Data/data_entropy.txt' w l ls -1 lc rgb 'blue' t 'Entropy'

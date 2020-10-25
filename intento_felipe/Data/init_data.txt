@@ -1,5 +1,6 @@
-400        #Molecules number
-200        #Grid size
-8          #Cells number
-10000000        #Iterations
-5          #Seed
+400     #nmolecules
+200     #latticesize
+10000000    #tmax
+1       #seed
+8       #gridsize
+100     #resolution
