@@ -17,8 +17,7 @@ void distribution (int mols_number, std::vector<particle> Particles, std::string
         
         file << particles.position[0] ...
 
-        }
-            
+        }  
 
         */
 

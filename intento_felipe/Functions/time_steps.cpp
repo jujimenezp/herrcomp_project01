@@ -29,14 +29,16 @@ void time_steps (int mols_number, int grid_size, int cells_number,
 
         new_cell = Particles[j].get_cell(grid_size, cells_number);
 
-        if (old_cell != new_cell){
+        //if (old_cell != new_cell){
 
-            pre_entropy = entropy_step (old_cell, new_cell, pre_entropy, Cells, Entropy);
+        pre_entropy = entropy_step (old_cell, new_cell, pre_entropy, Cells, Entropy);
             
-        }
-        
-        std::cout << i+1 << "\t" << std::log(mols_number) - pre_entropy/mols_number << "\n";
+        // }
 
+        if (i%100 == 0){
+            std::cout << i+1 << "\t" << std::log(mols_number) - pre_entropy/mols_number << "\n";
+
+        }
     }
 
 }
