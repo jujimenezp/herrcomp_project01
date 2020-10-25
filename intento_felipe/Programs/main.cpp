@@ -27,7 +27,12 @@ int main (void){
         p = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
         
         time_step(config, j, q, p, Cells, Particles);
-        Entropy = entropy(config, Cells);
+
+        if (t%config.resolution == 0){
+        
+            Entropy = entropy(config, Cells);
+
+        }
         
     }
 
