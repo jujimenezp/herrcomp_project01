@@ -6,9 +6,13 @@ double entropy (const CONFIG &object,const Vec_i &Cells){
   
   Entropy = std::log(object.nmolecules);
   
-  for(auto i: Cells){
+  for (int i = 0; i < object.latticesize*object.latticesize; i ++){
       
-      if(i != 0) {s+=i*std::log(i);}
+    if(Cells[i] != 0) {
+      
+      s += Cells[i]*std::log(Cells[i]);
+      
+    }
       
   }
   

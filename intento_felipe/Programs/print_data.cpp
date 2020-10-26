@@ -5,10 +5,10 @@ void print_position(const Vec_p &Particles, const std::string fname){
     std::ofstream file;
     file.open(fname);
     
-    for (auto i: Particles){
+    for (int i = 0; i < Particles.size(); i++){
         
-        file << i.position[0] << "\t"
-             << i.position[1] << "\n";
+        file << Particles[i].position[0] << "\t"
+             << Particles[i].position[1] << "\n";
         
     }
     
