@@ -3,7 +3,7 @@
 int main (void){
 
     int j = 0, q = 0, p = 0;
-    
+
     double Entropy = 0;
 
     CONFIG config;
@@ -15,11 +15,11 @@ int main (void){
 
     Vec_p Particles(config.nmolecules);
     Vec_i Cells(config.gridsize*config.gridsize,0);
-  
+
     start(config, Cells, Particles);
 
     print_position(Particles, "Data/data_particles_start.txt");
-  
+
     for (int t = 0; t <= config.tmax; t++){
 
         j = dis_particle(gen);        //escoge una particula al azar

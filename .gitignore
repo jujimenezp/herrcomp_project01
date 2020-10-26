@@ -2,3 +2,5 @@
 *.x
 *.o
 *~
+cachegrind.out.*
+gmon.*
