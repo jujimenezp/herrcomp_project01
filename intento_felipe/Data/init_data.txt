@@ -1,6 +1,6 @@
-900     #nmolecules
+400     #nmolecules
 200     #latticesize
-10000000   #tmax
+3000000   #tmax
 0   #seed
 8       #gridsize
-1000000     #resolution
+100     #resolution

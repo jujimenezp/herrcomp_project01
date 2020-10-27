@@ -30,7 +30,15 @@ int main (void){
 
             std::string fname = "Data/Animation/data-" + std::to_string(t/config.resolution) + ".csv";
 
-            print_position (Particles, fname);
+            std::ofstream file;
+            file.open(fname);
+    
+            for (auto p: Particles){
+        
+                file << 1.0*p.position[0] + 0.5 << ","
+                     << 1.0*p.position[1] + 0.5 << "\n";
+        
+            }
 
         }
         
