@@ -6,8 +6,7 @@ Timing: Programas para realizar profiling de algunas funciones.
 
 Programs: Funciones y archivos main.
 
-Objects: Archivos .o compilados con sanitizers.
-
-Objects: Archivos .o compilados sin sanitizers para Valgrind.
-
-Objects_G: Archivos .o compilados sin sanitizers y con -pg para Gprof.
+Objects: Archivos .o compilados.
+         Sanitizers: Compilados con sanitizers.
+         Normal: Compilados solo con -g.
+         Gprog: compilados con -pg.

@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -O3 -g
 SANITFLAGS = -fsanitize=address -fsanitize=leak -fsanitize=undefined
-DEPENDENCIES = ../Objects/CONFIG.o ../Objects/class_particle.o ../Objects/start.o ../Objects/time_step.o ../Objects/entropy.o
+DEPENDENCIES = ../Objects/Sanitizers/CONFIG.o ../Objects/Sanitizers/class_particle.o ../Objects/Sanitizers/start.o ../Objects/Sanitizers/time_step.o ../Objects/Sanitizers/entropy.o
 
 for: ../Data/prof_for_auto.pdf
 
