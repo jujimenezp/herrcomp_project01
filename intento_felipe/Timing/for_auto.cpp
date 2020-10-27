@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
 
     int j = atoi(argv[1]);
 
-    double time_normal = 0, time_auto = 0, normal_error = 0, auto_error = 0;
+    double time_normal = 0, time_auto = 0, error_normal = 0, error_auto = 0;
     double T_normal = 0, T_auto = 0;
 
     for (int i = 0; i < 50; i ++){
@@ -18,22 +18,22 @@ int main(int argc, char **argv) {
         time_normal += T_normal;
         time_auto += T_auto;
 
-        normal_error += std::pow(T_normal,2);
-        auto_error += std::pow(T_auto,2);
+        error_normal += std::pow(T_normal,2);
+        error_auto += std::pow(T_auto,2);
 
     }
     
-    time_normal /= 50;
-    time_auto /= 50;
+    time_normal /= 50.0;
+    time_auto /= 50.0;
 
-    normal_error = std::sqrt(normal_error/48)/std::sqrt(50);
-    auto_error = std::sqrt(auto_error/48)/std::sqrt(50);
+    error_normal = std::sqrt((error_normal - 50.0*std::pow(time_normal,2))/48.0)/std::sqrt(50);
+    error_auto = std::sqrt((error_auto - 50.0*std::pow(time_auto,2))/48.0)/std::sqrt(50);
 
     std::cout << j*j << "\t"
               << time_normal << "\t"
               << time_auto << "\t"
-              << normal_error << "\t"
-              << auto_error << "\n";
+              << error_normal << "\t"
+              << error_auto << "\n";
 
     return 0;
 
@@ -66,11 +66,11 @@ double for_normal (int j){
 
 double for_auto (int j){
 
-    int i = 0;
-
     Vec_p Particles(j*j);
 
     auto start = std::chrono::steady_clock::now();
+
+    int i = 0;
 
     for (auto p: Particles){
 

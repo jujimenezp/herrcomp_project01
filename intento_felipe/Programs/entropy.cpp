@@ -6,14 +6,12 @@ double entropy (const CONFIG &object, const Vec_i &Cells){
   
   Entropy = std::log(object.nmolecules);
   
-  for (int i = 0; i < object.gridsize*object.gridsize; i ++){
+  for (auto i: Cells){
+    if (i != 0) {
       
-    if (Cells[i] != 0) {
-      
-      s += Cells[i]*std::log(Cells[i]);
+      s += i*std::log(i);
       
     }
-      
   }
   
   Entropy -= s/(1.0*object.nmolecules);

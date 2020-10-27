@@ -14,7 +14,7 @@ void CONFIG::read(const std::string & fname)
       
     //Convierte a nmolecules en cuadrado perfecto anterior
       
-    nmolecules =(int)std::sqrt(nmolecules)*(int)std::sqrt(nmolecules);
+    nmolecules = (int)std::sqrt(nmolecules)*(int)std::sqrt(nmolecules);
 
     std::getline(init_data, line);
 

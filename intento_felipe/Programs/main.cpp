@@ -18,7 +18,10 @@ int main (void){
 
     start(config, Cells, Particles);
 
-    print_position(Particles, "Data/data_particles_start.txt");
+    print_position (Particles, "Data/data_particles_start.txt");
+
+    std::ofstream file;
+    file.open("Data/data_entropy.txt");
 
     for (int t = 0; t <= config.tmax; t++){
 
@@ -32,13 +35,15 @@ int main (void){
         
             Entropy = entropy(config, Cells);
 
+            file << t << "\t" << Entropy << "\n";
+
         }
         
     }
 
-    std::cout << "\n" << Entropy << "\n\n";
+    file.close();
 
-    print_position(Particles, "Data/data_particles_end.txt");
+    print_position (Particles, "Data/data_particles_end.txt");
     
     return 0;
 }

@@ -4,8 +4,6 @@ double print_here (const CONFIG &config, Vec_i &Cells, Vec_p &Particles);
 double print_out (const CONFIG &config, Vec_i &Cells, Vec_p &Particles);
 
 int main (void){
-
-    std::cout.precision(15); std::cout.setf(std::ios::scientific);
     
     double time_here = 0, time_out = 0;
 
@@ -24,11 +22,10 @@ int main (void){
     time_out = print_out (config, Cells, Particles);
 
     std::ofstream file;
-    file.open("../Data/prof_print.txt");
+    file.open("data_1.txt");
     
-    file << "Iteraciones:" << "\t" << config.tmax << "\n"
-         << "Tiempo imprimiendo con cout:" << "\t" << time_here << "\n"
-         << "Tiempo imprimiendo con ofstream:" << "\t" << time_out;
+    file << time_here << "\n"
+         << time_out;
 
     file.close();
     
