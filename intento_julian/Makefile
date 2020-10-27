@@ -3,7 +3,7 @@ CXXFLAGS= -std=c++17 -O3 -g
 SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
 MEMCHECKFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 DEPENDENCIES =  programs/intento1.cpp programs/getdatos.cpp programs/particles.cpp programs/implementation.cpp programs/printdata.cpp
-#DEPENDENCIES = programs/intento1.o programs/getdatos.o programs/particles.o programs/implementation.o programs/printdata.o
+
 
 
 all: programs/intento1.x
