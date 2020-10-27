@@ -31,14 +31,21 @@ graphs: main.x Data/init_data.txt
 	xpdf Data/particles_end.pdf &
 	xpdf Data/entropy.pdf &
 
+animation: animation.x
+	rm -f Data/Animation/*.csv
+	./$<
+
 main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
-	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o main.x
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
 test.x: $(DEPENDENCIES_NORMAL) Objects/Normal/test.o
-	$(CXX) $(CXXFLAGS) $^ -o test.x
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 valgrind.x: $(DEPENDENCIES_NORMAL) Objects/Normal/main.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
+
+animation.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/animation.o
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
 Objects/Sanitizers/%.o: Programs/%.cpp
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) -c  $< -o $@
@@ -50,7 +57,7 @@ Objects/Gprof/%.o: Programs/%.cpp
 	$(CXX) $(CXXFLAGS) -pg -c  $< -o $@
 
 clean:
-	rm -f Data/data_* Data/gprof-report.txt Data/cachegrind-report.txt gmon.out cachegrind.out.* *.x 
+	rm -f Data/data_* Data/gprof-report.txt Data/cachegrind-report.txt Data/Animation/*.csv gmon.out cachegrind.out.* *.x 
 
 oclean:
 	rm -f Objects/Sanitizers/*.o Objects/Normal/*.o Objects/Gprof/*.o

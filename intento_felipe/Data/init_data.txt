@@ -3,4 +3,4 @@
 10000000   #tmax
 0   #seed
 8       #gridsize
-100     #resolution
+1000000     #resolution
