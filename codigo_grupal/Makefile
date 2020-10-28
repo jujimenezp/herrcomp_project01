@@ -2,9 +2,9 @@ CXX = g++
 CXXFLAGS = -std=c++17 -O3 -g
 SANITFLAGS = -fsanitize=address -fsanitize=leak -fsanitize=undefined
 MEMCHECKFLAGS = --tool=memcheck --track-origins=yes --leak-check=full
-DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_particle.o Objects/Sanitizers/start.o Objects/Sanitizers/time_step.o Objects/Sanitizers/entropy.o
-DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o Objects/Normal/time_step.o Objects/Normal/entropy.o
-DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o Objects/Gprof/time_step.o Objects/Gprof/entropy.o
+DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_particle.o Objects/Sanitizers/start.o Objects/Sanitizers/time_step.o Objects/Sanitizers/entropy.o Objects/Sanitizers/print_particles.o
+DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o Objects/Normal/time_step.o Objects/Normal/entropy.o Objects/Normal/print_particles.o
+DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o Objects/Gprof/time_step.o Objects/Gprof/entropy.o Objects/Gprof/print_particles.o
 
 all: main.x
 
@@ -24,11 +24,11 @@ memcheck: valgrind.x
 
 graphs: main.x Data/init_data.txt
 	./$<
-#	gnuplot Scripts/plot_particles.gp
-#	gnuplot Scripts/plot_entropy.gp
-#	xpdf Data/particles_start.pdf &
-#	xpdf Data/particles_end.pdf &
-#	xpdf Data/entropy.pdf &
+	gnuplot Scripts/plot_particles.gp
+	gnuplot Scripts/plot_entropy.gp
+	xpdf Data/particles_start.pdf &
+	xpdf Data/particles_end.pdf &
+	xpdf Data/entropy.pdf &
 
 #animation: animation.x
 #	rm -f Data/Animation/*.csv
@@ -59,7 +59,7 @@ Objects/Gprof/%.o: Programs/%.cpp
 	$(CXX) $(CXXFLAGS) -pg -c  $< -o $@
 
 clean:
-	rm -f Data/gprof-report.txt Data/cachegrind-report.txt gmon.out cachegrind.out.* *.x 
+	rm -f Data/gprof-report.txt Data/cachegrind-report.txt gmon.out cachegrind.out.* *.x Data/data*.txt
 
 oclean:
 	rm -f Objects/Sanitizers/*.o Objects/Normal/*.o Objects/Gprof/*.o
