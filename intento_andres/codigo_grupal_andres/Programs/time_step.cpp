@@ -12,10 +12,6 @@ void time_step(const CONFIG &config, int random_particle, int step, int directio
       Cells[m] += 1;
     }
     else {
-      m = Particles[random_particle].Getcell(config);
-      Cells[m] -= 1;
-      Particles[random_particle].Move(step,direction, random_particle, config, Particles);
-      m = Particles[random_particle].Getcell(config);
-      Cells[m] += 1;
+      Particles[random_particle].Move_hole(step, direction, random_particle, config, Cells, Particles);
     }
 }

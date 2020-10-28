@@ -19,10 +19,13 @@ int main(void)
   int random_particle = 0, step = 0, direction = 0;
 
   for(int t = 0; t <= config.tmax; t++ ){
-      
-    random_particle = dis_particle(gen);        //escoge una particula al azar
-    step = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
-    direction = dis_move(gen);           //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
+
+    random_particle = dis_particle(gen);
+    while(random_particle > Particles.size()){
+      random_particle = dis_particle(gen);
+    } //escoge una particula al azar
+    step = dis_move(gen)*2 - 1; //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
+    direction = dis_move(gen); //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
     
     time_step(config, random_particle, step, direction, Cells, Particles);
     

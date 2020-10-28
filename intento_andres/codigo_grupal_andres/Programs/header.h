@@ -26,7 +26,7 @@ struct Particle{
   int position[2] = {0,0};  
 
   void Move(const int &step, const int &direction, const CONFIG &config);
-  void Move_hole(const int &step, const int &direction, const int &particle_id, const CONFIG &config, Vec_p &Particles){
+  void Move_hole(const int &step, const int &direction, const int &particle_id, const CONFIG &config, Vec_i &Cells, Vec_p &Particles);
   int Getcell(const CONFIG &config);
 };
 
