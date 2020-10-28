@@ -8,17 +8,19 @@ void PARTICLE::initialize(const CONFIG &object, const int i, const int j)
 
 void PARTICLE::move(const CONFIG &object)
 {
-  std::mt19937 q(object.seed);
-  std::mt19937 p(object.seed);
-  std::uniform_int_distribution<int> gen(0, 1);
+  int q = dis(seed);
+  int p = dis(seed); //mover el aleatoreo al time step
 
-  posicion[gen(q)] += 2*gen(p)-1;
-  std::cout << gen(q) << "\n";
+  std::cout << q << "\n";
+  std::cout << p << "\n";
+  posicion[q] += 2*p-1;
+
   if(posicion[0] < 0 || posicion[0] > object.xlatticesize){
-    posicion[0] += (posicion[0] < 0) ? 1 : -1; //bounce
+    posicion[0] -= 2*p-1; //bounce
   }
+  
   if(posicion[1] < 0 || posicion[1] > object.ylatticesize){
-    posicion[1] += (posicion[0] < 0) ? 1 : -1; //bounce
+    posicion[1] -= 2*p-1; //bounce
   }
   //posicion[2] = posicion[0] + posicion[1]*xlatticesize;
 }
