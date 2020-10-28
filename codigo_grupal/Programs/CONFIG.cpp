@@ -24,10 +24,7 @@ void CONFIG::read(const std::string & fname)
 
     tmax = std::stoi(line.erase(line.find('#'), line.size()) );
 
-    std::getline(init_data, line);
-    
-
-    //Convierte a latticesize en número par y multiplo de gridsize                                                                  
+    std::getline(init_data, line);                                                                
 
     seed = std::stoi(line.erase(line.find('#'), line.size()) );
 
@@ -35,13 +32,20 @@ void CONFIG::read(const std::string & fname)
 
     gridsize = std::stoi(line.erase(line.find('#'), line.size()) );
 
+    //Convierte a latticesize en número par y multiplo de gridsize
+
+    if (gridsize%2 == 0){
+        latticesize = 2*(latticesize/2 - (latticesize/2)%(gridsize/2));
+    }
+    else {
+        latticesize = 2*(latticesize/2 - (latticesize/2)%gridsize);    
+    }
+
     std::getline(init_data, line);
 
     resolution = std::stoi(line.erase(line.find('#'), line.size()) );
 
     init_data.close();
-    
-    latticesize = 2*(latticesize/2 - (latticesize/2)%gridsize);
 	
 }
 
