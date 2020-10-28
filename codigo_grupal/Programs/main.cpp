@@ -11,12 +11,18 @@ int main(void)
   
   start(config, Cells, Particles);
 
+  print_particles(Particles, "Data/data_particles_start.txt");
+
   std::mt19937 gen(config.seed);
   std::uniform_int_distribution<int> dis_move(0, 1);
   std::uniform_int_distribution<int> dis_particle(0,config.nmolecules-1);
   
   double Entropy = 0;
   int random_particle = 0, step = 0, direction = 0;
+
+  
+  std::ofstream entrofile;   //Salida de entropia
+  entrofile.open("Data/data_entropy.txt");
   
   for(int t = 0; t <= config.tmax; t++ ){
 
@@ -29,10 +35,16 @@ int main(void)
     if (t%config.resolution == 0){
         
       Entropy = entropy(config, Cells);
-
+      entrofile << t << "\t"
+                << Entropy
+                << "\n";
     }
   }
+  
+  entrofile.close();
 
+  print_particles(Particles, "Data/data_particles_end.txt");
+  
   std::cout << Entropy;
   
   return 0;
