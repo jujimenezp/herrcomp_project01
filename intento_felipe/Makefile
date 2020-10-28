@@ -11,10 +11,9 @@ all: main.x
 test: test.x
 	./$<
 
-gprof: $(DEPENDENCIES_GPROF) Objects/Gprof/main.o
-	$(CXX) $(CXXFLAGS) -pg $^ -o main.x
-	./main.x
-	gprof ./main.x > Data/gprof-report.txt
+gprof: gprof.x
+	./$<
+	gprof ./$< > Data/gprof-report.txt
 
 cachegrind: valgrind.x
 	valgrind --tool=cachegrind ./$<
@@ -40,6 +39,9 @@ main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
 
 test.x: $(DEPENDENCIES_NORMAL) Objects/Normal/test.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
+
+gprof.x: $(DEPENDENCIES_GPROF) Objects/Gprof/main.o
+	$(CXX) $(CXXFLAGS) -pg $^ -o $@
 
 valgrind.x: $(DEPENDENCIES_NORMAL) Objects/Normal/main.o
 	$(CXX) $(CXXFLAGS) $^ -o $@

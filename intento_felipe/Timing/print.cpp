@@ -40,17 +40,17 @@ double print_here (const CONFIG &config, Vec_i &Cells, Vec_p &Particles){
 
     double Entropy = 0; 
     
-    int j = 0, q = 0, p = 0;
+    int random_particle = 0, step = 0, direction = 0;
 
     auto start = std::chrono::steady_clock::now();
   
     for (int t = 0; t <= config.tmax; t++){
 
-        j = dis_particle(gen);        //escoge una particula al azar
-        q = dis_move(gen);           //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
-        p = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
+        random_particle = dis_particle(gen);      
+        step = dis_move(gen)*2 - 1;    
+        direction = dis_move(gen);
         
-        time_step(config, j, q, p, Cells, Particles);
+        time_step(config, random_particle, step, direction, Cells, Particles);
 
         if (t%config.resolution == 0){
         
@@ -78,7 +78,7 @@ double print_out (const CONFIG &config, Vec_i &Cells, Vec_p &Particles){
 
     double Entropy = 0;
     
-    int j = 0, q = 0, p = 0;
+    int random_particle = 0, step = 0, direction = 0;
 
     auto start = std::chrono::steady_clock::now();
 
@@ -87,11 +87,11 @@ double print_out (const CONFIG &config, Vec_i &Cells, Vec_p &Particles){
   
     for (int t = 0; t <= config.tmax; t++){
 
-        j = dis_particle(gen);        //escoge una particula al azar
-        q = dis_move(gen);           //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
-        p = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
+        random_particle = dis_particle(gen);      
+        step = dis_move(gen)*2 - 1;    
+        direction = dis_move(gen);
         
-        time_step(config, j, q, p, Cells, Particles);
+        time_step(config, random_particle, step, direction, Cells, Particles);
 
         if (t%config.resolution == 0){
         

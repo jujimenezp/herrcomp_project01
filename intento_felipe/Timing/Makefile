@@ -8,7 +8,9 @@ for: ../Data/prof_for_auto.pdf
 print: ../Data/prof_print.pdf
 
 ../Data/prof_for_auto.pdf: for_auto.x
-	bash ../Scripts/prof_for_auto.sh
+	bash ../Scripts/prof_for_auto.sh > ../Data/prof_for_auto_1.txt
+	$(CXX) $(SANITFLAGS) for_auto.cpp -o $<
+	bash ../Scripts/prof_for_auto.sh > ../Data/prof_for_auto_2.txt
 	gnuplot ../Scripts/prof_for_auto.gp
 	xpdf $@ &
 
@@ -17,14 +19,17 @@ print: ../Data/prof_print.pdf
 	gnuplot ../Scripts/prof_print.gp
 	xpdf $@ &
 
-p_print.out: print.o $(DEPENDENCIES)
+%.x: %.cpp
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $< -o $@
+
+for_auto.out: for_auto.cpp
+	$(CXX) $(SANITFLAGS) $< -o $@
+
+p_print.out: p_print.o $(DEPENDENCIES)
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
 p_print.o: print.cpp
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) -c  $< -o $@
 
-%.x: %.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@
-
 clean:
-	rm -f *.x *.o *.out ../Data/prof_print.txt ../Data/prof_for_auto.txt
+	rm -f *.x *.o *.out ../Data/prof_*.txt

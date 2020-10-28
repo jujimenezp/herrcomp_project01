@@ -1,20 +1,19 @@
 #include "header.h"
 
-int Particle::Getcel (const CONFIG &object){
-    
-    int X = (position[0] + object.latticesize/2)*object.gridsize/object.latticesize;
-    int Y = (position[1] + object.latticesize/2)*object.gridsize/object.latticesize;
-    
-    return X + Y*object.gridsize;
+int Particle::Getcell(const CONFIG &config){
+
+    int X = (position[0] + config.latticesize/2)*config.gridsize/config.latticesize;
+    int Y = (position[1] + config.latticesize/2)*config.gridsize/config.latticesize;
+
+    return X + Y*config.gridsize;
 }
 
-void Particle::Move(int p, int q, const CONFIG &object){
+void Particle::Move(int step, int direction, const CONFIG &config){
 
-    if (labs(position[q] + p) != object.latticesize/2 + (1 - p)/2){
+    if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
 
-        position[q] += p;
+        position[direction] += step;
 
     }
 
 }
-

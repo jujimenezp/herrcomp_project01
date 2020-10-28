@@ -1,16 +1,12 @@
 #include "header.h"
 
-void time_step(const CONFIG &object, int j, int q, int p, Vec_i &Cells, Vec_p &Particles)
-{
-    
-    int m=0;
-    
-    m = Particles[j].Getcel(object);
+void time_step(const CONFIG &config, int random_particle, int step, int direction, Vec_i &Cells, Vec_p &Particles){
+
+    int m = 0;
+
+    m = Particles[random_particle].Getcell(config);
     Cells[m] -= 1;
-    
-    Particles[j].Move(p,q,object);
-    
-    m = Particles[j].Getcel(object);
-    Cells[m] += 1;
-    
+    Particles[random_particle].Move(step,direction,config);
+    m = Particles[random_particle].Getcell(config);
+    Cells[m] += 1;        
 }

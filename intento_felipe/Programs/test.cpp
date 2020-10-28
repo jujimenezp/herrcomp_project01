@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#define CATCH_CONFIG_MAIN 
 #include "catch2/catch.hpp"
 
 #include "header.h"
@@ -25,7 +25,7 @@ TEST_CASE ("All tests", "[Main]"){
 
         Particles[i].position[0] = x;
         Particles[i].position[1] = y;
-        m = Particles[i].Getcel(config);
+        m = Particles[i].Getcell(config);
         Cells[m] += 1;
 
     }
@@ -39,13 +39,13 @@ TEST_CASE ("All tests", "[Main]"){
     
         x_old = Particles[0].position[0];
         y_old = Particles[0].position[1];
-        cell_old = Particles[0].Getcel(config);
+        cell_old = Particles[0].Getcell(config);
 
         Particles[0].Move(1, 0, config);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
-        cell_new = Particles[0].Getcel(config);
+        cell_new = Particles[0].Getcell(config);
     
         REQUIRE (x_old == x_new);
         REQUIRE (y_old == y_new);
@@ -56,13 +56,13 @@ TEST_CASE ("All tests", "[Main]"){
     
         x_old = Particles[0].position[0];
         y_old = Particles[0].position[1];
-        cell_old = Particles[0].Getcel(config);
+        cell_old = Particles[0].Getcell(config);
 
         Particles[0].Move(1, 1, config);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
-        cell_new = Particles[0].Getcel(config);
+        cell_new = Particles[0].Getcell(config);
     
         REQUIRE (x_old == x_new);
         REQUIRE (y_old == y_new);
@@ -73,13 +73,13 @@ TEST_CASE ("All tests", "[Main]"){
     
         x_old = Particles[0].position[0];
         y_old = Particles[0].position[1];
-        cell_old = Particles[0].Getcel(config);
+        cell_old = Particles[0].Getcell(config);
 
         Particles[0].Move(-1, 0, config);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
-        cell_new = Particles[0].Getcel(config);
+        cell_new = Particles[0].Getcell(config);
     
         REQUIRE (x_old == x_new);
         REQUIRE (y_old == y_new);
@@ -90,13 +90,13 @@ TEST_CASE ("All tests", "[Main]"){
     
         x_old = Particles[0].position[0];
         y_old = Particles[0].position[1];
-        cell_old = Particles[0].Getcel(config);
+        cell_old = Particles[0].Getcell(config);
 
         Particles[0].Move(-1, 1, config);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
-        cell_new = Particles[0].Getcel(config);
+        cell_new = Particles[0].Getcell(config);
     
         REQUIRE (x_old == x_new);
         REQUIRE (y_old == y_new);
@@ -119,22 +119,44 @@ TEST_CASE ("All tests", "[Main]"){
         Particles[0].position[0] = -config.latticesize/2;    //Esquina inferior izquierda del grid
         Particles[0].position[1] = -config.latticesize/2;
 
-        m = Particles[0].Getcel(config);
+        m = Particles[0].Getcell(config);
 
         REQUIRE (m == 0);
 
         Particles[0].position[0] = config.latticesize/2 - 1;    //Esquina superior derecha del grid
         Particles[0].position[1] = config.latticesize/2 - 1;
 
-        m = Particles[0].Getcel(config);
+        m = Particles[0].Getcell(config);
 
         REQUIRE (m == config.gridsize*config.gridsize - 1);
 
+        int random_particle = 0, step = 0, direction = 0;
+
+        for (int t = 0; t <= 50; t++){
+
+            random_particle = dis_particle(gen);     
+            step = dis_move(gen)*2 - 1;  
+            direction = dis_move(gen);
+
+            time_step(config, random_particle, step, direction, Cells, Particles);
+
+        }
+
+        sum = 0;
+
+        for (int i = 0; i < config.gridsize*config.gridsize; i++){
+
+            sum += Cells[i];
+
+        }
+
+        REQUIRE (sum == config.nmolecules);
+        
     }
 
     SECTION ("Entropy conditions"){
 
-        double eps = 1e-30, Entropy = 0;
+        double Entropy = 0;
 
         for (int i = 0; i < config.gridsize*config.gridsize; i++){
 
@@ -146,16 +168,14 @@ TEST_CASE ("All tests", "[Main]"){
 
             Particles[i].position[0] = 0;
             Particles[i].position[1] = 0;
-            m = Particles[i].Getcel(config);
+            m = Particles[i].Getcell(config);
             Cells[m] += 1;
 
         }
 
         Entropy = entropy(config, Cells);
 
-        REQUIRE (Entropy >= 0);
-
-        REQUIRE (Entropy < eps);
+        REQUIRE (Entropy == 0);
 
     }
     

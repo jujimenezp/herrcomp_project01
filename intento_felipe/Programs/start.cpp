@@ -1,22 +1,20 @@
 #include "header.h"
 
-void start(const CONFIG &object, Vec_i &Cells, Vec_p &Particles){
-    
-    int n = std::sqrt(object.nmolecules);
+void start(const CONFIG &config, Vec_i &Cells, Vec_p &Particles)
+{
+    int n = std::sqrt(config.nmolecules);
     int m = 0;
     
-    //inicializa las particulas en un cuadrado
-    //calcula las particulas en cada celda
-    
-    for (int i = 0; i < object.nmolecules; i++){
-
+    for(int i = 0; i < config.nmolecules; i++){
+        //inicializa las particulas en un cuadrado
         Particles[i].position[0] = i%n - n/2;
         Particles[i].position[1] = i/n - n/2;
-
-        m = Particles[i].Getcel(object);
+        //calcula las particulas en cada celda
+        m = Particles[i].Getcell(config);
         Cells[m] += 1;
-        
     }
+    
+}
 
     /*
     int j = 0;
@@ -35,5 +33,5 @@ void start(const CONFIG &object, Vec_i &Cells, Vec_p &Particles){
         j += 1;
     }*/
     
-}
+
 

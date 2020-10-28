@@ -5,12 +5,14 @@ double for_auto (int j);
 
 int main(int argc, char **argv) {
 
+    int N = 100;
+
     int j = atoi(argv[1]);
 
     double time_normal = 0, time_auto = 0, error_normal = 0, error_auto = 0;
     double T_normal = 0, T_auto = 0;
 
-    for (int i = 0; i < 50; i ++){
+    for (int i = 0; i < N; i ++){
 
         T_normal = for_normal(j);
         T_auto = for_auto(j);
@@ -23,13 +25,13 @@ int main(int argc, char **argv) {
 
     }
     
-    time_normal /= 50.0;
-    time_auto /= 50.0;
+    time_normal /= 1.0*N;
+    time_auto /= 1.0*N;
 
-    error_normal = std::sqrt((error_normal - 50.0*std::pow(time_normal,2))/48.0)/std::sqrt(50);
-    error_auto = std::sqrt((error_auto - 50.0*std::pow(time_auto,2))/48.0)/std::sqrt(50);
+    error_normal = std::sqrt((error_normal - N*std::pow(time_normal,2))/(1.0*(N-2)))/std::sqrt(N);
+    error_auto = std::sqrt((error_auto - N*std::pow(time_auto,2))/(1.0*(N-2)))/std::sqrt(N);
 
-    std::cout << j*j << "\t"
+    std::cout << j << "\t"
               << time_normal << "\t"
               << time_auto << "\t"
               << error_normal << "\t"
@@ -40,24 +42,27 @@ int main(int argc, char **argv) {
 }
 
 double for_normal (int j){
-
-    Vec_p Particles(j*j);
+    
+    Vec_i Cells(j,0);
+    double s = 0;
 
     auto start = std::chrono::steady_clock::now();
 
-    for (int i = 0; i < j*j; i++){
+    for (int i = 0; i < j; i++){
 
-        Particles[i].position[0] = i%j - j/2;
-        Particles[i].position[1] = i/j - j/2;
+        Cells[i] = i%j;
 
-        /*
-        std::cout << Particles[i].position[0] << "\t"
-                  << Particles[i].position[1] << "\n";
-        */
+        if (Cells[i] != 0) {
+
+            s += Cells[i]*std::log(Cells[i]);
+
+        }
 
     }
 
     auto end = std::chrono::steady_clock::now();
+
+    //std::cout << s << "\n";
 
     return std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count()*1.0e-9;
 
@@ -66,26 +71,30 @@ double for_normal (int j){
 
 double for_auto (int j){
 
-    Vec_p Particles(j*j);
+    Vec_i Cells(j,0);
+    double s = 0;
 
     auto start = std::chrono::steady_clock::now();
 
     int i = 0;
 
-    for (auto p: Particles){
+    for(auto c: Cells){
 
-        p.position[0] = i%j - j/2;
-        p.position[1] = i/j - j/2;
+        c = i%j;
+        
+        if(c != 0) {
+
+            s += c*std::log(c);
+
+        }
 
         i += 1;
-
-        /*
-        std::cout << p.position[0] << "\t"
-                  << p.position[1] << "\n";
-        */
+        
     }
 
     auto end = std::chrono::steady_clock::now();
+
+    //std::cout << s << "\n";
 
     return std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count()*1.0e-9;
 
