@@ -59,7 +59,7 @@ Objects/Gprof/%.o: Programs/%.cpp
 	$(CXX) $(CXXFLAGS) -pg -c  $< -o $@
 
 clean:
-	rm -f Data/gprof-report.txt Data/cachegrind-report.txt gmon.out cachegrind.out.* *.x 
+	rm -f Data/gprof-report.txt Data/cachegrind-report.txt gmon.out cachegrind.out.* *.x Data/post/*.csv
 
 oclean:
 	rm -f Objects/Sanitizers/*.o Objects/Normal/*.o Objects/Gprof/*.o
