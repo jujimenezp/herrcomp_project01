@@ -8,18 +8,17 @@ int Particle::Getcell(const CONFIG &config){
     return X + Y*config.gridsize;
 }
 
-void Particle::Move(const int &step, const int &direction, const CONFIG &config);
-
+void Particle::Move(const int &step, const int &direction, const CONFIG &config)
+{
   if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
     
     position[direction] += step;
     
-  }
-  
+  } 
 }
 
-void Particle::Move_hole(const int &step, const int &direction, const int &particle_id, const CONFIG &config, Vec_i &Cells, Vec_p &Particles){
-
+void Particle::Move_hole(const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles)
+{
   int moved_particle_cell = Particles[particle_id].Getcell(config);
   
   if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){ //the particle is not on the limit after moving
@@ -49,6 +48,5 @@ void Particle::Move_hole(const int &step, const int &direction, const int &parti
       Particles.resize(Particles.size() - 1); //delete the particle
     }
     
-  }
-
+  } 
 }
