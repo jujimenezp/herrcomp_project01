@@ -27,6 +27,10 @@ int main()
 
 void distribute(const CONFIG object, particlevector &configuracion, gridvector &distribucion, probvector &probabilities)
 {
+  std::mt19937 seed(object.seed);
+  std::uniform_int_distribution<int> dis(0, 1);
+  std::uniform_int_distribution<int> jdfhfhufguhrruihghr
+  
   std::cout.precision(15);std::cout.setf(std::ios::scientific);
   
   std::mt19937 eng(object.seed);
@@ -50,7 +54,6 @@ void distribute(const CONFIG object, particlevector &configuracion, gridvector &
       }
       fout.close();
     }
-    /*
     configuracion[particulaj].print(object);
     destiny = configuracion[particulaj].locate(object);
 
@@ -71,7 +74,6 @@ void distribute(const CONFIG object, particlevector &configuracion, gridvector &
       distribucion[origin] -= 1;
       distribucion[destiny] += 1;
     }
-    */
   }
 }
 

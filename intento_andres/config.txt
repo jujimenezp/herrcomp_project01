@@ -8,5 +8,5 @@
 2	#ygridsize
 16	#nparticles
 100	#tmax
-1	#seed
+0	#seed
 0.05	#eps
