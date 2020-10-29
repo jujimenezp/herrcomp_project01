@@ -1,0 +1,652 @@
+--------------------------------------------------------------------------------
+I1 cache:         32768 B, 64 B, 8-way associative
+D1 cache:         32768 B, 64 B, 8-way associative
+LL cache:         4194304 B, 64 B, 16-way associative
+Command:          ./valgrind.x
+Data file:        cachegrind.out.5562
+Events recorded:  Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Events shown:     Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Event sort order: Ir I1mr ILmr Dr D1mr DLmr Dw D1mw DLmw
+Thresholds:       0.1 100 100 100 100 100 100 100 100
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                     I1mr             ILmr           Dr                   D1mr            DLmr           Dw                   D1mw           DLmw           
+--------------------------------------------------------------------------------
+4,378,537,982 (100.0%) 399,514 (100.0%) 2,107 (100.0%) 929,872,144 (100.0%) 15,810 (100.0%) 8,465 (100.0%) 476,565,151 (100.0%) 3,989 (100.0%) 1,865 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                     I1mr            ILmr         Dr                   D1mr           DLmr           Dw                   D1mw           DLmw          file:function
+--------------------------------------------------------------------------------
+1,125,455,437 (25.70%)      5 ( 0.00%)   5 ( 0.24%) 150,144,336 (16.15%)    35 ( 0.22%)     0           60,000,051 (12.59%)     0            0           /usr/include/c++/9.2.0/bits/random.tcc:std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::operator()()
+1,110,000,111 (25.35%)      3 ( 0.00%)   3 ( 0.14%) 300,000,030 (32.26%)     0              0          210,000,021 (44.07%)     0            0           /usr/include/c++/9.2.0/bits/uniform_int_dist.h:int std::uniform_int_distribution<int>::operator()<std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul> >(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>&, std::uniform_int_distribution<int>::param_type const&)
+  400,008,040 ( 9.14%)      2 ( 0.00%)   1 ( 0.05%) 100,002,010 (10.75%)    54 ( 0.34%)     0                    0              0            0           /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/class_particle.cpp:Particle::Getcell(CONFIG const&)
+  330,000,033 ( 7.54%)      2 ( 0.00%)   2 ( 0.09%)  90,000,009 ( 9.68%)     0              0           90,000,009 (18.89%)     0            0           /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/time_step.cpp:time_step(CONFIG const&, int, int, int, std::vector<int, std::allocator<int> >&, std::vector<Particle, std::allocator<Particle> >&)
+  271,675,666 ( 6.20%)      7 ( 0.00%)   7 ( 0.33%)  64,443,107 ( 6.93%)    90 ( 0.57%)    34 ( 0.40%)           0              0            0           ???:__ieee754_log_fma
+  269,965,929 ( 6.17%)      2 ( 0.00%)   1 ( 0.05%)  30,000,003 ( 3.23%)     0              0            9,965,903 ( 2.09%)     0            0           /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/class_particle.cpp:Particle::Move(int, int, CONFIG const&)
+  180,800,091 ( 4.13%)      7 ( 0.00%)   7 ( 0.33%)  20,000,010 ( 2.15%)     1 ( 0.01%)     0           10,300,022 ( 2.16%)     3 ( 0.08%)   0           /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/main.cpp:main
+  140,000,018 ( 3.20%)      1 ( 0.00%)   1 ( 0.05%)           0              0              0           30,000,006 ( 6.30%)     0            0           /usr/include/c++/9.2.0/bits/uniform_int_dist.h:main
+   90,000,009 ( 2.06%)      0            0           50,000,005 ( 5.38%)     0              0                    0              0            0           /usr/include/c++/9.2.0/bits/stl_vector.h:time_step(CONFIG const&, int, int, int, std::vector<int, std::allocator<int> >&, std::vector<Particle, std::allocator<Particle> >&)
+   82,387,397 ( 1.88%) 49,614 (12.42%)   2 ( 0.09%)  19,167,784 ( 2.06%)     1 ( 0.01%)     0            6,283,859 ( 1.32%)     0            0           /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/entropy.cpp:entropy(CONFIG const&, std::vector<int, std::allocator<int> > const&)
+   64,144,140 ( 1.46%) 99,284 (24.85%)  59 ( 2.80%)  13,846,898 ( 1.49%)     5 ( 0.03%)     3 ( 0.04%)   9,221,843 ( 1.94%)    19 ( 0.48%)   3 ( 0.16%)  ???:__printf_fp_l
+   31,184,576 ( 0.71%) 49,952 (12.50%) 242 (11.49%)  17,584,066 ( 1.89%)   298 ( 1.88%)    12 ( 0.14%)   2,791,905 ( 0.59%)    24 ( 0.60%)  14 ( 0.75%)  ???:???
+   30,000,041 ( 0.69%)      5 ( 0.00%)   4 ( 0.19%)  20,000,008 ( 2.15%)     0              0                   10 ( 0.00%)     1 ( 0.03%)   0           /usr/include/c++/9.2.0/bits/stl_vector.h:main
+   27,800,278 ( 0.63%)     29 ( 0.01%)  29 ( 1.38%)   6,400,064 ( 0.69%)    20 ( 0.13%)     5 ( 0.06%)   5,500,055 ( 1.15%)     0            0           ???:__vfprintf_internal
+   24,335,428 ( 0.56%)      1 ( 0.00%)   1 ( 0.05%)           0              0              0                    0              0            0           ???:log@@GLIBC_2.29
+   18,351,572 ( 0.42%)      0            0              100,001 ( 0.01%)     0              0           12,167,714 ( 2.55%)     0            0           /usr/include/c++/9.2.0/cmath:entropy(CONFIG const&, std::vector<int, std::allocator<int> > const&)
+   17,747,132 ( 0.41%)      8 ( 0.00%)   6 ( 0.28%)   4,839,411 ( 0.52%)     1 ( 0.01%)     0            2,017,556 ( 0.42%)     0            0           ???:std::basic_filebuf<char, std::char_traits<char> >::xsputn(char const*, long)
+   17,500,175 ( 0.40%)      3 ( 0.00%)   3 ( 0.14%)   5,600,056 ( 0.60%)     0              0            2,800,028 ( 0.59%)     1 ( 0.03%)   1 ( 0.05%)  ???:hack_digit
+   14,000,140 ( 0.32%)      3 ( 0.00%)   3 ( 0.14%)   2,100,021 ( 0.23%)     0              0            1,400,014 ( 0.29%)     0            0           ???:__mpn_mul_1
+   13,702,445 ( 0.31%)      3 ( 0.00%)   3 ( 0.14%)   3,627,123 ( 0.39%)     0              0            2,418,074 ( 0.51%)     0            0           ???:std::basic_streambuf<char, std::char_traits<char> >::xsputn(char const*, long)
+   13,000,118 ( 0.30%) 49,623 (12.42%)  11 ( 0.52%)   2,900,026 ( 0.31%)     0              0            2,900,026 ( 0.61%)     0            0           ???:std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_float<double>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, char, double) const
+    9,149,857 ( 0.21%)     11 ( 0.00%)   7 ( 0.33%)   2,134,426 ( 0.23%)     4 ( 0.03%)     0            1,830,428 ( 0.38%)     0            0           ???:std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const
+    9,072,090 ( 0.21%)      6 ( 0.00%)   4 ( 0.19%)   3,225,632 ( 0.35%)     0              0            2,217,622 ( 0.47%)     0            0           ???:std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+    8,646,620 ( 0.20%)      4 ( 0.00%)   4 ( 0.19%)   1,507,029 ( 0.16%)     1 ( 0.01%)     1 ( 0.01%)     904,010 ( 0.19%) 1,159 (29.05%) 127 ( 6.81%)  ???:__memcpy_avx_unaligned_erms
+    8,467,326 ( 0.19%)      4 ( 0.00%)   3 ( 0.14%)   2,822,442 ( 0.30%)     3 ( 0.02%)     0            2,016,030 ( 0.42%)     0            0           ???:std::ostream::sentry::sentry(std::ostream&)
+    5,701,425 ( 0.13%) 49,628 (12.42%)   6 ( 0.28%)   2,000,500 ( 0.22%)    18 ( 0.11%)     1 ( 0.01%)   1,500,375 ( 0.31%)     0            0           ???:__cxxabiv1::__vmi_class_type_info::__do_dyncast(long, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+    5,000,050 ( 0.11%)      4 ( 0.00%)   4 ( 0.19%)   1,000,010 ( 0.11%)     0              0            1,400,014 ( 0.29%)     0            0           ???:__vsnprintf_internal
+    4,673,682 ( 0.11%)     10 ( 0.00%)   5 ( 0.24%)   1,625,628 ( 0.17%)     0              0              914,415 ( 0.19%)     0            0           ???:std::ostream& std::ostream::_M_insert<long>(long)
+    4,604,830 ( 0.11%)      6 ( 0.00%)   4 ( 0.19%)   1,601,680 ( 0.17%)    43 ( 0.27%)     0            1,001,050 ( 0.21%)     0            0           ???:__dynamic_cast
+    4,400,044 ( 0.10%)      3 ( 0.00%)   3 ( 0.14%)   1,600,016 ( 0.17%)     1 ( 0.01%)     0              900,009 ( 0.19%)     0            0           ???:std::ostream& std::ostream::_M_insert<double>(double)
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/time_step.cpp
+--------------------------------------------------------------------------------
+Ir                   I1mr       ILmr       Dr                  D1mr       DLmr       Dw                  D1mw       DLmw       
+
+          .          .          .                   .          .          .                   .          .          .           #include "header.h"
+          .          .          .                   .          .          .                   .          .          .           
+120,000,012 ( 2.74%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0          60,000,006 (12.59%) 0          0           void time_step(const CONFIG &config, int random_particle, int step, int direction, Vec_i &Cells, Vec_p &Particles){
+          .          .          .                   .          .          .                   .          .          .           
+          .          .          .                   .          .          .                   .          .          .               int m = 0;
+          .          .          .                   .          .          .                   .          .          .           
+ 30,000,003 ( 0.69%) 0          0                   0          0          0          10,000,001 ( 2.10%) 0          0               m = Particles[random_particle].Getcell(config);
+ 20,000,002 ( 0.46%) 0          0          10,000,001 ( 1.08%) 0          0                   0          0          0               Cells[m] -= 1;
+ 40,000,004 ( 0.91%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0          10,000,001 ( 2.10%) 0          0               Particles[random_particle].Move(step,direction,config);
+ 20,000,002 ( 0.46%) 0          0                   0          0          0          10,000,001 ( 2.10%) 0          0               m = Particles[random_particle].Getcell(config);
+ 20,000,002 ( 0.46%) 0          0          10,000,001 ( 1.08%) 0          0                   0          0          0               Cells[m] += 1;        
+ 80,000,010 ( 1.83%) 0          0          70,000,007 ( 7.53%) 0          0                   0          0          0           }
+          .          .          .                   .          .          .                   .          .          .           
+          .          .          .                   .          .          .                   .          .          .           /*void time_step_hole(const CONFIG &config, int random_particle, int step, int direction, Vec_i &Cells, Vec_p &Particles){
+          .          .          .                   .          .          .                   .          .          .           
+          .          .          .                   .          .          .                   .          .          .               int m = 0;
+          .          .          .                   .          .          .                   .          .          .           
+          .          .          .                   .          .          .                   .          .          .               m = Particles[random_particle].Getcell(config);
+          .          .          .                   .          .          .                   .          .          .               Cells[m] -= 1;
+          .          .          .                   .          .          .                   .          .          .               Particles[random_particle].Move_hole(step,direction,config);
+-- line 20 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/9.2.0/bits/random.tcc
+--------------------------------------------------------------------------------
+Ir                   I1mr       ILmr       Dr                  D1mr        DLmr       Dw                  D1mw        DLmw       
+
+-- line 321 ----------------------------------------
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __a, size_t __u, _UIntType __d, size_t __s,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __b, size_t __t, _UIntType __c, size_t __l,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __f>
+          .          .          .                   .           .          .                   .           .          .               void
+          .          .          .                   .           .          .                   .           .          .               mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d,
+          .          .          .                   .           .          .                   .           .          .           			    __s, __b, __t, __c, __l, __f>::
+          .          .          .                   .           .          .                   .           .          .               seed(result_type __sd)
+          .          .          .                   .           .          .                   .           .          .               {
+          1 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          0           0          0                   1 ( 0.00%)  0          0                 _M_x[0] = __detail::__mod<_UIntType,
+          .          .          .                   .           .          .                   .           .          .           	__detail::_Shift<_UIntType, __w>::__value>(__sd);
+          .          .          .                   .           .          .                   .           .          .           
+      1,871 ( 0.00%) 0          0                   0           0          0                   0           0          0                 for (size_t __i = 1; __i < state_size; ++__i)
+          .          .          .                   .           .          .                   .           .          .           	{
+          .          .          .                   .           .          .                   .           .          .           	  _UIntType __x = _M_x[__i - 1];
+      1,869 ( 0.00%) 0          0                   0           0          0                   0           0          0           	  __x ^= __x >> (__w - 2);
+        623 ( 0.00%) 0          0                   0           0          0                   0           0          0           	  __x *= __f;
+          .          .          .                   .           .          .                   .           .          .           	  __x += __detail::__mod<_UIntType, __n>(__i);
+        623 ( 0.00%) 0          0                   0           0          0                 623 ( 0.00%) 78 ( 1.96%) 4 ( 0.21%)  	  _M_x[__i] = __detail::__mod<_UIntType,
+          .          .          .                   .           .          .                   .           .          .           	    __detail::_Shift<_UIntType, __w>::__value>(__x);
+          .          .          .                   .           .          .                   .           .          .           	}
+          1 ( 0.00%) 0          0                   0           0          0                   1 ( 0.00%)  0          0                 _M_p = state_size;
+          .          .          .                   .           .          .                   .           .          .               }
+          .          .          .                   .           .          .                   .           .          .           
+          .          .          .                   .           .          .                   .           .          .             template<typename _UIntType,
+          .          .          .                   .           .          .                   .           .          .           	   size_t __w, size_t __n, size_t __m, size_t __r,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __a, size_t __u, _UIntType __d, size_t __s,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __b, size_t __t, _UIntType __c, size_t __l,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __f>
+          .          .          .                   .           .          .                   .           .          .               template<typename _Sseq>
+-- line 349 ----------------------------------------
+-- line 395 ----------------------------------------
+          .          .          .                   .           .          .                   .           .          .               void
+          .          .          .                   .           .          .                   .           .          .               mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d,
+          .          .          .                   .           .          .                   .           .          .           			    __s, __b, __t, __c, __l, __f>::
+          .          .          .                   .           .          .                   .           .          .               _M_gen_rand(void)
+          .          .          .                   .           .          .                   .           .          .               {
+          .          .          .                   .           .          .                   .           .          .                 const _UIntType __upper_mask = (~_UIntType()) << __r;
+          .          .          .                   .           .          .                   .           .          .                 const _UIntType __lower_mask = ~__upper_mask;
+          .          .          .                   .           .          .                   .           .          .           
+ 32,932,745 ( 0.75%) 1 ( 0.00%) 1 ( 0.05%)     48,077 ( 0.01%)  0          0                   0           0          0                 for (size_t __k = 0; __k < (__n - __m); ++__k)
+          .          .          .                   .           .          .                   .           .          .                   {
+ 32,740,437 ( 0.75%) 1 ( 0.00%) 1 ( 0.05%)          0           0          0                   0           0          0           	  _UIntType __y = ((_M_x[__k] & __upper_mask)
+ 32,740,437 ( 0.75%) 0          0          10,913,479 ( 1.17%) 14 ( 0.09%) 0                   0           0          0           			   | (_M_x[__k + 1] & __lower_mask));
+ 43,653,916 ( 1.00%) 0          0          10,913,479 ( 1.17%)  1 ( 0.01%) 0          10,913,479 ( 2.29%)  0          0           	  _M_x[__k] = (_M_x[__k + __m] ^ (__y >> 1)
+ 27,283,696 ( 0.62%) 0          0                   0           0          0                   0           0          0           		       ^ ((__y & 0x01) ? __a : 0));
+          .          .          .                   .           .          .                   .           .          .                   }
+          .          .          .                   .           .          .                   .           .          .           
+ 57,115,476 ( 1.30%) 0          0                   0           0          0                   0           0          0                 for (size_t __k = (__n - __m); __k < (__n - 1); ++__k)
+          .          .          .                   .           .          .                   .           .          .           	{
+ 57,115,476 ( 1.30%) 0          0                   0           0          0                   0           0          0           	  _UIntType __y = ((_M_x[__k] & __upper_mask)
+ 57,115,476 ( 1.30%) 0          0          19,038,492 ( 2.05%)  0          0                   0           0          0           			   | (_M_x[__k + 1] & __lower_mask));
+ 76,153,968 ( 1.74%) 1 ( 0.00%) 1 ( 0.05%) 19,038,492 ( 2.05%)  0          0          19,038,492 ( 3.99%)  0          0           	  _M_x[__k] = (_M_x[__k + (__m - __n)] ^ (__y >> 1)
+ 47,594,182 ( 1.09%) 0          0                   0           0          0                   0           0          0           		       ^ ((__y & 0x01) ? __a : 0));
+          .          .          .                   .           .          .                   .           .          .           	}
+          .          .          .                   .           .          .                   .           .          .           
+    144,231 ( 0.00%) 0          0              48,077 ( 0.01%)  0          0                   0           0          0                 _UIntType __y = ((_M_x[__n - 1] & __upper_mask)
+     96,154 ( 0.00%) 0          0              48,077 ( 0.01%)  0          0                   0           0          0           		       | (_M_x[0] & __lower_mask));
+    192,308 ( 0.00%) 0          0              48,077 ( 0.01%)  0          0              48,077 ( 0.01%)  0          0                 _M_x[__n - 1] = (_M_x[__m - 1] ^ (__y >> 1)
+    144,176 ( 0.00%) 0          0                   0           0          0                   0           0          0           		       ^ ((__y & 0x01) ? __a : 0));
+          .          .          .                   .           .          .                   .           .          .                 _M_p = 0;
+    144,231 ( 0.00%) 0          0                   0           0          0                   0           0          0               }
+          .          .          .                   .           .          .                   .           .          .           
+          .          .          .                   .           .          .                   .           .          .             template<typename _UIntType, size_t __w,
+          .          .          .                   .           .          .                   .           .          .           	   size_t __n, size_t __m, size_t __r,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __a, size_t __u, _UIntType __d, size_t __s,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __b, size_t __t, _UIntType __c, size_t __l,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __f>
+          .          .          .                   .           .          .                   .           .          .               void
+          .          .          .                   .           .          .                   .           .          .               mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d,
+-- line 432 ----------------------------------------
+-- line 449 ----------------------------------------
+          .          .          .                   .           .          .                   .           .          .               typename
+          .          .          .                   .           .          .                   .           .          .               mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d,
+          .          .          .                   .           .          .                   .           .          .           			    __s, __b, __t, __c, __l, __f>::result_type
+          .          .          .                   .           .          .                   .           .          .               mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d,
+          .          .          .                   .           .          .                   .           .          .           			    __s, __b, __t, __c, __l, __f>::
+          .          .          .                   .           .          .                   .           .          .               operator()()
+          .          .          .                   .           .          .                   .           .          .               {
+          .          .          .                   .           .          .                   .           .          .                 // Reload the vector - cost is O(n) amortized over n calls.
+120,144,243 ( 2.74%) 1 ( 0.00%) 1 ( 0.05%) 30,000,003 ( 3.23%)  0          0                   0           0          0                 if (_M_p >= state_size)
+          .          .          .                   .           .          .                   .           .          .           	_M_gen_rand();
+          .          .          .                   .           .          .                   .           .          .           
+          .          .          .                   .           .          .                   .           .          .                 // Calculate o(x(i)).
+ 60,000,006 ( 1.37%) 0          0          30,000,003 ( 3.23%) 20 ( 0.13%) 0          30,000,003 ( 6.30%)  0          0                 result_type __z = _M_x[_M_p++];
+120,000,012 ( 2.74%) 0          0                   0           0          0                   0           0          0                 __z ^= (__z >> __u) & __d;
+120,000,012 ( 2.74%) 0          0                   0           0          0                   0           0          0                 __z ^= (__z << __s) & __b;
+120,000,012 ( 2.74%) 0          0                   0           0          0                   0           0          0                 __z ^= (__z << __t) & __c;
+ 90,000,009 ( 2.06%) 0          0                   0           0          0                   0           0          0                 __z ^= (__z >> __l);
+          .          .          .                   .           .          .                   .           .          .           
+          .          .          .                   .           .          .                   .           .          .                 return __z;
+ 30,144,234 ( 0.69%) 1 ( 0.00%) 1 ( 0.05%) 30,048,080 ( 3.23%)  0          0                   0           0          0               }
+          .          .          .                   .           .          .                   .           .          .           
+          .          .          .                   .           .          .                   .           .          .             template<typename _UIntType, size_t __w,
+          .          .          .                   .           .          .                   .           .          .           	   size_t __n, size_t __m, size_t __r,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __a, size_t __u, _UIntType __d, size_t __s,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __b, size_t __t, _UIntType __c, size_t __l,
+          .          .          .                   .           .          .                   .           .          .           	   _UIntType __f, typename _CharT, typename _Traits>
+          .          .          .                   .           .          .                   .           .          .               std::basic_ostream<_CharT, _Traits>&
+          .          .          .                   .           .          .                   .           .          .               operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+-- line 476 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/class_particle.cpp
+--------------------------------------------------------------------------------
+Ir                   I1mr       ILmr       Dr                  D1mr        DLmr       Dw                 D1mw       DLmw       
+
+          .          .          .                   .           .          .                  .          .          .           #include "header.h"
+          .          .          .                   .           .          .                  .          .          .           
+          .          .          .                   .           .          .                  .          .          .           int Particle::Getcell(const CONFIG &config){
+          .          .          .                   .           .          .                  .          .          .           
+220,004,422 ( 5.02%) 2 ( 0.00%) 1 ( 0.05%) 60,001,206 ( 6.45%)  0          0                  0          0          0               int X = (position[0] + config.latticesize/2)*config.gridsize/config.latticesize;
+100,002,010 ( 2.28%) 0          0          20,000,402 ( 2.15%) 54 ( 0.34%) 0                  0          0          0               int Y = (position[1] + config.latticesize/2)*config.gridsize/config.latticesize;
+          .          .          .                   .           .          .                  .          .          .           
+ 60,001,206 ( 1.37%) 0          0                   0           0          0                  0          0          0               return X + Y*config.gridsize;
+ 20,000,402 ( 0.46%) 0          0          20,000,402 ( 2.15%)  0          0                  0          0          0           }
+          .          .          .                   .           .          .                  .          .          .           
+          .          .          .                   .           .          .                  .          .          .           void Particle::Move(int step, int direction, const CONFIG &config){
+          .          .          .                   .           .          .                  .          .          .           
+250,000,025 ( 5.71%) 2 ( 0.00%) 1 ( 0.05%) 20,000,002 ( 2.15%)  0          0                  0          0          0               if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
+          .          .          .                   .           .          .                  .          .          .           
+  9,965,903 ( 0.23%) 0          0                   0           0          0          9,965,903 ( 2.09%) 0          0                   position[direction] += step;
+          .          .          .                   .           .          .                  .          .          .           
+          .          .          .                   .           .          .                  .          .          .               }
+          .          .          .                   .           .          .                  .          .          .           
+ 10,000,003 ( 0.23%) 0          0          10,000,001 ( 1.08%)  0          0                  0          0          0           }
+          .          .          .                   .           .          .                  .          .          .           
+          .          .          .                   .           .          .                  .          .          .           /*void Particle::Move_hole(int step, int direction, const CONFIG &config){
+          .          .          .                   .           .          .                  .          .          .               
+          .          .          .                   .           .          .                  .          .          .                if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
+          .          .          .                   .           .          .                  .          .          .           
+          .          .          .                   .           .          .                  .          .          .                   position[direction] += step;
+          .          .          .                   .           .          .                  .          .          .           
+          .          .          .                   .           .          .                  .          .          .                }
+-- line 27 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/main.cpp
+--------------------------------------------------------------------------------
+Ir                  I1mr       ILmr       Dr                  D1mr       DLmr       Dw                  D1mw       DLmw       
+
+         .          .          .                   .          .          .                   .          .          .           #include "header.h"
+         .          .          .                   .          .          .                   .          .          .           
+         .          .          .                   .          .          .                   .          .          .           int main(void)
+         4 ( 0.00%) 0          0                   0          0          0                   3 ( 0.00%) 0          0           {
+         .          .          .                   .          .          .                   .          .          .           
+         3 ( 0.00%) 0          0                   0          0          0                   2 ( 0.00%) 2 ( 0.05%) 0             CONFIG config;
+         7 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0                   2 ( 0.00%) 1 ( 0.03%) 0             config.read("Data/init_data.txt");
+         .          .          .                   .          .          .                   .          .          .           
+         1 ( 0.00%) 0          0                   1 ( 0.00%) 0          0                   0          0          0             Vec_p Particles(config.nmolecules);
+         4 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          1 ( 0.00%) 0          0                   0          0          0             Vec_i Cells(config.gridsize*config.gridsize,0);
+         .          .          .                   .          .          .                   .          .          .             
+         4 ( 0.00%) 0          0                   0          0          0                   1 ( 0.00%) 0          0             start(config, Cells, Particles);
+         .          .          .                   .          .          .                   .          .          .           
+        10 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0                   3 ( 0.00%) 0          0             print_particles(Particles, "Data/data_particles_start.txt");
+         .          .          .                   .          .          .                   .          .          .           
+         .          .          .                   .          .          .                   .          .          .             std::mt19937 gen(config.seed);
+         .          .          .                   .          .          .                   .          .          .             std::uniform_int_distribution<int> dis_move(0, 1);
+         2 ( 0.00%) 0          0                   1 ( 0.00%) 0          0                   0          0          0             std::uniform_int_distribution<int> dis_particle(0,config.nmolecules-1);
+         .          .          .                   .          .          .                   .          .          .             
+         .          .          .                   .          .          .                   .          .          .             double Entropy = 0;
+         .          .          .                   .          .          .                   .          .          .             int random_particle = 0, step = 0, direction = 0;
+         .          .          .                   .          .          .                   .          .          .           
+         .          .          .                   .          .          .                   .          .          .             
+         4 ( 0.00%) 0          0                   0          0          0                   2 ( 0.00%) 0          0             std::ofstream entrofile;   //Salida de entropia
+         4 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0                   1 ( 0.00%) 0          0             entrofile.open("Data/data_entropy.txt");
+         .          .          .                   .          .          .                   .          .          .             
+30,000,007 ( 0.69%) 0          0          10,000,002 ( 1.08%) 0          0                   0          0          0             for(int t = 0; t <= config.tmax; t++ ){
+         .          .          .                   .          .          .                   .          .          .           
+40,000,004 ( 0.91%) 0          0                   0          0          0                   0          0          0               random_particle = dis_particle(gen)%Particles.size();        //escoge una particula al azar
+10,000,001 ( 0.23%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0                   0          0          0               step = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
+         .          .          .                   .          .          .                   .          .          .               direction = dis_move(gen);           //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
+         .          .          .                   .          .          .                   .          .          .               
+50,000,005 ( 1.14%) 0          0                   0          0          0          10,000,001 ( 2.10%) 0          0               time_step(config, random_particle, step, direction, Cells, Particles);
+         .          .          .                   .          .          .                   .          .          .               //time_step_hole(config, random_particle, step, direction, Cells, Particles);
+         .          .          .                   .          .          .                   .          .          .           
+50,000,005 ( 1.14%) 0          0          10,000,001 ( 1.08%) 0          0                   0          0          0               if (t%config.resolution == 0){
+         .          .          .                   .          .          .                   .          .          .                   
+   400,004 ( 0.01%) 0          0                   0          0          0             200,002 ( 0.04%) 0          0                 Entropy = entropy(config, Cells);
+   400,004 ( 0.01%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0             100,001 ( 0.02%) 0          0                 entrofile << t << "\t"
+         .          .          .                   .          .          .                   .          .          .                           << Entropy
+         .          .          .                   .          .          .                   .          .          .                           << "\n";
+         .          .          .                   .          .          .                   .          .          .               }
+         .          .          .                   .          .          .                   .          .          .             }
+         .          .          .                   .          .          .                   .          .          .           
+         .          .          .                   .          .          .                   .          .          .             std::cout << Particles.size() << std::endl;
+         .          .          .                   .          .          .                   .          .          .             
+         2 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0                   1 ( 0.00%) 0          0             entrofile.close();
+         .          .          .                   .          .          .                   .          .          .           
+        10 ( 0.00%) 0          0                   0          0          0                   3 ( 0.00%) 0          0             print_particles(Particles, "Data/data_particles_end.txt");
+         .          .          .                   .          .          .                   .          .          .             
+         .          .          .                   .          .          .                   .          .          .             return 0;
+         8 ( 0.00%) 1 ( 0.00%) 0                   4 ( 0.00%) 1 ( 0.01%) 0                   0          0          0           }
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /home/live/personal/herrcomp_proyect01/intento_julian/codigo_grupal/Programs/entropy.cpp
+--------------------------------------------------------------------------------
+Ir                  I1mr            ILmr       Dr                  D1mr       DLmr       Dw                 D1mw       DLmw       
+
+         .               .          .                   .          .          .                  .          .          .           #include "header.h"
+         .               .          .                   .          .          .                  .          .          .           
+         .               .          .                   .          .          .                  .          .          .           double entropy(const CONFIG &config, const Vec_i &Cells)
+   600,006 ( 0.01%) 49,613 (12.42%) 1 ( 0.05%)          0          0          0            300,003 ( 0.06%) 0          0           {
+   100,001 ( 0.00%)      0          0                   0          0          0                  0          0          0             double s=0, Entropy=0;
+         .               .          .                   .          .          .                  .          .          .             
+         .               .          .                   .          .          .                  .          .          .             Entropy=std::log(config.nmolecules);
+         .               .          .                   .          .          .                  .          .          .             
+20,016,404 ( 0.46%)      1 ( 0.00%) 1 ( 0.05%)  6,600,066 ( 0.71%) 1 ( 0.01%) 0                  0          0          0             for(auto i: Cells){
+60,670,976 ( 1.39%)      0          0          11,967,712 ( 1.29%) 0          0          5,983,856 ( 1.26%) 0          0               if(i != 0) {s += i*std::log(i);}
+         .               .          .                   .          .          .                  .          .          .             }
+   500,005 ( 0.01%)      0          0             200,002 ( 0.02%) 0          0                  0          0          0             Entropy -= s/(1.0*config.nmolecules);
+         .               .          .                   .          .          .                  .          .          .           
+         .               .          .                   .          .          .                  .          .          .             return Entropy;      
+   500,007 ( 0.01%)      1 ( 0.00%) 1 ( 0.05%)    400,004 ( 0.04%) 0          0                  0          0          0           }
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/9.2.0/cmath
+--------------------------------------------------------------------------------
+Ir                  I1mr       ILmr       Dr               D1mr       DLmr       Dw                  D1mw       DLmw       
+
+-- line 343 ----------------------------------------
+         .          .          .                .          .          .                   .          .          .             { return __builtin_logl(__x); }
+         .          .          .                .          .          .                   .          .          .           #endif
+         .          .          .                .          .          .                   .          .          .           
+         .          .          .                .          .          .                   .          .          .             template<typename _Tp>
+         .          .          .                .          .          .                   .          .          .               inline _GLIBCXX_CONSTEXPR
+         .          .          .                .          .          .                   .          .          .               typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+         .          .          .                .          .          .                   .          .          .                                               double>::__type
+         .          .          .                .          .          .                   .          .          .               log(_Tp __x)
+18,351,572 ( 0.42%) 0          0          100,001 ( 0.01%) 0          0          12,167,714 ( 2.55%) 0          0               { return __builtin_log(__x); }
+         .          .          .                .          .          .                   .          .          .           
+         .          .          .                .          .          .                   .          .          .             using ::log10;
+         .          .          .                .          .          .                   .          .          .           
+         .          .          .                .          .          .                   .          .          .           #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+         .          .          .                .          .          .                   .          .          .             inline _GLIBCXX_CONSTEXPR float
+         .          .          .                .          .          .                   .          .          .             log10(float __x)
+         .          .          .                .          .          .                   .          .          .             { return __builtin_log10f(__x); }
+         .          .          .                .          .          .                   .          .          .           
+-- line 359 ----------------------------------------
+-- line 468 ----------------------------------------
+         .          .          .                .          .          .                   .          .          .             { return __builtin_sqrtl(__x); }
+         .          .          .                .          .          .                   .          .          .           #endif
+         .          .          .                .          .          .                   .          .          .           
+         .          .          .                .          .          .                   .          .          .             template<typename _Tp>
+         .          .          .                .          .          .                   .          .          .               inline _GLIBCXX_CONSTEXPR
+         .          .          .                .          .          .                   .          .          .               typename __gnu_cxx::__enable_if<__is_integer<_Tp>::__value, 
+         .          .          .                .          .          .                   .          .          .                                               double>::__type
+         .          .          .                .          .          .                   .          .          .               sqrt(_Tp __x)
+        14 ( 0.00%) 2 ( 0.00%) 2 ( 0.09%)       0          0          0                   0          0          0               { return __builtin_sqrt(__x); }
+         .          .          .                .          .          .                   .          .          .           
+         .          .          .                .          .          .                   .          .          .             using ::tan;
+         .          .          .                .          .          .                   .          .          .           
+         .          .          .                .          .          .                   .          .          .           #ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+         .          .          .                .          .          .                   .          .          .             inline _GLIBCXX_CONSTEXPR float
+         .          .          .                .          .          .                   .          .          .             tan(float __x)
+         .          .          .                .          .          .                   .          .          .             { return __builtin_tanf(__x); }
+         .          .          .                .          .          .                   .          .          .           
+-- line 484 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/9.2.0/bits/uniform_int_dist.h
+--------------------------------------------------------------------------------
+Ir                   I1mr       ILmr       Dr                   D1mr       DLmr       Dw                   D1mw       DLmw       
+
+-- line 68 ----------------------------------------
+          .          .          .                    .          .          .                    .          .          .                 {
+          .          .          .                    .          .          .                    .          .          .           	typedef uniform_int_distribution<_IntType> distribution_type;
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .           	param_type() : param_type(0) { }
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .           	explicit
+          .          .          .                    .          .          .                    .          .          .           	param_type(_IntType __a,
+          .          .          .                    .          .          .                    .          .          .           		   _IntType __b = numeric_limits<_IntType>::max())
+          4 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)           0          0          0                    3 ( 0.00%) 0          0           	: _M_a(__a), _M_b(__b)
+          .          .          .                    .          .          .                    .          .          .           	{
+          .          .          .                    .          .          .                    .          .          .           	  __glibcxx_assert(_M_a <= _M_b);
+          .          .          .                    .          .          .                    .          .          .           	}
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .           	result_type
+          .          .          .                    .          .          .                    .          .          .           	a() const
+          .          .          .                    .          .          .                    .          .          .           	{ return _M_a; }
+          .          .          .                    .          .          .                    .          .          .           
+-- line 84 ----------------------------------------
+-- line 165 ----------------------------------------
+          .          .          .                    .          .          .                    .          .          .                 { return this->b(); }
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .                 /**
+          .          .          .                    .          .          .                    .          .          .                  * @brief Generating functions.
+          .          .          .                    .          .          .                    .          .          .                  */
+          .          .          .                    .          .          .                    .          .          .                 template<typename _UniformRandomNumberGenerator>
+          .          .          .                    .          .          .                    .          .          .           	result_type
+          .          .          .                    .          .          .                    .          .          .           	operator()(_UniformRandomNumberGenerator& __urng)
+140,000,014 ( 3.20%) 0          0                    0          0          0           30,000,003 ( 6.30%) 0          0                   { return this->operator()(__urng, _M_param); }
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .                 template<typename _UniformRandomNumberGenerator>
+          .          .          .                    .          .          .                    .          .          .           	result_type
+          .          .          .                    .          .          .                    .          .          .           	operator()(_UniformRandomNumberGenerator& __urng,
+          .          .          .                    .          .          .                    .          .          .           		   const param_type& __p);
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .                 template<typename _ForwardIterator,
+          .          .          .                    .          .          .                    .          .          .           	       typename _UniformRandomNumberGenerator>
+-- line 181 ----------------------------------------
+-- line 217 ----------------------------------------
+          .          .          .                    .          .          .                    .          .          .           			const param_type& __p);
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .                 param_type _M_param;
+          .          .          .                    .          .          .                    .          .          .               };
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .             template<typename _IntType>
+          .          .          .                    .          .          .                    .          .          .               template<typename _UniformRandomNumberGenerator>
+          .          .          .                    .          .          .                    .          .          .                 typename uniform_int_distribution<_IntType>::result_type
+270,000,027 ( 6.17%) 1 ( 0.00%) 1 ( 0.05%)           0          0          0          180,000,018 (37.77%) 0          0                 uniform_int_distribution<_IntType>::
+          .          .          .                    .          .          .                    .          .          .                 operator()(_UniformRandomNumberGenerator& __urng,
+          .          .          .                    .          .          .                    .          .          .           		 const param_type& __param)
+          .          .          .                    .          .          .                    .          .          .                 {
+          .          .          .                    .          .          .                    .          .          .           	typedef typename _UniformRandomNumberGenerator::result_type
+          .          .          .                    .          .          .                    .          .          .           	  _Gresult_type;
+          .          .          .                    .          .          .                    .          .          .           	typedef typename std::make_unsigned<result_type>::type __utype;
+          .          .          .                    .          .          .                    .          .          .           	typedef typename std::common_type<_Gresult_type, __utype>::type
+          .          .          .                    .          .          .                    .          .          .           	  __uctype;
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .           	const __uctype __urngmin = __urng.min();
+          .          .          .                    .          .          .                    .          .          .           	const __uctype __urngmax = __urng.max();
+          .          .          .                    .          .          .                    .          .          .           	const __uctype __urngrange = __urngmax - __urngmin;
+ 30,000,003 ( 0.69%) 0          0                    0          0          0                    0          0          0           	const __uctype __urange
+ 60,000,006 ( 1.37%) 0          0           60,000,006 ( 6.45%) 0          0                    0          0          0           	  = __uctype(__param.b()) - __uctype(__param.a());
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .           	__uctype __ret;
+          .          .          .                    .          .          .                    .          .          .           
+ 90,000,009 ( 2.06%) 1 ( 0.00%) 1 ( 0.05%)           0          0          0                    0          0          0           	if (__urngrange > __urange)
+          .          .          .                    .          .          .                    .          .          .           	  {
+          .          .          .                    .          .          .                    .          .          .           	    // downscaling
+ 30,000,003 ( 0.69%) 0          0                    0          0          0                    0          0          0           	    const __uctype __uerange = __urange + 1; // __urange can be zero
+150,000,015 ( 3.43%) 0          0                    0          0          0                    0          0          0           	    const __uctype __scaling = __urngrange / __uerange;
+ 30,000,003 ( 0.69%) 0          0                    0          0          0                    0          0          0           	    const __uctype __past = __uerange * __scaling;
+          .          .          .                    .          .          .                    .          .          .           	    do
+ 60,000,006 ( 1.37%) 0          0                    0          0          0           30,000,003 ( 6.30%) 0          0           	      __ret = __uctype(__urng()) - __urngmin;
+ 60,000,006 ( 1.37%) 0          0                    0          0          0                    0          0          0           	    while (__ret >= __past);
+ 60,000,006 ( 1.37%) 0          0                    0          0          0                    0          0          0           	    __ret /= __scaling;
+          .          .          .                    .          .          .                    .          .          .           	  }
+          .          .          .                    .          .          .                    .          .          .           	else if (__urngrange < __urange)
+          .          .          .                    .          .          .                    .          .          .           	  {
+          .          .          .                    .          .          .                    .          .          .           	    // upscaling
+          .          .          .                    .          .          .                    .          .          .           	    /*
+          .          .          .                    .          .          .                    .          .          .           	      Note that every value in [0, urange]
+          .          .          .                    .          .          .                    .          .          .           	      can be written uniquely as
+          .          .          .                    .          .          .                    .          .          .           
+-- line 260 ----------------------------------------
+-- line 276 ----------------------------------------
+          .          .          .                    .          .          .                    .          .          .           			 (__urng, param_type(0, __urange / __uerngrange)));
+          .          .          .                    .          .          .                    .          .          .           		__ret = __tmp + (__uctype(__urng()) - __urngmin);
+          .          .          .                    .          .          .                    .          .          .           	      }
+          .          .          .                    .          .          .                    .          .          .           	    while (__ret > __urange || __ret < __tmp);
+          .          .          .                    .          .          .                    .          .          .           	  }
+          .          .          .                    .          .          .                    .          .          .           	else
+          .          .          .                    .          .          .                    .          .          .           	  __ret = __uctype(__urng()) - __urngmin;
+          .          .          .                    .          .          .                    .          .          .           
+ 30,000,003 ( 0.69%) 0          0           30,000,003 ( 3.23%) 0          0                    0          0          0           	return __ret + __param.a();
+240,000,024 ( 5.48%) 1 ( 0.00%) 1 ( 0.05%) 210,000,021 (22.58%) 0          0                    0          0          0                 }
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .           
+          .          .          .                    .          .          .                    .          .          .             template<typename _IntType>
+          .          .          .                    .          .          .                    .          .          .               template<typename _ForwardIterator,
+          .          .          .                    .          .          .                    .          .          .           	     typename _UniformRandomNumberGenerator>
+          .          .          .                    .          .          .                    .          .          .                 void
+          .          .          .                    .          .          .                    .          .          .                 uniform_int_distribution<_IntType>::
+          .          .          .                    .          .          .                    .          .          .                 __generate_impl(_ForwardIterator __f, _ForwardIterator __t,
+-- line 293 ----------------------------------------
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: /usr/include/c++/9.2.0/bits/stl_vector.h
+--------------------------------------------------------------------------------
+Ir                  I1mr       ILmr       Dr                  D1mr       DLmr       Dw         D1mw       DLmw       
+
+-- line 87 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 struct _Vector_impl_data
+         .          .          .                   .          .          .          .          .          .                 {
+         .          .          .                   .          .          .          .          .          .           	pointer _M_start;
+         .          .          .                   .          .          .          .          .          .           	pointer _M_finish;
+         .          .          .                   .          .          .          .          .          .           	pointer _M_end_of_storage;
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .           	_Vector_impl_data() _GLIBCXX_NOEXCEPT
+        13 ( 0.00%) 2 ( 0.00%) 1 ( 0.05%)          0          0          0          8 ( 0.00%) 2 ( 0.05%) 0           	: _M_start(), _M_finish(), _M_end_of_storage()
+         .          .          .                   .          .          .          .          .          .           	{ }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .           #if __cplusplus >= 201103L
+         .          .          .                   .          .          .          .          .          .           	_Vector_impl_data(_Vector_impl_data&& __x) noexcept
+         .          .          .                   .          .          .          .          .          .           	: _M_start(__x._M_start), _M_finish(__x._M_finish),
+         .          .          .                   .          .          .          .          .          .           	  _M_end_of_storage(__x._M_end_of_storage)
+         .          .          .                   .          .          .          .          .          .           	{ __x._M_start = __x._M_finish = __x._M_end_of_storage = pointer(); }
+         .          .          .                   .          .          .          .          .          .           #endif
+-- line 103 ----------------------------------------
+-- line 335 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .               public:
+         .          .          .                   .          .          .          .          .          .                 _Vector_impl _M_impl;
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 pointer
+         .          .          .                   .          .          .          .          .          .                 _M_allocate(size_t __n)
+         .          .          .                   .          .          .          .          .          .                 {
+         .          .          .                   .          .          .          .          .          .           	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
+        11 ( 0.00%) 0          0                   0          0          0          0          0          0           	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 void
+         .          .          .                   .          .          .          .          .          .                 _M_deallocate(pointer __p, size_t __n)
+         .          .          .                   .          .          .          .          .          .                 {
+         .          .          .                   .          .          .          .          .          .           	typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type> _Tr;
+         8 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0          0          0          0           	if (__p)
+         .          .          .                   .          .          .          .          .          .           	  _Tr::deallocate(_M_impl, __p, __n);
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .               protected:
+         .          .          .                   .          .          .          .          .          .                 void
+         .          .          .                   .          .          .          .          .          .                 _M_create_storage(size_t __n)
+         .          .          .                   .          .          .          .          .          .                 {
+         8 ( 0.00%) 0          0                   0          0          0          4 ( 0.00%) 0          0           	this->_M_impl._M_start = this->_M_allocate(__n);
+         .          .          .                   .          .          .          .          .          .           	this->_M_impl._M_finish = this->_M_impl._M_start;
+         8 ( 0.00%) 0          0                   0          0          0          4 ( 0.00%) 0          0           	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .               };
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .             /**
+         .          .          .                   .          .          .          .          .          .              *  @brief A standard container which offers fixed time access to
+         .          .          .                   .          .          .          .          .          .              *  individual elements in any order.
+         .          .          .                   .          .          .          .          .          .              *
+         .          .          .                   .          .          .          .          .          .              *  @ingroup sequences
+-- line 368 ----------------------------------------
+-- line 542 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .                  *
+         .          .          .                   .          .          .          .          .          .                  *  All the elements of @a __x are copied, but any unused capacity in
+         .          .          .                   .          .          .          .          .          .                  *  @a __x  will not be copied
+         .          .          .                   .          .          .          .          .          .                  *  (i.e. capacity() == size() in the new %vector).
+         .          .          .                   .          .          .          .          .          .                  *
+         .          .          .                   .          .          .          .          .          .                  *  The newly-created %vector uses a copy of the allocator object used
+         .          .          .                   .          .          .          .          .          .                  *  by @a __x (unless the allocator traits dictate a different object).
+         .          .          .                   .          .          .          .          .          .                  */
+        10 ( 0.00%) 0          0                   0          0          0          6 ( 0.00%) 0          0                 vector(const vector& __x)
+         .          .          .                   .          .          .          .          .          .                 : _Base(__x.size(),
+         .          .          .                   .          .          .          .          .          .           	_Alloc_traits::_S_select_on_copy(__x._M_get_Tp_allocator()))
+         .          .          .                   .          .          .          .          .          .                 {
+         2 ( 0.00%) 0          0                   0          0          0          2 ( 0.00%) 0          0           	this->_M_impl._M_finish =
+         4 ( 0.00%) 2 ( 0.00%) 1 ( 0.05%)          4 ( 0.00%) 0          0          0          0          0           	  std::__uninitialized_copy_a(__x.begin(), __x.end(),
+         .          .          .                   .          .          .          .          .          .           				      this->_M_impl._M_start,
+         .          .          .                   .          .          .          .          .          .           				      _M_get_Tp_allocator());
+         8 ( 0.00%) 0          0                   8 ( 0.00%) 0          0          0          0          0                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .           #if __cplusplus >= 201103L
+         .          .          .                   .          .          .          .          .          .                 /**
+         .          .          .                   .          .          .          .          .          .                  *  @brief  %Vector move constructor.
+         .          .          .                   .          .          .          .          .          .                  *
+         .          .          .                   .          .          .          .          .          .                  *  The newly-created %vector contains the exact contents of the
+         .          .          .                   .          .          .          .          .          .                  *  moved instance.
+         .          .          .                   .          .          .          .          .          .                  *  The contents of the moved instance are a valid, but unspecified
+-- line 566 ----------------------------------------
+-- line 669 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .                 /**
+         .          .          .                   .          .          .          .          .          .                  *  The dtor only erases the elements, and note that if the
+         .          .          .                   .          .          .          .          .          .                  *  elements themselves are pointers, the pointed-to memory is
+         .          .          .                   .          .          .          .          .          .                  *  not touched in any way.  Managing the pointer is the user's
+         .          .          .                   .          .          .          .          .          .                  *  responsibility.
+         .          .          .                   .          .          .          .          .          .                  */
+         .          .          .                   .          .          .          .          .          .                 ~vector() _GLIBCXX_NOEXCEPT
+         .          .          .                   .          .          .          .          .          .                 {
+         4 ( 0.00%) 2 ( 0.00%) 1 ( 0.05%)          4 ( 0.00%) 0          0          0          0          0           	std::_Destroy(this->_M_impl._M_start, this->_M_impl._M_finish,
+         .          .          .                   .          .          .          .          .          .           		      _M_get_Tp_allocator());
+         .          .          .                   .          .          .          .          .          .           	_GLIBCXX_ASAN_ANNOTATE_BEFORE_DEALLOC;
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 /**
+         .          .          .                   .          .          .          .          .          .                  *  @brief  %Vector assignment operator.
+         .          .          .                   .          .          .          .          .          .                  *  @param  __x  A %vector of identical element and allocator types.
+         .          .          .                   .          .          .          .          .          .                  *
+-- line 685 ----------------------------------------
+-- line 908 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .                 crend() const noexcept
+         .          .          .                   .          .          .          .          .          .                 { return const_reverse_iterator(begin()); }
+         .          .          .                   .          .          .          .          .          .           #endif
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 // [23.2.4.2] capacity
+         .          .          .                   .          .          .          .          .          .                 /**  Returns the number of elements in the %vector.  */
+         .          .          .                   .          .          .          .          .          .                 size_type
+         .          .          .                   .          .          .          .          .          .                 size() const _GLIBCXX_NOEXCEPT
+30,000,010 ( 0.69%) 1 ( 0.00%) 1 ( 0.05%) 20,000,008 ( 2.15%) 0          0          0          0          0                 { return size_type(this->_M_impl._M_finish - this->_M_impl._M_start); }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 /**  Returns the size() of the largest possible %vector.  */
+         .          .          .                   .          .          .          .          .          .                 size_type
+         .          .          .                   .          .          .          .          .          .                 max_size() const _GLIBCXX_NOEXCEPT
+         .          .          .                   .          .          .          .          .          .                 { return _S_max_size(_M_get_Tp_allocator()); }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .           #if __cplusplus >= 201103L
+         .          .          .                   .          .          .          .          .          .                 /**
+-- line 924 ----------------------------------------
+-- line 1035 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .                  *  Note that data access with this operator is unchecked and
+         .          .          .                   .          .          .          .          .          .                  *  out_of_range lookups are not defined. (For checked lookups
+         .          .          .                   .          .          .          .          .          .                  *  see at().)
+         .          .          .                   .          .          .          .          .          .                  */
+         .          .          .                   .          .          .          .          .          .                 reference
+         .          .          .                   .          .          .          .          .          .                 operator[](size_type __n) _GLIBCXX_NOEXCEPT
+         .          .          .                   .          .          .          .          .          .                 {
+         .          .          .                   .          .          .          .          .          .           	__glibcxx_requires_subscript(__n);
+90,001,609 ( 2.06%) 0          0          50,000,805 ( 5.38%) 0          0          0          0          0           	return *(this->_M_impl._M_start + __n);
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 /**
+         .          .          .                   .          .          .          .          .          .                  *  @brief  Subscript access to the data contained in the %vector.
+         .          .          .                   .          .          .          .          .          .                  *  @param __n The index of the element for which data should be
+         .          .          .                   .          .          .          .          .          .                  *  accessed.
+         .          .          .                   .          .          .          .          .          .                  *  @return  Read-only (constant) reference to data.
+         .          .          .                   .          .          .          .          .          .                  *
+-- line 1051 ----------------------------------------
+-- line 1584 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .           					_M_get_Tp_allocator());
+         .          .          .                   .          .          .          .          .          .           	}
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 // Called by the first initialize_dispatch above and by the
+         .          .          .                   .          .          .          .          .          .                 // vector(n,value,a) constructor.
+         .          .          .                   .          .          .          .          .          .                 void
+         .          .          .                   .          .          .          .          .          .                 _M_fill_initialize(size_type __n, const value_type& __value)
+         .          .          .                   .          .          .          .          .          .                 {
+         1 ( 0.00%) 1 ( 0.00%) 1 ( 0.05%)          0          0          0          1 ( 0.00%) 0          0           	this->_M_impl._M_finish =
+         .          .          .                   .          .          .          .          .          .           	  std::__uninitialized_fill_n_a(this->_M_impl._M_start, __n, __value,
+         .          .          .                   .          .          .          .          .          .           					_M_get_Tp_allocator());
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .           #if __cplusplus >= 201103L
+         .          .          .                   .          .          .          .          .          .                 // Called by the vector(n) constructor.
+         .          .          .                   .          .          .          .          .          .                 void
+         .          .          .                   .          .          .          .          .          .                 _M_default_initialize(size_type __n)
+         .          .          .                   .          .          .          .          .          .                 {
+         1 ( 0.00%) 0          0                   0          0          0          1 ( 0.00%) 0          0           	this->_M_impl._M_finish =
+         .          .          .                   .          .          .          .          .          .           	  std::__uninitialized_default_n_a(this->_M_impl._M_start, __n,
+         .          .          .                   .          .          .          .          .          .           					   _M_get_Tp_allocator());
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           #endif
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 // Internal assign functions follow.  The *_aux functions do the actual
+         .          .          .                   .          .          .          .          .          .                 // assignment work for the range versions.
+         .          .          .                   .          .          .          .          .          .           
+-- line 1610 ----------------------------------------
+-- line 1758 ----------------------------------------
+         .          .          .                   .          .          .          .          .          .           	const size_type __len = size() + (std::max)(size(), __n);
+         .          .          .                   .          .          .          .          .          .           	return (__len < size() || __len > max_size()) ? max_size() : __len;
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 // Called by constructors to check initial size.
+         .          .          .                   .          .          .          .          .          .                 static size_type
+         .          .          .                   .          .          .          .          .          .                 _S_check_init_len(size_type __n, const allocator_type& __a)
+         .          .          .                   .          .          .          .          .          .                 {
+         3 ( 0.00%) 0          0                   0          0          0          0          0          0           	if (__n > _S_max_size(_Tp_alloc_type(__a)))
+         .          .          .                   .          .          .          .          .          .           	  __throw_length_error(
+         .          .          .                   .          .          .          .          .          .           	      __N("cannot create std::vector larger than max_size()"));
+         .          .          .                   .          .          .          .          .          .           	return __n;
+         .          .          .                   .          .          .          .          .          .                 }
+         .          .          .                   .          .          .          .          .          .           
+         .          .          .                   .          .          .          .          .          .                 static size_type
+         .          .          .                   .          .          .          .          .          .                 _S_max_size(const _Tp_alloc_type& __a) _GLIBCXX_NOEXCEPT
+         .          .          .                   .          .          .          .          .          .                 {
+-- line 1774 ----------------------------------------
+
+--------------------------------------------------------------------------------
+Ir                     I1mr            ILmr        Dr                   D1mr        DLmr       Dw                   D1mw        DLmw       
+--------------------------------------------------------------------------------
+3,776,975,338 (86.26%) 49,650 (12.43%) 32 ( 1.52%) 779,415,012 (83.82%) 91 ( 0.58%) 0          428,718,236 (89.96%) 83 ( 2.08%) 4 ( 0.21%)  events annotated
+

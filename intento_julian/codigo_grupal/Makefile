@@ -34,6 +34,13 @@ graphs: main.x Data/init_data.txt
 #	rm -f Data/Animation/*.csv
 #	./$<
 
+profiling: main.x
+	bash Profiling/compute_time_ite.sh
+	bash Profiling/compute_time_N.sh
+	gnuplot Scripts/plot_times.gp
+	xpdf Data/time_particles.pdf &
+	xpdf Data/time_iterations.pdf &
+
 main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 

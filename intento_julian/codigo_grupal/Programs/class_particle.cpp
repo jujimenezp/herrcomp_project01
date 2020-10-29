@@ -17,3 +17,16 @@ void Particle::Move(int step, int direction, const CONFIG &config){
     }
 
 }
+
+void Particle::Move_hole(int step, int direction, const CONFIG &config){
+    
+     if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
+
+        position[direction] += step;
+
+     }
+
+     if(position[0] == (config.latticesize-2)/2 && labs(position[1]) <= config.latticesize/2.5){
+         position[0] += 2;
+     }
+}
