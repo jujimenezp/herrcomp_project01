@@ -43,6 +43,8 @@ void CONFIG::read(const std::string & fname)
     std::getline(init_data, line);
     holesize = std::stoi(line.erase(line.find('#'), line.size()) );
 
+    holesize = latticesize/5;
+
     std::getline(init_data, line);
     holeposition = std::stoi(line.erase(line.find('#'), line.size()) );
 

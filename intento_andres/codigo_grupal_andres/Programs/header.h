@@ -26,7 +26,7 @@ struct Particle{
   int position[2] = {0,0};  
 
   void Move(const int &step, const int &direction, const CONFIG &config);
-  void Move_hole(const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles);
+  void Move_hole(const int &time, const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles);
   int Getcell(const CONFIG &config);
 };
 
@@ -36,6 +36,6 @@ typedef std::vector<double> Vec_d;
 
 void start(const CONFIG &config, Vec_i &Cells, Vec_p &Particles);
 
-void time_step(const CONFIG &config, int random_particle, int step, int direction, Vec_i &Cells, Vec_p &Particles);
+void time_step(const int &time, const CONFIG &config, int random_particle, int step, int direction, Vec_i &Cells, Vec_p &Particles);
 
 double entropy(const CONFIG &config,const Vec_i &Cells);

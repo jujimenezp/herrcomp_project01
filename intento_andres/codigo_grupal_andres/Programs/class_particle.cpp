@@ -17,7 +17,7 @@ void Particle::Move(const int &step, const int &direction, const CONFIG &config)
   } 
 }
 
-void Particle::Move_hole(const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles)
+void Particle::Move_hole(const int &time, const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles)
 {
   int moved_particle_cell = Particles[particle_id].Getcell(config);
   
@@ -36,8 +36,9 @@ void Particle::Move_hole(const int &step, const int &direction, const int &parti
       Cells[moved_particle_cell] -= 1; //delete the particle from the cell count
       Particles[particle_id] = Particles[Particles.size() - 1];
       Particles.resize(Particles.size() - 1); //delete the particle
+      std::cout << time << " it got out in x, Particles.size() = " << Particles.size() << "\n";
     }
-    
+
   }
   else if (direction == 1 && config.holeposition == -step + 2){ //the particle is on the limit after moving and moved towards the hole
     int sign = (position[0] > 0) ? 1 : ((position[0] < 0) ? -1 : 0);
@@ -46,6 +47,7 @@ void Particle::Move_hole(const int &step, const int &direction, const int &parti
       Cells[moved_particle_cell] -= 1; //delete the particle from the cell count
       Particles[particle_id] = Particles[Particles.size() - 1];
       Particles.resize(Particles.size() - 1); //delete the particle
+      std::cout << time << " it got out in y, Particles.size() = " << Particles.size() << "\n";
     }
     
   } 

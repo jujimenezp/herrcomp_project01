@@ -27,14 +27,21 @@ int main(void)
     step = dis_move(gen)*2 - 1; //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
     direction = dis_move(gen); //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
     
-    time_step(config, random_particle, step, direction, Cells, Particles);
+    time_step(t, config, random_particle, step, direction, Cells, Particles);
     
     if (t%config.resolution == 0){  
       Entropy = entropy(config, Cells);
+      std::string fname = "Data/post/datos-" + std::to_string(t) + ".csv";
+      std::ofstream fout(fname);
+      for (int i = 0; i < Particles.size(); i++){
+	fout << Particles[i].position[0] << ", "
+	     << Particles[i].position[1] << "\n";
+      }
+      fout.close();
     }
     
   }
-  
+
   std::cout << Entropy;
   
   return 0;
