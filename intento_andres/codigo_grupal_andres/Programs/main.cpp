@@ -40,7 +40,7 @@ int main(void)
       fout.close();*/
     }
     if (Particles.size() == 0){
-      std::err << "se acabo la crema perro" << std::endl;
+      std::cerr << "se acabo la crema perro" << std::endl;
       return 0;}
     
   }
