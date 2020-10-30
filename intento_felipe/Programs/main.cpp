@@ -23,7 +23,7 @@ int main(void)
     std::ofstream entrofile;   //Salida de entropia
     entrofile.open("Data/data_entropy.txt");
   
-    for(int t = 0; t <= config.tmax; t++ ){
+    for(int t = 0; t <= config.tmax*config.latticesize*config.latticesize/10; t++ ){
 
         random_particle = dis_particle(gen);        //escoge una particula al azar
         step = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)

@@ -26,8 +26,8 @@ graphs: main.x main_2.x Data/init_data.txt
 	./$<
 	./main_2.x
 	gnuplot Scripts/plot_entropy.gp
-	gnuplot Scripts/plot_stability.gp
 	xpdf Data/entropy.pdf &
+	gnuplot Scripts/plot_stability.gp
 	xpdf Data/stability.pdf &
 #	gnuplot Scripts/plot_particles.gp
 #	xpdf Data/particles_start.pdf &
@@ -41,6 +41,9 @@ main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
 main_2.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main_2.o
+	$(CXX) $(CXXFLAGS) $(LIBRARIES) $(SANITFLAGS) $^ -lgsl -lgslcblas -lm -o $@
+
+stability.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability.o
 	$(CXX) $(CXXFLAGS) $(LIBRARIES) $(SANITFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 test.x: $(DEPENDENCIES_NORMAL) Objects/Normal/test.o
