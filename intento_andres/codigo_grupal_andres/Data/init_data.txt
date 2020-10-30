@@ -1,7 +1,7 @@
 400     #nmolecules
 8      #gridsize
 200      #latticesize
-10000000    #tmax
+1000000000    #tmax
 0      #randomgeneratorseed
 1000    #resolution
 1      #0=no_hole,other_int=hole

@@ -21,7 +21,7 @@ int main(void)
   for(int t = 0; t <= config.tmax; t++ ){
 
     random_particle = dis_particle(gen);
-    while(random_particle > Particles.size()){
+    while(random_particle >= Particles.size()){
       random_particle = dis_particle(gen);
     } //escoge una particula al azar
     step = dis_move(gen)*2 - 1; //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
@@ -31,18 +31,18 @@ int main(void)
     
     if (t%config.resolution == 0){  
       Entropy = entropy(config, Cells);
-      std::string fname = "Data/post/datos-" + std::to_string(t) + ".csv";
+      /*std::string fname = "Data/post/datos-" + std::to_string(t) + ".csv";
       std::ofstream fout(fname);
       for (int i = 0; i < Particles.size(); i++){
 	fout << Particles[i].position[0] << ", "
 	     << Particles[i].position[1] << "\n";
       }
-      fout.close();
+      fout.close();*/
     }
     
   }
 
-  std::cout << Entropy;
+  //std::cout << Entropy;
   
   return 0;
 }
