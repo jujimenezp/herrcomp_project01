@@ -10,7 +10,8 @@ int main(void)
     Vec_i Cells(config.gridsize*config.gridsize,0);
   
     start(config, Cells, Particles);
-    print_position (Particles, "Data/data_particles_start.txt");
+
+    print_particles(Particles, "Data/data_particles_start.txt");
 
     std::mt19937 gen(config.seed);
     std::uniform_int_distribution<int> dis_move(0, 1);
@@ -19,8 +20,8 @@ int main(void)
     double Entropy = 0;
     int random_particle = 0, step = 0, direction = 0;
 
-    std::ofstream file;
-    file.open("Data/data_entropy.txt");
+    std::ofstream entrofile;   //Salida de entropia
+    entrofile.open("Data/data_entropy.txt");
   
     for(int t = 0; t <= config.tmax; t++ ){
 
@@ -29,19 +30,20 @@ int main(void)
         direction = dis_move(gen);           //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
     
         time_step(config, random_particle, step, direction, Cells, Particles);
-
+        
         if (t%config.resolution == 0){
         
             Entropy = entropy(config, Cells);
-
-            file << t << "\t" << Entropy << "\n";
+            entrofile << t << "\t"
+                      << Entropy
+                      << "\n";
 
         }
     }
 
-    file.close();
+    entrofile.close();
 
-    print_position (Particles, "Data/data_particles_end.txt");
+    print_particles(Particles, "Data/data_particles_end.txt");
   
     return 0;
 }
