@@ -40,10 +40,13 @@ void CONFIG::read(const std::string & fname)
     std::getline(init_data, line);
     holeboolean = std::stoi(line.erase(line.find('#'), line.size()) );
 
-    std::getline(init_data, line);
-    holesize = std::stoi(line.erase(line.find('#'), line.size()) );
-
-    holesize = latticesize/5;
+    if (holeboolean != 0){ //Asigna un tamaño de hueco si hay hueco
+      holesize = latticesize/5;
+      if (holesize%2 == 0){ //Convierte a holesize en el numero impar siguiente
+	holesize += 1;
+      }
+    }
+    else{holesize = 0;}
 
     std::getline(init_data, line);
     holeposition = std::stoi(line.erase(line.find('#'), line.size()) );
