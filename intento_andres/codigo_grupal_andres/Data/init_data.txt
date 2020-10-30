@@ -5,5 +5,4 @@
 0      #randomgeneratorseed
 1000    #resolution
 1      #0=no_hole,other_int=hole
-0     #holesize
 1      #hole_position,0=left,1=up,2=right,3=down
