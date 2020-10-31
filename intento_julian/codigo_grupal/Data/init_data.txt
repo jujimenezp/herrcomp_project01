@@ -1,6 +1,6 @@
 400   #nmolecules
 200     #latticesize
-10000000   #tmax
+40000000   #tmax
 0       #randomgeneratorseed
 8       #gridsize
 100     #resolution
