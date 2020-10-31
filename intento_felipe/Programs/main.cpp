@@ -20,10 +20,12 @@ int main(void)
     double Entropy = 0;
     int random_particle = 0, step = 0, direction = 0;
 
+    config.tmax = config.tmax*config.latticesize*config.latticesize/10;
+
     std::ofstream entrofile;   //Salida de entropia
     entrofile.open("Data/data_entropy.txt");
   
-    for(int t = 0; t <= config.tmax*config.latticesize*config.latticesize/10; t++ ){
+    for(int t = 0; t <= config.tmax; t++ ){
 
         random_particle = dis_particle(gen);        //escoge una particula al azar
         step = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
@@ -35,8 +37,7 @@ int main(void)
         
             Entropy = entropy(config, Cells);
             entrofile << t << "\t"
-                      << Entropy
-                      << "\n";
+                      << Entropy << "\n";
 
         }
     }

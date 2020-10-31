@@ -16,22 +16,6 @@ void start(const CONFIG &config, Vec_i &Cells, Vec_p &Particles)
     
 }
 
-    /*
-    int j = 0;
-
-    for (auto p: Particles){
-
-        std::cout << p.position[0] << "\t"
-                  << p.position[1] << "\n";
-
-        p.position[0] = j%n - n/2;
-        p.position[1] = j/n - n/2;
-
-        m = p.Getcel(object);
-        Cells[m] += 1;
-
-        j += 1;
-    }*/
     
 
 
