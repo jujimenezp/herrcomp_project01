@@ -15,24 +15,30 @@ int main(void)
     std::uniform_int_distribution<int> dis_move(0, 1);
     std::uniform_int_distribution<int> dis_particle(0,config.nmolecules-1);
   
+    double Entropy = 0;
+    int random_particle = 0, step = 0, direction = 0, j = 0;
+
+    const int n = config.latticesize*config.latticesize/10;
+    int counter_1 = 0, counter_2 = 0, counter_12 = 0;
+    double eps_1 = 0.005;
+    double eps_2 = 0.003;
     
-    int random_particle = 0, step = 0, direction = 0, t = 0, j = 0;
+    double Times [n];
 
-    const int partition_size = config.latticesize*config.latticesize/10;
-    int counter = 0, deviation = 0;
-    double eps = 0.005;
+    Times[0] = (n-1)*config.resolution;
 
-    Vec_i Times (partition_size,0);
-    double times [partition_size];
-
-    times[0] = (partition_size-1)*config.resolution;
-    for (int i = 1; i < partition_size; i++) times[i] = (i-1)*config.resolution;
+    for (int i = 1; i < n; i++) Times[i] = (i-1)*config.resolution;
     
-    double Entropies[partition_size];
+    double Entropies[n];
 
-    double c0 = 0, c1 = 0, cv00 = 0, cv01 = 0, cv11 = 0, s = 0;
+    double mean = 0, dev = 0, ab_dev = 0;
 
-    while (counter == 0){
+    double coff = 0, c0 = 0, c1 = 0, cv00 = 0, cv01 = 0, cv11 = 0, s;
+
+    std::ofstream file;
+    file.open("Data/data_stability.txt");
+
+    for (int t = 1; t <= config.tmax*n; t++){
 
         random_particle = dis_particle(gen);
         step = dis_move(gen)*2 - 1; 
@@ -44,32 +50,32 @@ int main(void)
 
             j = t/config.resolution;
 
-            Times[j%partition_size] = t;
+            Entropies[j%n] = entropy(config, Cells);
 
-            Entropies[j%partition_size] = entropy(config, Cells);
+            if (j%n == 0){
 
-            if (j%partition_size == 0){
-
-                gsl_fit_linear(times, 1, Entropies, 1, partition_size, &c0, &c1, &cv00, &cv01, &cv11, &s);
-
-                deviation = std::abs(c1)*times[0]/c0;
+                mean = gsl_stats_mean(Entropies, 1, n);
+                dev = gsl_stats_sd_m(Entropies, 1, n, mean);
+                gsl_fit_linear(Times, 1, Entropies, 1, n, &c0, &c1, &cv00, &cv01, &cv11, &s);
                 
-                if (deviation < eps) counter = 1;
+                if (std::abs(c1)*Times[0]/c0 < eps_1) counter_1 += 1;
+                if (dev/mean < eps_2) counter_2 += 1;
+                if (std::abs(c1)*Times[0]/c0 < eps_1 && dev/mean < eps_2) counter_12 += 1; 
+
+                file << t - (n-1)*config.resolution/2  << "\t"
+                     << std::abs(c1)*Times[0]/c0 << "\t"
+                     << dev/mean << "\t"
+                     << counter_1 << "\t"
+                     << counter_2 << "\t"
+                     << counter_12 << "\n";
 
             }
 
-            t += 1;
-
         }
-
-            
+ 
     }
 
-    //std::ofstream file;
-    //file.open("Data/data_stability.txt");
-    //file.close();
-
-    std::cout << c0 << "\t" << cv00 << "\t" << Times[(partition_size-1)/2] << "\n";
+    file.close();
   
     return 0;
 }

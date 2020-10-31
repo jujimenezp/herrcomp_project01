@@ -6,7 +6,7 @@ DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_p
 DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o Objects/Normal/time_step.o Objects/Normal/entropy.o Objects/Normal/print_particles.o
 DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o Objects/Gprof/time_step.o Objects/Gprof/entropy.o Objects/Gprof/print_particles.o
 
-all: main.x main_2.x
+all: main.x main_stability.x
 
 test: test.x
 	./$<
@@ -22,16 +22,21 @@ cachegrind: valgrind.x
 memcheck: valgrind.x
 	valgrind $(MEMCHECKFLAGS) ./$<
 
-graphs: main.x main_2.x Data/init_data.txt
+graphs: main.x Data/init_data.txt
 	./$<
-	./main_2.x
 	gnuplot Scripts/plot_entropy.gp
+	gnuplot Scripts/plot_particles.gp
 	xpdf Data/entropy.pdf &
+	xpdf Data/particles_start.pdf &
+	xpdf Data/particles_end.pdf &
+
+stability: main.x stability.x Data/init_data.txt
+	./$<
+	./stability.x
+	gnuplot Scripts/plot_entropy.gp
 	gnuplot Scripts/plot_stability.gp
+	xpdf Data/entropy.pdf &
 	xpdf Data/stability.pdf &
-#	gnuplot Scripts/plot_particles.gp
-#	xpdf Data/particles_start.pdf &
-#	xpdf Data/particles_end.pdf &
 
 animation: animation.x
 	rm -f Data/Animation/*.csv
@@ -40,7 +45,7 @@ animation: animation.x
 main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
-main_2.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main_2.o
+main_stability.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main_stability.o
 	$(CXX) $(CXXFLAGS) $(LIBRARIES) $(SANITFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 stability.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability.o
