@@ -10,19 +10,21 @@
 
 struct CONFIG{
   int nmolecules = 0;
+  int gridsize = 0;
   int latticesize = 0;
   int tmax = 0;
   int seed = 0;
-  int gridsize = 0;
   int resolution = 0;
+  int holesize = 0;
+  int holeposition = 0;
   // read initial conditions                
-  void read(const std::string & fname);                                    
+  void read(const std::string & fname);
 };
 struct Particle{
+  int position[2] = {0,0};
 
-  int position[2] = {0,0};  
-
-  void Move(int step, int direction, const CONFIG &config);
+  void Move(const int &step, const int &direction, const CONFIG &config, std::vector<int> &Cells);
+  void Move_hole(const int &time, const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles);
   int Getcell(const CONFIG &config);
 };
 
