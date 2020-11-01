@@ -6,7 +6,7 @@
 #include <string>
 #include <chrono>
 #include <random>
-
+#include <gsl/gsl_fit.h>
 
 struct CONFIG{
   int nmolecules = 0;
@@ -37,3 +37,7 @@ void time_step(const CONFIG &config, int random_particle, int step, int directio
 double entropy(const CONFIG &config,const Vec_i &Cells);
 
 void print_particles(Vec_p Particle, std::string pname);
+
+double dropsize(const CONFIG &config,const Vec_p &Particles);
+
+int stability (const CONFIG &config, const int partition_size, Vec_p &Particles, Vec_i &Cells);

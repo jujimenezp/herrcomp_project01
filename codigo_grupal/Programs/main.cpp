@@ -45,7 +45,5 @@ int main(void)
 
   print_particles(Particles, "Data/data_particles_end.txt");
   
-  std::cout << Entropy;
-  
   return 0;
 }

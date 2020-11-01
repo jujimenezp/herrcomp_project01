@@ -1,4 +1,4 @@
-#include"header.h"
+#include "header.h"
 
 double dropsize(const CONFIG &config,const Vec_p &Particles)
 {
