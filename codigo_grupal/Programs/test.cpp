@@ -42,7 +42,7 @@ TEST_CASE ("All tests", "[Main]"){
         y_old = Particles[0].position[1];
         cell_old = Particles[0].Getcell(config);
 
-        Particles[0].Move(1, 0, config);
+        Particles[0].Move(1, 0, config, Cells);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
@@ -59,7 +59,7 @@ TEST_CASE ("All tests", "[Main]"){
         y_old = Particles[0].position[1];
         cell_old = Particles[0].Getcell(config);
 
-        Particles[0].Move(1, 1, config);
+        Particles[0].Move(1, 1, config, Cells);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
@@ -76,7 +76,7 @@ TEST_CASE ("All tests", "[Main]"){
         y_old = Particles[0].position[1];
         cell_old = Particles[0].Getcell(config);
 
-        Particles[0].Move(-1, 0, config);
+        Particles[0].Move(-1, 0, config, Cells);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
@@ -93,7 +93,7 @@ TEST_CASE ("All tests", "[Main]"){
         y_old = Particles[0].position[1];
         cell_old = Particles[0].Getcell(config);
 
-        Particles[0].Move(-1, 1, config);
+        Particles[0].Move(-1, 1, config, Cells);
 
         x_new = Particles[0].position[0];
         y_new = Particles[0].position[1];
@@ -107,14 +107,14 @@ TEST_CASE ("All tests", "[Main]"){
 
     SECTION ("Border conditions with holes"){
       /*Particles debe reducirse si la particula i escapa,
-	el numero de particulas en la celda de i debe disminuir en 1
-	y los nuevos valores de i deben ser los de la 
-	ultima entrada de Particles*/
+        el numero de particulas en la celda de i debe disminuir en 1
+        y los nuevos valores de i deben ser los de la 
+        ultima entrada de Particles*/
 
       if (config.nmolecules < 4){
-	Particles.resize(5);
-	Particles[4].position[0] = 0;
-	Particles[4].position[1] = 0;
+        Particles.resize(5);
+        Particles[4].position[0] = 0;
+        Particles[4].position[1] = 0;
       }
       
       int old_cell = 0, old_cell_count = 0, lost_count = 0;
@@ -223,8 +223,8 @@ TEST_CASE ("All tests", "[Main]"){
             step = dis_move(gen)*2 - 1;  
             direction = dis_move(gen);
 
-            time_step(config, random_particle, step, direction, Cells, Particles);
-
+            Particles[random_particle].Move(step, direction, config, Cells);
+            
         }
 
         sum = 0;

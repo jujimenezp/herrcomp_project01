@@ -27,8 +27,8 @@ int stability (const CONFIG &config, const int partition_size, Vec_p &Particles,
         step = dis_move(gen)*2 - 1; 
         direction = dis_move(gen);
     
-        time_step(config, random_particle, step, direction, Cells, Particles);
-
+        Particles[random_particle].Move(step, direction, config, Cells);
+        
         if (t%config.resolution == 0){
 
             j = t/config.resolution;
