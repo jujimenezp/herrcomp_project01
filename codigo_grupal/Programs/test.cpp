@@ -12,6 +12,7 @@ TEST_CASE ("All tests", "[Main]"){
     std::uniform_int_distribution<int> dis_move(0, 1);
     std::uniform_int_distribution<int> dis_particle(0,config.nmolecules-1);
     std::uniform_int_distribution<int> dis_location(-config.latticesize/2, config.latticesize/2 - 1);
+    std::unifrom_int_distribution<int> dis_hole(-config.holesize/2, config.holesize/2);
     
     Vec_p Particles(config.nmolecules);
     Vec_i Cells(config.gridsize*config.gridsize,0);
@@ -30,7 +31,7 @@ TEST_CASE ("All tests", "[Main]"){
 
     }
 
-    SECTION ("Border conditions"){
+    SECTION ("Border conditions without holes"){
 
         int x_old = 0, y_old = 0, cell_old = 0,
             x_new = 0, y_new = 0, cell_new = 0;
@@ -101,6 +102,90 @@ TEST_CASE ("All tests", "[Main]"){
         REQUIRE (x_old == x_new);
         REQUIRE (y_old == y_new);
         REQUIRE (cell_old == cell_new);
+
+    }
+
+    SECTION ("Border conditions with holes"){
+      /*Particles debe reducirse si la particula i escapa,
+	el numero de particulas en la celda de i debe disminuir en 1
+	y los nuevos valores de i deben ser los de la 
+	ultima entrada de Particles*/
+
+      if (config.nmolecules < 4){
+	Particles.resize(5);
+	Particles[4].position[0] = 0;
+	Particles[4].position[1] = 0;
+      }
+      
+      int old_cell = 0, old_cell_count = 0, lost_count = 0;
+      int initial_size = Particles.size();
+      int future_x = Particles[Particles.size() - 1].position[0];
+      int future_y = Particles[Particles.size() - 1].position[1];
+
+      config.holeposition = 1; //Frontera derecha
+      Particles[0].position[0] = config.latticesize/2 - 1;
+      Particles[0].position[1] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+      
+      Particles[0].Move_hole(1, 0, 0, config, Cells, Particles);
+      lost_count += 1;
+      
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
+	
+      future_x = Particles[Particles.size() - 1].position[0]; //reset future values
+      future_y = Particles[Particles.size() - 1].position[1];
+      
+      config.holeposition = 2; //Frontera arriba
+      Particles[0].position[1] = config.latticesize/2 - 1;
+      Particles[0].position[0] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+	
+      Particles[0].Move_hole(1, 1, 0, config, Cells, Particles);
+      lost_count += 1;
+	
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
+	
+      future_x = Particles[Particles.size() - 1].position[0]; //reset future values
+      future_y = Particles[Particles.size() - 1].position[1];
+      
+      config.holeposition = -1; //Frontera izquierda
+      Particles[0].position[0] = -config.latticesize/2;
+      Particles[0].position[1] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+	
+      Particles[0].Move_hole(-1, 0, 0, config, Cells, Particles);
+      lost_count += 1;
+	
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
+	
+      future_x = Particles[Particles.size() - 1].position[0]; //reset future values
+      future_y = Particles[Particles.size() - 1].position[1];
+      
+      config.holeposition = 0; //Frontera abajo
+      Particles[0].position[1] = -config.latticesize/2;
+      Particles[0].position[0] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+	
+      Particles[0].Move_hole(-1, 1, 0, config, Cells, Particles);
+      lost_count += 1;
+	
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
 
     }
 
