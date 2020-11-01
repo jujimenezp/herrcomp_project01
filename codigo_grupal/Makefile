@@ -22,18 +22,21 @@ cachegrind: valgrind.x
 memcheck: valgrind.x
 	valgrind $(MEMCHECKFLAGS) ./$<
 
-graphs: main.x main_stability.x main_dropsize.x Data/init_data.txt
+graphs: main.x main_stability.x main_dropsize.x main_hole.x Data/init_data.txt
 	./$<
-	./main_dropsize.x
 	gnuplot Scripts/plot_particles.gp
 	gnuplot Scripts/plot_entropy.gp
-	bash Scripts/plot_stability.sh
-	gnuplot Scripts/plot_stability.gp
-	gnuplot Scripts/plot_dropsize.gp
 	xpdf Data/particles_start.pdf &
 	xpdf Data/particles_end.pdf &
 	xpdf Data/entropy.pdf &
+	./main_dropsize.x
+	gnuplot Scripts/plot_dropsize.gp
 	xpdf Data/dropsize.pdf &
+	./main_hole.x
+	gnuplot Scripts/plot_hole.gp
+	xpdf Data/hole.pdf &
+	bash Scripts/plot_stability.sh
+	gnuplot Scripts/plot_stability.gp
 	xpdf Data/stability.pdf &
 
 main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o

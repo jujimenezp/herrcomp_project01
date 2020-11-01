@@ -37,6 +37,9 @@ void CONFIG::read(const std::string & fname)
     std::getline(init_data, line);
     resolution = std::labs(std::stoi(line.erase(line.find('#'), line.size()) ));
 
+    std::getline(init_data, line);
+    holesize = std::labs(std::stoi(line.erase(line.find('#'), line.size()) ));
+
     holesize = latticesize/5;
     if (holesize%2 == 0){ //Convierte a holesize en el numero impar siguiente
       holesize += 1;
@@ -51,7 +54,7 @@ void CONFIG::read(const std::string & fname)
       proper_hole_position += (holeposition == i) ? 1 : 0;
     }
 
-    if (nmolecules > latticesize || nmolecules == 0 || proper_hole_position == 0 || resolution < 100 || latticesize == 0 || gridsize == 0){
+    if (nmolecules > latticesize*latticesize || nmolecules == 0 || proper_hole_position == 0 || resolution < 100 || latticesize == 0 || gridsize == 0){
       std::cout << "flaws were found on the configuration, setting everything back to default" << std::endl;
       nmolecules = 400;
       gridsize = 8;
@@ -59,7 +62,7 @@ void CONFIG::read(const std::string & fname)
       tmax = 10000000;
       seed = 0;
       resolution = 100;
-      holesize = 41
+      holesize = 4;
       holeposition = 1;
     }
     

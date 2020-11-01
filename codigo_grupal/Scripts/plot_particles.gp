@@ -1,8 +1,8 @@
 set grid
 set style line 1 lc rgb '#0060ad' pt 7 ps 0.5
 
-bord = int(system("sed -n 2p Data/init_data.txt | tr -d -c 0-9"))*0.5
-ti = int(system("sed -n 5p Data/init_data.txt | tr -d -c 0-9"))
+bord = int(system("sed -n 3p Data/init_data.txt | tr -d -c 0-9"))*0.5
+ti = int(system("sed -n 2p Data/init_data.txt | tr -d -c 0-9"))
 
 ran = bord*(1.25)
 set xrange [-ran:ran]

@@ -17,12 +17,20 @@ int main(void)
   
   int random_particle = 0, step = 0, direction = 0;
 
-  for(int t = 0; t <= config.tmax; t++ ){
+  std::ofstream holefile;   //Salida de entropia
+  holefile.open("Data/data_hole.txt");
 
-    if (Particles.size() == 0){
-      std::cerr << "#There is no cream left on the cup" << std::endl;
-      return 0;
-    }
+  int t = -1, size = config.nmolecules;
+
+  while (Particles.size()/(1.0*config.nmolecules) > 0.1){
+
+    t += 1;
+    size = Particles.size();
+
+    //if (Particles.size() == 0){
+    //  std::cerr << "#There is no cream left on the cup" << std::endl;
+    //  return 0;
+    //}
     
     random_particle = dis_particle(gen); //escoge una particula al azar
     step = dis_move(gen)*2 - 1; //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
@@ -33,6 +41,14 @@ int main(void)
     }
 
     Particles[random_particle].Move_hole(t, step, direction, random_particle, config, Cells, Particles);
+
+    if (Particles.size() != size){
+        
+      holefile << t-1 << "\t"
+               << Particles.size() << "\n";
+
+    }
+
     
     /*if (t%config.resolution == 0){ //impresion para simulacion en paraview
       std::string fname = "Data/post/datos-" + std::to_string(t) + ".csv";
@@ -44,6 +60,8 @@ int main(void)
       fout.close();
       }*/
   }
+
+  holefile.close();
   
   return 0;
 }

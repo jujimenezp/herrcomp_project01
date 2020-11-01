@@ -11,12 +11,12 @@ int Particle::Getcell(const CONFIG &config){
 void Particle::Move(const int &step, const int &direction, const CONFIG &config, std::vector<int> &Cells)
 {
   if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
-    int m = Particles[random_particle].Getcell(config);
+    int m = Getcell(config);
     Cells[m] -= 1; //delete it from the old cell
     
     position[direction] += step; //move the particle
     
-    m = Particles[random_particle].Getcell(config);
+    m = Getcell(config);
     Cells[m] += 1; //add it to the new cell
   } 
 }
@@ -37,7 +37,7 @@ void Particle::Move_hole(const int &time, const int &step, const int &direction,
     Cells[moved_particle_cell] -= 1; //delete the particle from the cell count
     Particles[particle_id] = Particles[Particles.size() - 1];
     Particles.pop_back(); //delete the particle
-    std::cout << time << "\t" << Particles.size() << std::endl;
+    //std::cout << time << "\t" << Particles.size() << std::endl;
   }
    
 }
