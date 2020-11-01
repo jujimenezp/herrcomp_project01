@@ -29,8 +29,8 @@ int main(void)
     random_particle = dis_particle(gen);        //escoge una particula al azar
     step = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
     direction = dis_move(gen);           //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
-    
-    time_step(config, random_particle, step, direction, Cells, Particles);
+
+    Particles[random_particle].Move(step, direction, config, Cells);
 
     if (t%config.resolution == 0){
         
