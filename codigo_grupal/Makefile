@@ -2,9 +2,9 @@ CXX = g++
 CXXFLAGS = -std=c++17 -O3 -g
 SANITFLAGS = -fsanitize=address -fsanitize=leak -fsanitize=undefined
 MEMCHECKFLAGS = --tool=memcheck --track-origins=yes --leak-check=full
-DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_particle.o Objects/Sanitizers/start.o Objects/Sanitizers/time_step.o Objects/Sanitizers/entropy.o Objects/Sanitizers/print_particles.o Objects/Sanitizers/dropsize.o 
-DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o Objects/Normal/time_step.o Objects/Normal/entropy.o Objects/Normal/print_particles.o Objects/Normal/dropsize.o
-DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o Objects/Gprof/time_step.o Objects/Gprof/entropy.o Objects/Gprof/print_particles.o Objects/Gprof/dropsize.o 
+DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_particle.o Objects/Sanitizers/start.o Objects/Sanitizers/entropy.o Objects/Sanitizers/print_particles.o Objects/Sanitizers/dropsize.o 
+DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o Objects/Normal/entropy.o Objects/Normal/print_particles.o Objects/Normal/dropsize.o
+DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o Objects/Gprof/entropy.o Objects/Gprof/print_particles.o Objects/Gprof/dropsize.o 
 
 all: main.x main_stability.x main_dropsize.x main_hole.x
 
