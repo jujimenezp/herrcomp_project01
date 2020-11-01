@@ -6,7 +6,7 @@ DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_p
 DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o Objects/Normal/time_step.o Objects/Normal/entropy.o Objects/Normal/print_particles.o Objects/Normal/dropsize.o
 DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o Objects/Gprof/time_step.o Objects/Gprof/entropy.o Objects/Gprof/print_particles.o Objects/Gprof/dropsize.o 
 
-all: main.x main_stability.x main_dropsize.x
+all: main.x main_stability.x main_dropsize.x main_hole.x
 
 test: test.x
 	./$<
@@ -44,6 +44,9 @@ main_stability.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability.o Obje
 
 main_dropsize.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability.o Objects/Sanitizers/main_dropsize.o
 	$(CXX) $(CXXFLAGS) $(LIBRARIES) $(SANITFLAGS) $^ -lgsl -lgslcblas -lm -o $@
+
+main_hole.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main_hole.o
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
 test.x: $(DEPENDENCIES_NORMAL) Objects/Normal/test.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
