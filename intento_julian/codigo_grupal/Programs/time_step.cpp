@@ -17,9 +17,10 @@ void time_step_hole(const CONFIG &config, int random_particle, int step, int dir
 
     m = Particles[random_particle].Getcell(config);
     Cells[m] -= 1;
+    
     Particles[random_particle].Move_hole(step,direction,config);
     
-    if(Particles[random_particle].position[0] == (config.latticesize+2)/2){
+    /*if(Particles[random_particle].position[0] == (config.latticesize+2)/2){
         Vec_p::iterator a = Particles.begin() + random_particle;
         Particles.erase(a);
     }
@@ -27,5 +28,10 @@ void time_step_hole(const CONFIG &config, int random_particle, int step, int dir
     else{
     m = Particles[random_particle].Getcell(config);
     Cells[m] += 1;
+    }*/
+    if(labs(Particles[random_particle].position[0]) <= config.latticesize/2 && (Particles[random_particle].position[1]) <= config.latticesize/2){
+        m = Particles[random_particle].Getcell(config);
+        Cells[m] += 1;
     }
+    
 }

@@ -19,14 +19,16 @@ void Particle::Move(int step, int direction, const CONFIG &config){
 }
 
 void Particle::Move_hole(int step, int direction, const CONFIG &config){
-    
-    if((position[0]+step) == (config.latticesize)/2 && labs(position[1]) <= config.latticesize/20.0){
-         position[0] += 2;
-     }
 
-    else if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
+    if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
 
         position[direction] += step;
+     }    
 
+
+    else if(direction==0 && (position[direction]+step) == (config.latticesize)/2 && labs(position[1]) <= config.latticesize/10.0){
+
+        position[direction] += step;
      }
+
 }

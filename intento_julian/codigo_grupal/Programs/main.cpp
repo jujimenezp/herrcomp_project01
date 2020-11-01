@@ -26,23 +26,28 @@ int main(void)
   
   for(int t = 0; t <= config.tmax; t++ ){
 
-    random_particle = dis_particle(gen)%Particles.size();        //escoge una particula al azar
+    random_particle = dis_particle(gen);        //escoge una particula al azar
     step = dis_move(gen)*2 - 1;    //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
     direction = dis_move(gen);           //genera un numero aleatorio 0 o 1 (0 para x 1 para y)
     
     //time_step(config, random_particle, step, direction, Cells, Particles);
+    if(labs(Particles[random_particle].position[0]) <= config.latticesize/2 && (Particles[random_particle].position[1]) <= config.latticesize/2){
     time_step_hole(config, random_particle, step, direction, Cells, Particles);
+    }
     
     if (t%config.resolution == 0){
-      std::cout << t << "\t" <<  Particles.size() << std::endl;
+      int count=0;
+      for(auto i: Particles){
+        if(labs(i.position[0]) <= config.latticesize/2 && (i.position[1]) <= config.latticesize/2) count +=1;
+      }
+      
+      std::cout << t << "\t" <<  count << std::endl;
       Entropy = entropy(config, Cells);
       entrofile << t << "\t"
                 << Entropy
                 << "\n";
     }
   }
-
- 
   
   entrofile.close();
 
