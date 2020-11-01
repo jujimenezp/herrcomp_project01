@@ -51,7 +51,7 @@ void CONFIG::read(const std::string & fname)
       proper_hole_position += (holeposition == i) ? 1 : 0;
     }
 
-    if (nmolecules > latticesize || nmolecules == 0 || proper_hole_position == 0 || resolution < 100){
+    if (nmolecules > latticesize || nmolecules == 0 || proper_hole_position == 0 || resolution < 100 || latticesize == 0 || gridsize == 0){
       std::cout << "flaws were found on the configuration, setting everything back to default" << std::endl;
       nmolecules = 400;
       gridsize = 8;
