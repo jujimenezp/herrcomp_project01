@@ -12,7 +12,7 @@ TEST_CASE ("All tests", "[Main]"){
     std::uniform_int_distribution<int> dis_move(0, 1);
     std::uniform_int_distribution<int> dis_particle(0,config.nmolecules-1);
     std::uniform_int_distribution<int> dis_location(-config.latticesize/2, config.latticesize/2 - 1);
-    std::unifrom_int_distribution<int> dis_hole(-config.holesize/2, config.holesize/2);
+    std::uniform_int_distribution<int> dis_hole(-config.holesize/2, config.holesize/2);
     
     Vec_p Particles(config.nmolecules);
     Vec_i Cells(config.gridsize*config.gridsize,0);

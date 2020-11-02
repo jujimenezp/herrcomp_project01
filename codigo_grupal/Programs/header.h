@@ -24,7 +24,7 @@ struct Particle{
   int position[2] = {0,0};
 
   void Move(const int &step, const int &direction, const CONFIG &config, std::vector<int> &Cells);
-  void Move_hole(const int &time, const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles);
+  void Move_hole(const int &step, const int &direction, const int &particle_id, const CONFIG &config, std::vector<int> &Cells, std::vector<Particle> &Particles);
   int Getcell(const CONFIG &config);
 };
 

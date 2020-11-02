@@ -40,7 +40,7 @@ int main(void)
       continue;
     }
 
-    Particles[random_particle].Move_hole(t, step, direction, random_particle, config, Cells, Particles);
+    Particles[random_particle].Move_hole(step, direction, random_particle, config, Cells, Particles);
 
     if (Particles.size() != size){
         
