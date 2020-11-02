@@ -13,7 +13,15 @@ int main(void)
 
     const int partition_size = config.latticesize*config.latticesize/10;
 
-    int stable_time = stability(config, partition_size, Particles, Cells);
+    int stable_time = 0;
+
+    for (int i = 0; i < 10; i++){
+
+        config.seed += i;
+
+      stable_time += stability(config, partition_size, Particles, Cells)/10;  
+
+    }
 
     std::cout << config.latticesize << "\t"
               << stable_time << "\t" << (partition_size -1)*config.resolution/2 << "\n";

@@ -58,6 +58,7 @@ graphs: main.x main_stability.x main_dropsize.x main_hole.x Data/init_data.txt
 	./main_hole.x
 	gnuplot Scripts/plot_hole.gp
 	xpdf Data/hole.pdf &
+	xpdf Data/hole_log.pdf &
 	bash Scripts/plot_stability.sh
 	gnuplot Scripts/plot_stability.gp
 	xpdf Data/stability.pdf &
@@ -111,7 +112,7 @@ Objects/Gprof/%.o: Programs/%.cpp
 	$(CXX) $(CXXFLAGS) -pg -c  $< -o $@
 
 clean:
-	rm -f Data/gprof*.txt Data/cachegrind*.txt *.x Data/data*.txt
+	rm -f Data/gprof*.txt Data/cachegrind*.txt *.x Data/data*.txt *.log
 
 oclean:
 	rm -f Objects/Sanitizers/*.o Objects/Normal/*.o Objects/Gprof/*.o
