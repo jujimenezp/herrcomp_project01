@@ -4,3 +4,5 @@
 *~
 cachegrind.out.*
 gmon.*
+*.log
+*.csv
