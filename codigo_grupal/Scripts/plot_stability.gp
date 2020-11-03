@@ -23,10 +23,10 @@ fit f(x) "Data/data_stability.txt" u 1:2:3 yerrors via A, B
 Init = sprintf("Parametros iniciales\nNúmero de moleculas = %i\nNúmero de celdas = %i\nResolución = %i", nmolecules, gridsize, resolution)
 Fit = sprintf("Parametros de regresión\ny = ax^b\na = %f +/- %f\nb = %f +/- %f", A, A_err, B, B_err)
 
-set object 1 rect from 100, 1.8e7 to 500, 1.4e7 fc rgb "white" 
+set object 1 rect from 100, 1.8e7 to 500, 1.35e7 fc rgb "white" 
 set label 1 at 110, 1.75e7 Init
 
-set object 2 rect from 100, 1.2e7 to 500, 8e6 fc rgb "white" 
+set object 2 rect from 100, 1.2e7 to 500, 7.5e6 fc rgb "white" 
 set label 2 at 110, 1.15e7 Fit
 
 set out "Data/stability.pdf"

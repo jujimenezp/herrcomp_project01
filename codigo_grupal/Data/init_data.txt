@@ -1,4 +1,4 @@
-400	#nmolecules
+800	#nmolecules
 5	#gridsize
 200   #latticesize
 10000000	#tmax
