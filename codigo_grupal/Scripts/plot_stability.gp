@@ -14,8 +14,8 @@ set ylabel 'Tiempo de estabilización'
 set term pdf
 
 f(x) = A*x**B
-A=8
-B=2
+A = 10
+B = 2
 set fit errorvariables
 set fit quiet
 fit f(x) "Data/data_stability.txt" u 1:2:3 yerrors via A, B

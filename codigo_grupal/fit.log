@@ -638,3 +638,528 @@ correlation matrix of the fit parameters:
                 A      B      
 A               1.000 
 B              -0.994  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:09:29 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:12:26 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:12:47 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:13:03 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:13:16 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:15:34 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:16:29 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:20:48 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:21:50 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:22:53 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:23:30 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:24:25 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 12:24:45 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 14:15:02 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
+
+
+*******************************************************************************
+Tue Nov  3 14:15:45 2020
+
+
+FIT:    data read from 'Data/data_hole.txt'
+        format = z
+        x range restricted to [0.00000 : *]
+        #datapoints = 360
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = A*exp(-x/B)
+fitted parameters initialized with current variable values
+
+   3 5.0376098961e+03  -1.79e-02  1.93e-01    3.988194e+02   4.631651e+07
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5037.61
+rel. change during last iteration : -1.79459e-07
+
+degrees of freedom    (FIT_NDF)                        : 358
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.7512
+variance of residuals (reduced chisquare) = WSSR/ndf   : 14.0715
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+A               = 398.819          +/- 0.4665       (0.117%)
+B               = 4.63165e+07      +/- 1.181e+05    (0.255%)
+
+correlation matrix of the fit parameters:
+                A      B      
+A               1.000 
+B              -0.718  1.000 
