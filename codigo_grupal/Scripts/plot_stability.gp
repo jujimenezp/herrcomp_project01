@@ -8,8 +8,8 @@ resolution = int(system("sed -n 6p Data/init_data.txt | tr -d -c 0-9"))
 
 set xrange [100:*]
 set yrange [90000:*]
-set title 'Tiempo de estabilización vs Tamaño de la tasa'
-set xlabel 'Tamaño de la tasa'
+set title 'Tiempo de estabilización vs Tamaño de la taza'
+set xlabel 'Tamaño de la taza'
 set ylabel 'Tiempo de estabilización'
 set term pdf
 
