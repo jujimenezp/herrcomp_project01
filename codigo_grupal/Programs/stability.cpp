@@ -20,37 +20,20 @@ int stability (const CONFIG &config, const int partition_size, Vec_p &Particles,
     int t = 0;  //Tiempo de iteración.
     int j = 0;  //Cantidad de resoluciones de tiempo que han pasado.
     
-    int counter = 0; //Contador para el criterio de parada.
     double eps = 0.005; //Limite para el criterio de estabilidad.
 
     double Times [partition_size]; //Arreglo que guarda los tiempos para la regresión lineal de las entropias.
-    /*
-      Con la forma en que se agrupan las entropias, el arreglo de tiempos se inicializa de la siguiente manera:
-      --El tiempo máximo esta ubicado en el primer elemento del vector.
-      --El tiempo mínimo esta ubicado en el segundo elemento del vector, y los elementos sucesivos a 
-      partir de ahí corresponden a tiempos sucesivos.
-      --El tiempo mínimo corresponde a cero, para evitar tiempos muy grandes que puedan generar error en los
-      calculos.
-      --El intervalo entre tiempo y tiempo corresponde a la resolución, la cual indica cada cuanto se calcula 
-      la entropia.
-     */
-    Times[0] = (partition_size-1)*config.resolution;
-    for (int i = 1; i < partition_size; i++) Times[i] = (i-1)*config.resolution;
+    for (int i = 0; i < partition_size; i++) Times[i] = i*config.resolution; 
+    //Se acomoda el resto de tiempos desde la posición 1 en adelante, el tiempo inicial es 0 y entre tiempo y tiempo hay una resolución
     
     double Entropies[partition_size]; //Arreglo que guarda las entropias para la regresión lineal.
 
     double c0 = 0, c1 = 0; //Parametros de la regresión lineal (y = c0 + c1*x)
-    double cv00 = 0, cv01 = 0, cv11 = 0; //Elementos de la matriz de covarianzas de la regresión lineal
-    /*
-      cv00  cv01
-      cv01  cv11
-     */
-    double s = 0; //Sumas parciales de la regresión (La libreria pide que se calcule el parametro, pero no es usado en el codigo.)
-    double deviation = 0; //Parametro para cuantizar la desviación de la regresión calculada a una linea horizontal.
+    double null = 0; //Parámetros que pide la libreria pero no son necesarias para el programa
+    double deviation = eps + 1; //Parametro para cuantizar la desviación de la regresión calculada a una linea horizontal.
+    //Se inicializa de esta forma para que entre al ciclo while
 
-    while (counter < 1){
-
-        t += 1;  
+    while (deviation > eps){
 
         random_particle = dis_particle(gen);  //Escoge una particula al azar
         step = dis_move(gen)*2 - 1;  //Genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
@@ -64,20 +47,16 @@ int stability (const CONFIG &config, const int partition_size, Vec_p &Particles,
 
             Entropies[j%partition_size] = entropy(config, Cells); //Guarda cada entropia dentro del conjunto escogido.
 
-            if (j%partition_size == 0){
+            if (j%partition_size == partition_size - 1){
 
-                gsl_fit_linear(Times, 1, Entropies, 1, partition_size, &c0, &c1, &cv00, &cv01, &cv11, &s); //Calcula la regresión lineal de las entropias.
-                deviation = std::abs(c1)*Times[0]/c0;
-                /*
-                  Calcula el parametro para cuantizar la desviación de la función a una linea horizontal. 
-                  Este estima cuanto es la variación de la función linealizada a lo largo del dominio del tiempo
-                  (|c1|*Tmax) en cuanto a la entropia de estabilización, que se asume como la constante de la función (c0).
-                */
-                if (deviation < eps) counter = 1;  //Termina el ciclo si la desviación es menor al criterio de estabilidad.
+                gsl_fit_linear(Times, 1, Entropies, 1, partition_size, &c0, &c1, &null, &null, &null, &null); //Calcula la regresión lineal de las entropias.
+                deviation = std::abs(c1)*Times[partition_size - 1]/c0; //Calcula el parametro para cuantizar la desviación de la función a una linea horizontal. 
 
             }
 
         }
+
+        t += 1;  
         
     }
 

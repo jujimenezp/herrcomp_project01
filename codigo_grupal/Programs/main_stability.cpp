@@ -12,7 +12,8 @@ int main(void)
   
     start(config, Cells, Particles); //Inicializa el sistema.
 
-    //Tamaño de los conjuntos a los cuales se le aplica la linealización cuando se calcula la estabilidad. Depende de latticesize al cuadrado para que mantenga la tendencia esperada.
+    //Tamaño de los conjuntos a los cuales se le aplica la linealización cuando se calcula la estabilidad.
+    //Depende de latticesize al cuadrado para que mantenga la tendencia esperada.
     const int partition_size = config.latticesize*config.latticesize/10;
     
     const int iterations = 10; //Número de veces que se calcula el tiempo de estabilización
@@ -28,8 +29,8 @@ int main(void)
         start(config, Cells, Particles); //Reinicializa las particulas.
     }
 
-    double stable_time = gsl_stats_mean (Stable_times, 1, iterations);
-    double stable_time_error = gsl_stats_sd_m (Stable_times, 1, iterations, stable_time);
+    double stable_time = gsl_stats_mean (Stable_times, 1, iterations); //Calcula el promedio de los tiempos
+    double stable_time_error = gsl_stats_sd_m (Stable_times, 1, iterations, stable_time);  //Calcula el error en la estimacion de los tiempos
     
     //Imprime el tiempo de estabilización para el correspondiente tamaño del cuadrado. Tambien imprime el error estimado del tiempo, que se asume como la mitad de los intervalos tomados para el calculo.
     std::cout << config.latticesize << "\t" 
