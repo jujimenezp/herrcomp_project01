@@ -66,9 +66,9 @@ graphs: main.x main_stability.x main_dropsize.x main_hole.x Data/init_data.txt
 	xpdf Data/stability_log.pdf &
 
 aux: main_stability.x Data/init_data.txt
-	gnuplot Scripts/plot_dropsize.gp
-	xpdf Data/dropsize.pdf &
-	xpdf Data/dropsize_log.pdf &
+	gnuplot Scripts/plot_stability.gp
+	xpdf Data/stability.pdf &
+	xpdf Data/stability_log.pdf &
 
 main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
