@@ -8,7 +8,7 @@ int main(void)
 
     Vec_p Particles(config.nmolecules);
     Vec_i Cells(config.gridsize*config.gridsize,0);
-    Vec_i Cells_null(config.gridsize*config.gridsize,0);  
+    Vec_i Cells_null(config.gridsize*config.gridsize,0);
   
     start(config, Cells, Particles);
 
@@ -29,8 +29,6 @@ int main(void)
 
     double stable_time = gsl_stats_mean(Stable_times, 1, iterations);
     config.seed -= (iterations*(iterations-1))/2;
-
-    start(config, Cells, Particles);
 
     std::mt19937 gen(config.seed);
     std::uniform_int_distribution<int> dis_move(0, 1);
