@@ -62,7 +62,7 @@ void CONFIG::read(const std::string & fname)
       tmax = 10000000;
       seed = 0;
       resolution = 100;
-      holesize = 4;
+      holesize = 41;
       holeposition = 1;
     }
     
