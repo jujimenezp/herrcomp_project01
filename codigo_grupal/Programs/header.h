@@ -7,6 +7,7 @@
 #include <chrono>
 #include <random>
 #include <gsl/gsl_fit.h>
+#include <gsl/gsl_statistics.h>
 
 struct CONFIG{
   int nmolecules = 0;
