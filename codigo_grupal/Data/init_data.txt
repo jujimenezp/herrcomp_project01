@@ -1,7 +1,7 @@
-400	#nmolecules
-5	#gridsize
+1200	#nmolecules
+10	#gridsize
 200   #latticesize
-10000000	#tmax
+100000000	#tmax
 0	#randomgeneratorseed
 100    #resolution
 40	#holesize
