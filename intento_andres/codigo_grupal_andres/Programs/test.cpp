@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_MAIN
+#define CATCH_CONFIG_MAIN 
 #include "catch2/catch.hpp"
 
 #include "header.h"
@@ -19,159 +19,176 @@ TEST_CASE ("All tests", "[Main]"){
     
     int x = 0, y = 0, m = 0;
 
-    for (auto particle : Particles){ //make a random distribution of particles
+    for (int i = 0; i < config.nmolecules; i++){
 
         x = dis_location(gen);
         y = dis_location(gen);
 
-        particle.position[0] = x;
-        particle.position[1] = y;
-        m = particle.Getcell(config);
+        Particles[i].position[0] = x;
+        Particles[i].position[1] = y;
+        m = Particles[i].Getcell(config);
         Cells[m] += 1;
 
     }
 
-    SECTION ("Border conditions"){
-      
-      if (config.holeboolean == 0){ //fronteras sin agujero
-	
-	int x_old = 0, y_old = 0, cell_old = 0;
-	
-	Particles[0].position[0] = config.latticesize/2 - 1; //Frontera derecha
-	
-	x_old = Particles[0].position[0];
-	
-	for(int i = -config.latticesize/2; i < config.latticesize/2; i++){
-	  Particles[0].position[1] = i;
-	  cell_old = Particles[0].Getcell(config);
-	  Particles[0].Move(1, 0, config);
-	  
-	  REQUIRE (x_old == Particles[0].position[0]);
-	  REQUIRE (i == Particles[0].position[1]);
-	  REQUIRE (cell_old == Particles[0].Getcell(config));
-	}
-	
-        Particles[0].position[1] = config.latticesize/2 - 1; //Frontera arriba
-	
-	y_old = Particles[0].position[1];
-	
-	for(int i = -config.latticesize/2; i < config.latticesize/2; i++){
-	  Particles[0].position[0] = i;
-	  cell_old = Particles[0].Getcell(config);
-	  Particles[0].Move(1, 1, config);
-	  
-	  REQUIRE (i == Particles[0].position[0]);
-	  REQUIRE (y_old == Particles[0].position[1]);
-	  REQUIRE (cell_old == Particles[0].Getcell(config));
-	}
-	
-        Particles[0].position[0] = -config.latticesize/2; //Frontera izquierda
-	
-	x_old = Particles[0].position[0];
-	
-	for(int i = -config.latticesize/2; i < config.latticesize/2; i++){
-	  Particles[0].position[1] = i;
-	  cell_old = Particles[0].Getcell(config);
-	  Particles[0].Move(-1, 0, config);
-	  
-	  REQUIRE (x_old == Particles[0].position[0]);
-	  REQUIRE (i == Particles[0].position[1]);
-	  REQUIRE (cell_old == Particles[0].Getcell(config));
-	}
-	
-        Particles[0].position[1] = -config.latticesize/2; //Frontera abajo
-	
-	y_old = Particles[0].position[1];
-	
-	for(int i = -config.latticesize/2; i < config.latticesize/2; i++){
-	  Particles[0].position[0] = i;
-	  cell_old = Particles[0].Getcell(config);
-	  Particles[0].Move(-1, 1, config);
-	  
-	  REQUIRE (i == Particles[0].position[0]);
-	  REQUIRE (y_old == Particles[0].position[1]);
-	  REQUIRE (cell_old == Particles[0].Getcell(config));
-	}
-	
-      }
-      else{
-	int old_count = 0, lost_count = 0, initial_size = Particles.size();
-	int future_x = Particles[Particles.size() - 1].position[0];
-	int future_y = Particles[Particles.size() - 1].position[1];
-	
-	Particles[0].position[0] = config.latticesize/2 - 1; //Frontera derecha
-	Particles[0].position[1] = dis_hole(gen);
-	cell_old = Particles[0].Getcell(config);
-	old_count = Cells[cell_old];
-	
-	config.holeposition = 2;
-	
-	Particles[0].Move_hole(1, 0, 0, config, Cells, Particles);
-	lost_count += 1;
-	
-	REQUIRE (Particles[0].position[0] == future_x);
-	REQUIRE (Particles[0].position[1] == future_y);
-	REQUIRE (Particles.size() == initial_size - lost_count);
-	REQUIRE (Cells[cell_old] == old_count - 1);
-	
-	future_x = Particles[Particles.size() - 1].position[0]; //reset future values
-	future_y = Particles[Particles.size() - 1].position[1];
-	
-	Particles[0].position[1] = config.latticesize/2 - 1; //Frontera arriba
-	Particles[0].position[0] = dis_hole(gen);
-	cell_old = Particles[0].Getcell(config);
-	old_count = Cells[cell_old];
-	
-	config.holeposition = 1;
-	
-	Particles[0].Move_hole(1, 1, 0, config, Cells, Particles);
-	lost_count += 1;
-	
-	REQUIRE (Particles[0].position[0] == future_x);
-	REQUIRE (Particles[0].position[1] == future_y);
-	REQUIRE (Particles.size() == initial_size - lost_count);
-	REQUIRE (Cells[cell_old] == old_count - 1);
-	
-	future_x = Particles[Particles.size() - 1].position[0]; //reset future values
-	future_y = Particles[Particles.size() - 1].position[1];
-	
-	Particles[0].position[0] = -config.latticesize/2; //Frontera izquierda
-	Particles[0].position[1] = dis_hole(gen);
-	cell_old = Particles[0].Getcell(config);
-	old_count = Cells[cell_old];
-	
-	config.holeposition = 0;
-	
-	Particles[0].Move_hole(-1, 0, 0, config, Cells, Particles);
-	lost_count += 1;
-	
-	REQUIRE (Particles[0].position[0] == future_x);
-	REQUIRE (Particles[0].position[1] == future_y);
-	REQUIRE (Particles.size() == initial_size - lost_count);
-	REQUIRE (Cells[cell_old] == old_count - 1);
-	
-	future_x = Particles[Particles.size() - 1].position[0]; //reset future values
-	future_y = Particles[Particles.size() - 1].position[1];
-	
-	Particles[0].position[1] = -config.latticesize/2; //Frontera abajo
-	Particles[0].position[0] = dis_hole(gen);
-	cell_old = Particles[0].Getcell(config);
-	old_count = Cells[cell_old];
-	
-	config.holeposition = 3;
-	
-	Particles[0].Move_hole(-1, 1, 0, config, Cells, Particles);
-	lost_count += 1;
-	
-	REQUIRE (Particles[0].position[0] == future_x);
-	REQUIRE (Particles[0].position[1] == future_y);
-	REQUIRE (Particles.size() == initial_size - lost_count);
-	REQUIRE (Cells[cell_old] == old_count - 1);
-	
-      }
-      
-    }
+    SECTION ("Border conditions without holes"){
+
+        int x_old = 0, y_old = 0, cell_old = 0,
+            x_new = 0, y_new = 0, cell_new = 0;
+
+        Particles[0].position[0] = config.latticesize/2 - 1; //Frontera derecha
     
+        x_old = Particles[0].position[0];
+        y_old = Particles[0].position[1];
+        cell_old = Particles[0].Getcell(config);
+
+        Particles[0].Move(1, 0, config, Cells);
+
+        x_new = Particles[0].position[0];
+        y_new = Particles[0].position[1];
+        cell_new = Particles[0].Getcell(config);
+    
+        REQUIRE (x_old == x_new);
+        REQUIRE (y_old == y_new);
+        REQUIRE (cell_old == cell_new);
+
+    
+        Particles[0].position[1] = config.latticesize/2 - 1; //Frontera arriba
+    
+        x_old = Particles[0].position[0];
+        y_old = Particles[0].position[1];
+        cell_old = Particles[0].Getcell(config);
+
+        Particles[0].Move(1, 1, config, Cells);
+
+        x_new = Particles[0].position[0];
+        y_new = Particles[0].position[1];
+        cell_new = Particles[0].Getcell(config);
+    
+        REQUIRE (x_old == x_new);
+        REQUIRE (y_old == y_new);
+        REQUIRE (cell_old == cell_new);
+
+    
+        Particles[0].position[0] = -config.latticesize/2; //Frontera izquierda
+    
+        x_old = Particles[0].position[0];
+        y_old = Particles[0].position[1];
+        cell_old = Particles[0].Getcell(config);
+
+        Particles[0].Move(-1, 0, config, Cells);
+
+        x_new = Particles[0].position[0];
+        y_new = Particles[0].position[1];
+        cell_new = Particles[0].Getcell(config);
+    
+        REQUIRE (x_old == x_new);
+        REQUIRE (y_old == y_new);
+        REQUIRE (cell_old == cell_new);
+
+    
+        Particles[0].position[1] = -config.latticesize/2; //Frontera abajo
+    
+        x_old = Particles[0].position[0];
+        y_old = Particles[0].position[1];
+        cell_old = Particles[0].Getcell(config);
+
+        Particles[0].Move(-1, 1, config, Cells);
+
+        x_new = Particles[0].position[0];
+        y_new = Particles[0].position[1];
+        cell_new = Particles[0].Getcell(config);
+    
+        REQUIRE (x_old == x_new);
+        REQUIRE (y_old == y_new);
+        REQUIRE (cell_old == cell_new);
+
+    }
+
+    SECTION ("Border conditions with holes"){
+      /*Particles debe reducirse si la particula i escapa,
+        el numero de particulas en la celda de i debe disminuir en 1
+        y los nuevos valores de i deben ser los de la 
+        ultima entrada de Particles*/
+
+      if (config.nmolecules < 4){
+        Particles.resize(5);
+        Particles[4].position[0] = 0;
+        Particles[4].position[1] = 0;
+      }
+      
+      int old_cell = 0, old_cell_count = 0, lost_count = 0;
+      int initial_size = Particles.size();
+      int future_x = Particles[Particles.size() - 1].position[0];
+      int future_y = Particles[Particles.size() - 1].position[1];
+
+      config.holeposition = 1; //Frontera derecha
+      Particles[0].position[0] = config.latticesize/2 - 1;
+      Particles[0].position[1] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+      
+      Particles[0].Move_hole(1, 0, 0, config, Cells, Particles);
+      lost_count += 1;
+      
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
+	
+      future_x = Particles[Particles.size() - 1].position[0]; //reset future values
+      future_y = Particles[Particles.size() - 1].position[1];
+      
+      config.holeposition = 2; //Frontera arriba
+      Particles[0].position[1] = config.latticesize/2 - 1;
+      Particles[0].position[0] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+	
+      Particles[0].Move_hole(1, 1, 0, config, Cells, Particles);
+      lost_count += 1;
+	
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
+	
+      future_x = Particles[Particles.size() - 1].position[0]; //reset future values
+      future_y = Particles[Particles.size() - 1].position[1];
+      
+      config.holeposition = -1; //Frontera izquierda
+      Particles[0].position[0] = -config.latticesize/2;
+      Particles[0].position[1] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+	
+      Particles[0].Move_hole(-1, 0, 0, config, Cells, Particles);
+      lost_count += 1;
+	
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
+	
+      future_x = Particles[Particles.size() - 1].position[0]; //reset future values
+      future_y = Particles[Particles.size() - 1].position[1];
+      
+      config.holeposition = 0; //Frontera abajo
+      Particles[0].position[1] = -config.latticesize/2;
+      Particles[0].position[0] = dis_hole(gen);
+      old_cell = Particles[0].Getcell(config);
+      old_cell_count = Cells[old_cell];
+	
+      Particles[0].Move_hole(-1, 1, 0, config, Cells, Particles);
+      lost_count += 1;
+	
+      REQUIRE (Particles[0].position[0] == future_x);
+      REQUIRE (Particles[0].position[1] == future_y);
+      REQUIRE (Particles.size() == initial_size - lost_count);
+      REQUIRE (Cells[old_cell] == old_cell_count - 1);
+
+    }
+
     SECTION ("Cells conditions"){
 
         int sum = 0;     //La suma de todas las casillas debe dar el número de particulas
@@ -206,8 +223,8 @@ TEST_CASE ("All tests", "[Main]"){
             step = dis_move(gen)*2 - 1;  
             direction = dis_move(gen);
 
-            time_step(config, random_particle, step, direction, Cells, Particles);
-
+            Particles[random_particle].Move(step, direction, config, Cells);
+            
         }
 
         sum = 0;
