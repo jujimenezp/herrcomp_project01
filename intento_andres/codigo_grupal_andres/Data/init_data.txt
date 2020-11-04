@@ -1,8 +1,8 @@
-400     #nmolecules
-8      #gridsize
-200      #latticesize
-1000000000    #tmax
-0      #randomgeneratorseed
-1000    #resolution
-1      #0=no_hole,other_int=hole
-1      #hole_position,0=left,1=up,2=right,3=down
+1200	#nmolecules
+10	#gridsize
+200   #latticesize
+100000000	#tmax
+0	#randomgeneratorseed
+100    #resolution
+40	#holesize
+1	#hole_position,0=left,1=up,2=right,3=down
