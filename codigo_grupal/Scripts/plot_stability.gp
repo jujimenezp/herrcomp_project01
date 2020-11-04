@@ -22,10 +22,10 @@ fit f(x) "Data/data_stability.txt" u 1:2:3 yerrors via A, B
 Init = sprintf(" {/:Bold Parámetros iniciales} \n Número de partículas = %i", nmolecules)
 Fit = sprintf(" {/:Bold Parámetros de regresión} \n y = ax^b \n a = %g +/- %g \n b = %g +/- %g", A, A_err, B, B_err)
 
-set obj 1 rect from graph 0, 1 to graph 0.36, 0.86 fc rgb "white" 
+set obj 1 rect from graph 0, 1 to graph 0.36, 0.86 fc rgb "white"
 set lab 1 Init at graph 0, 0.96
 
-set obj 2 rect from graph 0, 0.86 to graph 0.36, 0.6 fc rgb "white" 
+set obj 2 rect from graph 0, 0.86 to graph 0.36, 0.6 fc rgb "white"
 set lab 2 Fit at graph 0, 0.82
 
 set o "Data/stability.pdf"
