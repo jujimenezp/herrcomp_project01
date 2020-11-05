@@ -114,7 +114,7 @@ Objects/Gprof/%.o: Programs/%.cpp
 	$(CXX) $(CXXFLAGS) -pg -c  $< -o $@
 
 clean:
-	rm -f Data/gprof*.txt Data/cachegrind*.txt *.x Data/data*.txt *.log
+	rm -f *.x Data/data*.txt *.log
 
 oclean:
 	rm -f Objects/Sanitizers/*.o Objects/Normal/*.o Objects/Gprof/*.o

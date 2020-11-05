@@ -21,7 +21,7 @@ int main(void)
 
         config.seed += i; //Para cada iteración se varia la seed aleatorea.
 
-        Stable_times[i] += stability(config, partition_size, Particles, Cells); //Se calcula el tiempo de estabilización para una seed en especifico. 
+        Stable_times[i] = stability(config, partition_size, Particles, Cells); //Se calcula el tiempo de estabilización para una seed en especifico. 
 
         Cells = Cells_null;  //Reinicializa las celdas
         start(config, Cells, Particles); //Reinicializa las particulas.
