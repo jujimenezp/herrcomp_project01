@@ -5,4 +5,4 @@
 0	#randomgeneratorseed
 100    #resolution
 40	#holesize
-1	#hole_position,0=left,1=up,2=right,3=down
+1	#hole_position,-1=left,0=down,1=right,2=up
