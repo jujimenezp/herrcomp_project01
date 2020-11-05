@@ -12,12 +12,12 @@ void Particle::Move(const int &step, const int &direction, const CONFIG &config,
 {
   if (labs(position[direction] + step) != config.latticesize/2 + (1 - step)/2){
     int m = Getcell(config);
-    Cells[m] -= 1; //delete it from the old cell
+    Cells[m] -= 1; //Saca la particula de la celda
     
-    position[direction] += step; //move the particle
+    position[direction] += step; //Mueve la nueva particula
     
     m = Getcell(config);
-    Cells[m] += 1; //add it to the new cell
+    Cells[m] += 1; //Aniade la particula a la nueva celda
   } 
 }
 
