@@ -22,15 +22,15 @@ int stability (const CONFIG &config, const int partition_size, Vec_p &Particles,
     
     double eps = 0.005; //Limite para el criterio de estabilidad.
 
-    double Times [partition_size]; //Arreglo que guarda los tiempos para la regresión lineal de las entropias.
+    double Times [partition_size]; //Arreglo que guarda los tiempos para la regresion lineal de las entropias.
     for (int i = 0; i < partition_size; i++) Times[i] = i*config.resolution; 
-    //Se acomoda el resto de tiempos desde la posición 1 en adelante, el tiempo inicial es 0 y entre tiempo y tiempo hay una resolución
+    //Se acomoda el resto de tiempos desde la posicion 1 en adelante, el tiempo inicial es 0 y entre tiempo y tiempo hay una resolucion
     
-    double Entropies[partition_size]; //Arreglo que guarda las entropias para la regresión lineal.
+    double Entropies[partition_size]; //Arreglo que guarda las entropias para la regresion lineal.
 
-    double c0 = 0, c1 = 0; //Parametros de la regresión lineal (y = c0 + c1*x)
+    double c0 = 0, c1 = 0; //Parametros de la regresion lineal (y = c0 + c1*x)
     double null = 0; //Parámetros que pide la libreria pero no son necesarias para el programa
-    double deviation = eps + 1; //Parametro para cuantizar la desviación de la regresión calculada a una linea horizontal.
+    double deviation = eps + 1; //Parametro para cuantizar la desviacion de la regresion calculada a una linea horizontal.
     //Se inicializa de esta forma para que entre al ciclo while
 
     while (deviation > eps){
@@ -49,8 +49,8 @@ int stability (const CONFIG &config, const int partition_size, Vec_p &Particles,
 
             if (j%partition_size == partition_size - 1){
 
-                gsl_fit_linear(Times, 1, Entropies, 1, partition_size, &c0, &c1, &null, &null, &null, &null); //Calcula la regresión lineal de las entropias.
-                deviation = std::abs(c1)*Times[partition_size - 1]/c0; //Calcula el parametro para cuantizar la desviación de la función a una linea horizontal. 
+                gsl_fit_linear(Times, 1, Entropies, 1, partition_size, &c0, &c1, &null, &null, &null, &null); //Calcula la regresion lineal de las entropias.
+                deviation = std::abs(c1)*Times[partition_size - 1]/c0; //Calcula el parametro para cuantizar la desviacion de la funcion a una linea horizontal. 
 
             }
 
@@ -60,6 +60,6 @@ int stability (const CONFIG &config, const int partition_size, Vec_p &Particles,
         
     }
 
-    return t - (partition_size -1)*config.resolution/2; //Devuelve el tiempo medio del intervalo en el cual la entropia llego al equilibrio.
+    return t - (partition_size -1)*config.resolution/2; //Devuelve el tiempo medio del intervalo en el cual la entropia llego al equilibroo.
     
 }
