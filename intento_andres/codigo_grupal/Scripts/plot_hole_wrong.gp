@@ -19,7 +19,7 @@ A = nmolecules
 B = 1.15e8
 set fit errorvar
 set fit quiet
-fit f(x) 'Data/data_hole.txt' via A, B
+fit f(x) 'Data/data_hole_wrong.txt' via A, B
 
 Init = sprintf(" {/:Bold Parámetros iniciales} \n Número de partículas = %i \n Tamaño de la taza = %i \n Tamaño del hueco = %i", nmolecules, latticesize, holesize)
 Fit = sprintf(" {/:Bold Parámetros de regresión} \n y = ae^{-x/b} \n a = %g +/- %g \n b = %g +/- %g", A, A_err, B, B_err)

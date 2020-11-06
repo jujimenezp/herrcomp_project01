@@ -33,6 +33,14 @@ memcheck: valgrind_hole.x valgrind_wrong.x
 	valgrind $(MEMCHECKFLAGS) ./$<
 	valgrind $(MEMCHECKFLAGS) ./valgrind_wrong.x
 
+callgrind: valgrind_hole.x valgrind_wrong.x
+	valgrind --tool=callgrind $<
+	callgrind_annotate $$(ls -t callgrind.out.* | head -n 1) > Data/callgrind_hole-report.txt
+	rm -f callgrind.out.*
+	valgrind --tool=callgrind valgrind_wrong.x
+	callgrind_annotate $$(ls -t callgrind.out.* | head -n 1) > Data/callgrind_wrong-report.txt
+	rm -f callgrind.out.*
+
 graphs: main_hole.x main_wrong.x Data/init_data.txt
 	./$<
 	gnuplot Scripts/plot_hole.gp
