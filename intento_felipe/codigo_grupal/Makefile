@@ -1,6 +1,5 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -O3 -g
-LIBRARIES = -lgsl -lgslcblas -lm
 SANITFLAGS = -fsanitize=address -fsanitize=leak -fsanitize=undefined
 MEMCHECKFLAGS = --tool=memcheck --track-origins=yes --leak-check=full
 DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_particle.o Objects/Sanitizers/start.o Objects/Sanitizers/entropy.o Objects/Sanitizers/print_particles.o Objects/Sanitizers/dropsize.o 
@@ -66,29 +65,38 @@ graphs: main.x main_stability.x main_dropsize.x main_hole.x Data/init_data.txt
 	xpdf Data/stability.pdf &
 	xpdf Data/stability_log.pdf &
 
+animation: animation.x Data/init_data.txt
+	./$<
+	cp -r Data/Animation /media/sf_Data_machine/
+	rm -r Data/Animation
+	mkdir Data/Animation
+
 main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
 main_stability.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability.o Objects/Sanitizers/main_stability.o
-	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ $(LIBRARIES) -o $@
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 main_dropsize.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability.o Objects/Sanitizers/main_dropsize.o
-	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ $(LIBRARIES) -o $@
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 main_hole.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main_hole.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
-test.x: $(DEPENDENCIES_NORMAL) Objects/Normal/stability.o Objects/Normal/test.o
-	$(CXX) $(CXXFLAGS) $^ $(LIBRARIES) -o $@
+test.x: $(DEPENDENCIES_NORMAL) Objects/Normal/test.o
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+animation.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/animation.o
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
 gprof.x: $(DEPENDENCIES_GPROF) Objects/Gprof/main.o
 	$(CXX) $(CXXFLAGS) -pg $^ -o $@
 
 gprof_stability.x: $(DEPENDENCIES_GPROF) Objects/Gprof/stability.o Objects/Gprof/main_stability.o
-	$(CXX) $(CXXFLAGS) -pg $^ $(LIBRARIES) -o $@
+	$(CXX) $(CXXFLAGS) -pg $^ -lgsl -lgslcblas -lm -o $@
 
 gprof_dropsize.x: $(DEPENDENCIES_GPROF) Objects/Gprof/stability.o Objects/Gprof/main_dropsize.o
-	$(CXX) $(CXXFLAGS) -pg $^ $(LIBRARIES) -o $@
+	$(CXX) $(CXXFLAGS) -pg $^ -lgsl -lgslcblas -lm -o $@
 
 gprof_hole.x: $(DEPENDENCIES_GPROF) Objects/Gprof/main_hole.o
 	$(CXX) $(CXXFLAGS) -pg $^ -o $@
@@ -97,10 +105,10 @@ valgrind.x: $(DEPENDENCIES_NORMAL) Objects/Normal/main.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 valgrind_stability.x: $(DEPENDENCIES_NORMAL) Objects/Normal/stability.o Objects/Normal/main_stability.o
-	$(CXX) $(CXXFLAGS) $^ $(LIBRARIES) -o $@
+	$(CXX) $(CXXFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 valgrind_dropsize.x: $(DEPENDENCIES_NORMAL) Objects/Normal/stability.o Objects/Normal/main_dropsize.o
-	$(CXX) $(CXXFLAGS) $^ $(LIBRARIES) -o $@
+	$(CXX) $(CXXFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 valgrind_hole.x: $(DEPENDENCIES_NORMAL) Objects/Normal/main_hole.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
