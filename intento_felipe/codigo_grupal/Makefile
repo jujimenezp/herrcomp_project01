@@ -71,6 +71,18 @@ animation: animation.x Data/init_data.txt
 	rm -r Data/Animation
 	mkdir Data/Animation
 
+stability: stability_v1.x stability_v2.x main.x Data/init_data.txt
+	./$<
+	./stability_v2.x
+	./main.x
+	gnuplot Scripts/plot_entropy.gp
+	gnuplot Scripts/plot_stability_test.gp
+	xpdf Data/entropy.pdf &
+	xpdf Data/stability_v1.pdf &
+	xpdf Data/stability_v21.pdf &
+	xpdf Data/stability_v22.pdf &
+	xpdf Data/stability_v23.pdf &
+
 main.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/main.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 
@@ -88,6 +100,12 @@ test.x: $(DEPENDENCIES_NORMAL) Objects/Normal/test.o
 
 animation.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/animation.o
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
+
+stability_v1.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability_v1.o
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
+
+stability_v2.x: $(DEPENDENCIES_SANITIZERS) Objects/Sanitizers/stability.o Objects/Sanitizers/stability_v2.o
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 gprof.x: $(DEPENDENCIES_GPROF) Objects/Gprof/main.o
 	$(CXX) $(CXXFLAGS) -pg $^ -o $@
