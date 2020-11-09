@@ -115,3 +115,32 @@ oclean: Elimina todos los archivos tipo objeto en los 3 directorios internos de 
 
 
 SCRIPTS:
+
+plot_particles.gp: Grafica las posiciones de las particulas de los archivos
+Data/data_particles_start.txt y Data/data_particles_end.txt. Con un comando de
+bash extrae de Data/init_data.txt los valores de latticesize y gridsize que usa
+para mostrar la frontera como un cuadrado rojo y hacer el grid del tamanio de
+las celdas, el rango de x e y es 25% mas grande para mostrar que ninguna
+particula este afuera. Arroja las graficas a Data/particles_start.pdf y Data/particles_end.pdf
+
+Plot_entropy.gp: Grafica la entropia contra el tiempo del archivo Data/data_entropy.txt. Toma los
+valores de nmolecules, gridsize, latticesize para mostrarlos en un recuadro en la grafica.
+Arroja el resultado a Data/entropy.pdf
+
+plot_hole.gp: Grafica el numero de particulas contra el tiempo del archivo
+Data/data_hole.txt. Hace una regresion de los datos a la forma funcional
+esperada, y grafica los datos y la aproximacion en escala lineal y
+semilogaritmica.
+
+plot_dropsize.gp: grafica el tamanio de la gota de crema contra el tiempo. Hace
+una regresion de los datos a la forma funcionale esperada, y grafica los datos y
+la aproximacion en escala lineal y logaritmica.
+
+plot_stability.sh: Para valores de N entre 100 y 1000 en saltos de 50, reemplaza
+el valor de latticesize por N y corre ./main_stability.x, los resultados los
+arroja a Data/data_stability.txt y luego reestablece el latticesize a 200
+
+plot_stability.gp: Grafica el tiempo de estabilizacion contra el latticesize.
+Realiza una regresion lineal a la forma funcional esperada y grafica los datos y
+la aproximacion en escala lineal y logaritmica
+
