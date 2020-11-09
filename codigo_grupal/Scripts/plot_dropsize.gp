@@ -9,7 +9,7 @@ latticesize = int(system("sed -n 3p Data/init_data.txt | tr -d -c 0-9"))
 resolution = int(system("sed -n 6p Data/init_data.txt | tr -d -c 0-9"))
 
 set xr []
-set yr [:800*0.45]
+set yr [:latticesize*0.45]
 set title 'Tamaño de la gota vs Iteraciones'
 set xl 'Iteraciones'
 set yl 'Tamaño de la gota'

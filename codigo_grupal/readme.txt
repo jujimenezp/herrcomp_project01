@@ -3,7 +3,7 @@ SIMULACION DE CREMA EN SUPERFICIE DE CAFE
 
 INTEGRANTES:
 Carlos Andres Del Valle Urberuaga
-Felipe Gomez Lozada
+Felipe Gómez Lozada
 Juian David Jimenez Paz
 Andres Felipe Vargas Londono
 
