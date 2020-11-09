@@ -16,7 +16,7 @@ set term pdf
 
 f(x) = A*exp(-x/B)
 A = nmolecules
-B = 1.75e8
+B = 44950843
 set fit errorvar
 set fit quiet
 fit f(x) 'Data/data_hole.txt' via A, B
