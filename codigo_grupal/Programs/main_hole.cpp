@@ -26,11 +26,6 @@ int main(void)
 
     t += 1;
     size = Particles.size();
-
-    //if (Particles.size() == 0){
-    //  std::cerr << "#There is no cream left on the cup" << std::endl;
-    //  return 0;
-    //}
     
     random_particle = dis_particle(gen); //escoge una particula al azar
     step = dis_move(gen)*2 - 1; //genera un numero aleatorio 1 o -1 (1: arriba o derecha -1:abajo o izquierda)
@@ -49,16 +44,6 @@ int main(void)
 
     }
 
-    
-    /*if (t%config.resolution == 0){ //impresion para simulacion en paraview
-      std::string fname = "Data/post/datos-" + std::to_string(t) + ".csv";
-      std::ofstream fout(fname);
-      for (int i = 0; i < Particles.size(); i++){
-	fout << Particles[i].position[0] << ", "
-	     << Particles[i].position[1] << "\n";
-      }
-      fout.close();
-      }*/
   }
 
   holefile.close();

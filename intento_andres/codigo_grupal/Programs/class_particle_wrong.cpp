@@ -33,7 +33,7 @@ void Particle::Move_hole(const int &step, const int &direction, const int &parti
     moved_particle_cell = Particles[particle_id].Getcell(config);
     Cells[moved_particle_cell] += 1; //add it to new-cell count
   }
-  else if (direction == 0 && config.holeposition == step + 1){ //the particle is on the limit after moving and moved towards the hole
+  else if (direction == 0 && config.holeposition == (step + 1)-1){ //the particle is on the limit after moving and moved towards the hole
     
     if (labs(position[1]) <= config.holesize/2){ //the particle is actually on the hole
       Cells[moved_particle_cell] -= 1; //delete the particle from the cell count
@@ -42,7 +42,7 @@ void Particle::Move_hole(const int &step, const int &direction, const int &parti
     }
 
   }
-  else if (direction == 1 && config.holeposition == -step + 2){ //the particle is on the limit after moving and moved towards the hole
+  else if (direction == 1 && config.holeposition == -(-step + 2)+3){ //the particle is on the limit after moving and moved towards the hole
     
     if (labs(position[0]) <= config.holesize/2){ //the particle is actually on the hole
       Cells[moved_particle_cell] -= 1; //delete the particle from the cell count

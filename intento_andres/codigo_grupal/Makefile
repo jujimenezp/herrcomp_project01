@@ -1,19 +1,20 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -O3 -g
+CXXFLAGS1 = -std=c++17 -O3 -g -ggdb
 SANITFLAGS = -fsanitize=address -fsanitize=leak -fsanitize=undefined
 MEMCHECKFLAGS = --tool=memcheck --track-origins=yes --leak-check=full
 DEPENDENCIES_SANITIZERS = Objects/Sanitizers/CONFIG.o Objects/Sanitizers/class_particle.o Objects/Sanitizers/start.o Objects/Sanitizers/entropy.o Objects/Sanitizers/print_particles.o Objects/Sanitizers/dropsize.o 
-DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o Objects/Normal/entropy.o Objects/Normal/print_particles.o Objects/Normal/dropsize.o
-DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o Objects/Gprof/entropy.o Objects/Gprof/print_particles.o Objects/Gprof/dropsize.o
-DEPENDENCIES_NORMAL_WRONG = Objects/Normal/CONFIG.o Objects/Normal/class_particle_wrong.o Objects/Normal/start.o Objects/Normal/entropy.o Objects/Normal/print_particles.o Objects/Normal/dropsize.o
-DEPENDENCIES_GPROF_WRONG = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle_wrong.o Objects/Gprof/start.o Objects/Gprof/entropy.o Objects/Gprof/print_particles.o Objects/Gprof/dropsize.o 
+DEPENDENCIES_NORMAL = Objects/Normal/CONFIG.o Objects/Normal/class_particle.o Objects/Normal/start.o #Objects/Normal/entropy.o Objects/Normal/print_particles.o Objects/Normal/dropsize.o
+DEPENDENCIES_GPROF = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle.o Objects/Gprof/start.o #Objects/Gprof/entropy.o Objects/Gprof/print_particles.o Objects/Gprof/dropsize.o
+DEPENDENCIES_NORMAL_WRONG = Objects/Normal/CONFIG.o Objects/Normal/class_particle_wrong.o Objects/Normal/start.o #Objects/Normal/entropy.o Objects/Normal/print_particles.o Objects/Normal/dropsize.o
+DEPENDENCIES_GPROF_WRONG = Objects/Gprof/CONFIG.o Objects/Gprof/class_particle_wrong.o Objects/Gprof/start.o #Objects/Gprof/entropy.o Objects/Gprof/print_particles.o Objects/Gprof/dropsize.o 
 
 all: main_hole.x main_wrong.x
 
 test: test.x
 	./$<
 
-gprof: gprof_hole.x gprof_wrong.x
+gprof: gprof_wrong.x gprof_hole.x
 	./$<
 	gprof ./$< > Data/gprof_hole-report.txt
 	rm gmon.out
@@ -33,7 +34,7 @@ memcheck: valgrind_hole.x valgrind_wrong.x
 	valgrind $(MEMCHECKFLAGS) ./$<
 	valgrind $(MEMCHECKFLAGS) ./valgrind_wrong.x
 
-callgrind: valgrind_hole.x valgrind_wrong.x
+callgrind: valgrind_hole.x #valgrind_wrong.x
 	valgrind --tool=callgrind $<
 	callgrind_annotate $$(ls -t callgrind.out.* | head -n 1) > Data/callgrind_hole-report.txt
 	rm -f callgrind.out.*
@@ -50,6 +51,14 @@ graphs: main_hole.x main_wrong.x Data/init_data.txt
 	gnuplot Scripts/plot_hole_wrong.gp
 	xpdf Data/hole_wrong.pdf &
 	xpdf Data/hole_wrong_log.pdf &
+
+compare_hole: main_hole.x main_wrong.x Data/init_data.txt
+	./$<
+	./main_wrong.x
+	gnuplot Scripts/hole.gp
+	xpdf Data/nofit.pdf &
+	xpdf Data/nofit_log.pdf &
+	echo -en "\007"
 
 aux: main_dropsize.x Data/init_data.txt
 	gnuplot Scripts/plot_dropsize.gp
@@ -99,10 +108,10 @@ valgrind_dropsize.x: $(DEPENDENCIES_NORMAL) Objects/Normal/stability.o Objects/N
 	$(CXX) $(CXXFLAGS) $^ -lgsl -lgslcblas -lm -o $@
 
 valgrind_hole.x: $(DEPENDENCIES_NORMAL) Objects/Normal/main_hole.o
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS1) $^ -o $@
 
 valgrind_wrong.x: $(DEPENDENCIES_NORMAL_WRONG) Objects/Normal/main_hole.o
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS1) $^ -o $@
 
 Objects/Sanitizers/%.o: Programs/%.cpp
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) -c  $< -o $@
